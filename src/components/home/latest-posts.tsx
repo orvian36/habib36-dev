@@ -7,11 +7,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TiltCard } from "@/components/ui/tilt-card";
-import { blogPosts } from "@/lib/data";
 
-const latestPosts = blogPosts.slice(0, 3);
+type PostItem = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  readingTime: string;
+};
 
-export function LatestPosts() {
+export function LatestPosts({ posts }: { posts: PostItem[] }) {
+  const latestPosts = posts.slice(0, 3);
   return (
     <section className="py-24 bg-bg-secondary/30 border-y border-border-primary">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

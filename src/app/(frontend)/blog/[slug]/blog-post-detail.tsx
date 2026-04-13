@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -13,40 +12,30 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { blogPosts } from "@/lib/data";
 
-export default function BlogPostPage({
-  params,
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  tags: string[];
+  date: string;
+  readingTime: string;
+};
+
+type RelatedPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+};
+
+export function BlogPostDetail({
+  post,
+  relatedPosts,
 }: {
-  params: Promise<{ slug: string }>;
+  post: Post;
+  relatedPosts: RelatedPost[];
 }) {
-  const { slug } = use(params);
-  const post = blogPosts.find((p) => p.slug === slug);
-
-  if (!post) {
-    return (
-      <div className="py-24 text-center">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h1 className="heading-mono text-3xl text-text-primary mb-4">
-            Post not found
-          </h1>
-          <p className="text-text-secondary mb-8">
-            The blog post you&apos;re looking for doesn&apos;t exist.
-          </p>
-          <Button href="/blog">
-            <ArrowLeft className="w-4 h-4" />
-            Back to blog
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
-  // Get related posts (same category, exclude current)
-  const relatedPosts = blogPosts
-    .filter((p) => p.category === post.category && p.slug !== post.slug)
-    .slice(0, 2);
-
   return (
     <div className="py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -134,21 +123,11 @@ export default function BlogPostPage({
               Table of Contents
             </h3>
             <nav className="space-y-2 text-sm">
-              <p className="text-text-muted font-mono">
-                1. Introduction
-              </p>
-              <p className="text-text-muted font-mono">
-                2. Problem Statement
-              </p>
-              <p className="text-text-muted font-mono">
-                3. Implementation
-              </p>
-              <p className="text-text-muted font-mono">
-                4. Results & Metrics
-              </p>
-              <p className="text-text-muted font-mono">
-                5. Takeaways
-              </p>
+              <p className="text-text-muted font-mono">1. Introduction</p>
+              <p className="text-text-muted font-mono">2. Problem Statement</p>
+              <p className="text-text-muted font-mono">3. Implementation</p>
+              <p className="text-text-muted font-mono">4. Results & Metrics</p>
+              <p className="text-text-muted font-mono">5. Takeaways</p>
             </nav>
           </div>
 

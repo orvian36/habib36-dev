@@ -6,7 +6,26 @@
       "Bash(mkdir -p components/layout components/home components/projects components/blog components/resume components/chat components/ui)",
       "Bash(npx next:*)",
       "Bash(node -e \"const l = require\\('lucide-react'\\); const names = Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('git'\\)\\); console.log\\(names\\);\")",
-      "Bash(node -e \"const l = require\\('lucide-react'\\); ['Github','Linkedin','Code2','CheckCircle','Trophy'].forEach\\(n => console.log\\(n, !!l[n]\\)\\);\")"
+      "Bash(node -e \"const l = require\\('lucide-react'\\); ['Github','Linkedin','Code2','CheckCircle','Trophy'].forEach\\(n => console.log\\(n, !!l[n]\\)\\);\")",
+      "Bash(cmd.exe:*)",
+      "Bash(npx tsx:*)",
+      "Bash(curl:*)",
+      "Bash(ls -la \"C:/Users/Best Laptop Gallery/Desktop/live/habib36-dev/\"*.db*)",
+      "Bash(npx tsc:*)",
+      "Bash(cp -r about \"\\(frontend\\)/about\")",
+      "Bash(cp -r blog \"\\(frontend\\)/blog\")",
+      "Bash(cp -r contact \"\\(frontend\\)/contact\")",
+      "Bash(cp -r projects \"\\(frontend\\)/projects\")",
+      "Bash(cp -r resume \"\\(frontend\\)/resume\")",
+      "Bash(cp -r \"C:/Users/Best Laptop Gallery/Desktop/live/habib36-dev/src/app/blog\" \"C:/Users/Best Laptop Gallery/Desktop/live/habib36-dev/src/app/\\(frontend\\)/blog\")",
+      "Bash(cp -r \"C:/Users/Best Laptop Gallery/Desktop/live/habib36-dev/src/app/projects\" \"C:/Users/Best Laptop Gallery/Desktop/live/habib36-dev/src/app/\\(frontend\\)/projects\")",
+      "Bash(cp -r \"C:/Users/Best Laptop Gallery/Desktop/live/habib36-dev/src/app/api\" \"C:/Users/Best Laptop Gallery/Desktop/live/habib36-dev/src/app/\\(frontend\\)/api\")",
+      "Bash(rm:*)",
+      "Bash(taskkill //PID 3268 //F)",
+      "Bash(npx better-sqlite3:*)",
+      "Bash(python3 -c \"import sqlite3; conn=sqlite3.connect\\('payload.db'\\); cur=conn.cursor\\(\\); cur.execute\\('SELECT id, email FROM users'\\); print\\(cur.fetchall\\(\\)\\); conn.close\\(\\)\")",
+      "Bash(python -c \"import sqlite3; conn=sqlite3.connect\\('payload.db'\\); cur=conn.cursor\\(\\); cur.execute\\('SELECT id, email FROM users'\\); print\\(cur.fetchall\\(\\)\\); conn.close\\(\\)\")",
+      "Bash(sqlite3 payload.db \"SELECT id, email FROM users;\")"
     ]
   }
 }

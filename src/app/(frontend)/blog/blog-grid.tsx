@@ -3,18 +3,27 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Search, Calendar, Clock, ArrowRight } from "lucide-react";
+import { Search, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { blogPosts } from "@/lib/data";
 
-const categories = [...new Set(blogPosts.map((p) => p.category))];
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  tags: string[];
+  date: string;
+  readingTime: string;
+};
 
-export default function BlogPage() {
+export function BlogGrid({ posts }: { posts: Post[] }) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const filtered = blogPosts.filter((p) => {
+  const categories = [...new Set(posts.map((p) => p.category))];
+
+  const filtered = posts.filter((p) => {
     const matchesSearch =
       !search ||
       p.title.toLowerCase().includes(search.toLowerCase()) ||

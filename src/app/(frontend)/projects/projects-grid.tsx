@@ -6,14 +6,23 @@ import Link from "next/link";
 import { GitFork, ExternalLink, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { projects } from "@/lib/data";
 
-// Collect all unique techs
-const allTechs = [...new Set(projects.flatMap((p) => p.tech))].sort();
+type Project = {
+  slug: string;
+  title: string;
+  description: string;
+  tech: string[];
+  featured: boolean;
+  github?: string;
+  live?: string;
+  metrics?: string[];
+};
 
-export default function ProjectsPage() {
+export function ProjectsGrid({ projects }: { projects: Project[] }) {
   const [search, setSearch] = useState("");
   const [activeTech, setActiveTech] = useState<string | null>(null);
+
+  const allTechs = [...new Set(projects.flatMap((p) => p.tech))].sort();
 
   const filtered = projects.filter((p) => {
     const matchesSearch =
@@ -112,7 +121,7 @@ export default function ProjectsPage() {
                   {project.description}
                 </p>
 
-                {project.metrics && (
+                {project.metrics && project.metrics.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.metrics.slice(0, 2).map((m) => (
                       <Badge key={m} variant="green">

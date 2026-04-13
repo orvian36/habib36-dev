@@ -7,11 +7,20 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TiltCard } from "@/components/ui/tilt-card";
-import { projects } from "@/lib/data";
 
-const featuredProjects = projects.filter((p) => p.featured);
+type ProjectItem = {
+  slug: string;
+  title: string;
+  description: string;
+  tech: string[];
+  featured?: boolean;
+  github?: string;
+  live?: string;
+  metrics?: string[];
+};
 
-export function FeaturedProjects() {
+export function FeaturedProjects({ projects }: { projects: ProjectItem[] }) {
+  const featuredProjects = projects.filter((p) => p.featured);
   return (
     <section className="py-24 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

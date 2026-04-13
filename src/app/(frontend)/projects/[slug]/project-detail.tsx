@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -11,35 +10,19 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { projects } from "@/lib/data";
 
-export default function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = use(params);
-  const project = projects.find((p) => p.slug === slug);
+type Project = {
+  slug: string;
+  title: string;
+  description: string;
+  tech: string[];
+  featured: boolean;
+  github?: string;
+  live?: string;
+  metrics?: string[];
+};
 
-  if (!project) {
-    return (
-      <div className="py-24 text-center">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h1 className="heading-mono text-3xl text-text-primary mb-4">
-            Project not found
-          </h1>
-          <p className="text-text-secondary mb-8">
-            The project you&apos;re looking for doesn&apos;t exist.
-          </p>
-          <Button href="/projects">
-            <ArrowLeft className="w-4 h-4" />
-            Back to projects
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
+export function ProjectDetail({ project }: { project: Project }) {
   return (
     <div className="py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -83,7 +66,7 @@ export default function ProjectDetailPage({
                 </div>
               </div>
 
-              {project.metrics && (
+              {project.metrics && project.metrics.length > 0 && (
                 <div>
                   <h3 className="font-mono text-xs text-text-muted uppercase tracking-wider mb-2">
                     Key Metrics
@@ -157,7 +140,6 @@ export default function ProjectDetailPage({
 
             {/* Placeholder for rich content that will come from CMS */}
             <div className="space-y-8">
-              {/* Problem Statement */}
               <div className="card-surface p-6">
                 <h2 className="font-mono font-bold text-lg text-text-primary mb-3 flex items-center gap-2">
                   <span className="text-accent-blue">01.</span> Problem
@@ -169,7 +151,6 @@ export default function ProjectDetailPage({
                 </p>
               </div>
 
-              {/* Architecture */}
               <div className="card-surface p-6">
                 <h2 className="font-mono font-bold text-lg text-text-primary mb-3 flex items-center gap-2">
                   <span className="text-accent-blue">02.</span> Architecture
@@ -184,7 +165,6 @@ export default function ProjectDetailPage({
                 </div>
               </div>
 
-              {/* Key Decisions */}
               <div className="card-surface p-6">
                 <h2 className="font-mono font-bold text-lg text-text-primary mb-3 flex items-center gap-2">
                   <span className="text-accent-blue">03.</span> Key Decisions
@@ -195,7 +175,6 @@ export default function ProjectDetailPage({
                 </p>
               </div>
 
-              {/* Outcome */}
               <div className="card-surface p-6">
                 <h2 className="font-mono font-bold text-lg text-text-primary mb-3 flex items-center gap-2">
                   <span className="text-accent-blue">04.</span> Outcome
