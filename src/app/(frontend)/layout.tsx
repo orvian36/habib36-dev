@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ClientShell } from "@/components/layout/client-shell";
+import { NotificationBanner } from "@/components/layout/notification-banner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -63,6 +64,7 @@ export default function FrontendLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col">
+        <NotificationBanner />
         <ClientShell>{children}</ClientShell>
       </body>
     </html>
