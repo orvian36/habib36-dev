@@ -19,7 +19,7 @@ export function ClientShell({ children }: { children: React.ReactNode }) {
       <ScrollProgress />
       <CustomCursor />
       <Navbar onChatToggle={() => setChatOpen((o) => !o)} />
-      <main className="flex-1 pt-16">
+      <main className="flex-1" style={{ paddingTop: 'calc(4rem + var(--notification-bar-height, 0px))' }}>
         <AnimatePresence mode="wait">
           <PageTransition>{children}</PageTransition>
         </AnimatePresence>

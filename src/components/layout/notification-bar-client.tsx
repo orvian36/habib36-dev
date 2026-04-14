@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 
@@ -16,6 +16,16 @@ function hashMessage(message: string): string {
 export function NotificationBarClient({ message }: { message: string }) {
   const [dismissed, setDismissed] = useState(true)
   const storageKey = `notification-dismissed-${hashMessage(message)}`
+  const barRef = useRef<HTMLDivElement>(null)
+
+  const updateCssVar = useCallback((visible: boolean) => {
+    if (visible && barRef.current) {
+      const height = barRef.current.offsetHeight
+      document.documentElement.style.setProperty('--notification-bar-height', `${height}px`)
+    } else {
+      document.documentElement.style.setProperty('--notification-bar-height', '0px')
+    }
+  }, [])
 
   useEffect(() => {
     const wasDismissed = sessionStorage.getItem(storageKey)
@@ -23,6 +33,13 @@ export function NotificationBarClient({ message }: { message: string }) {
       setDismissed(false)
     }
   }, [storageKey])
+
+  useEffect(() => {
+    updateCssVar(!dismissed)
+    return () => {
+      document.documentElement.style.setProperty('--notification-bar-height', '0px')
+    }
+  }, [dismissed, updateCssVar])
 
   function handleDismiss() {
     sessionStorage.setItem(storageKey, '1')
@@ -33,11 +50,13 @@ export function NotificationBarClient({ message }: { message: string }) {
     <AnimatePresence>
       {!dismissed && (
         <motion.div
+          ref={barRef}
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="overflow-hidden"
+          className="fixed top-0 left-0 right-0 z-[60] overflow-hidden"
+          onAnimationComplete={() => updateCssVar(true)}
         >
           <div className="relative flex items-center justify-center bg-[var(--accent-orange)] px-4 py-2 text-sm font-medium text-[var(--bg-primary)]">
             <span className="text-center pr-8">{message}</span>
