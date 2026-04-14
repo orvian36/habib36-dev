@@ -25,7 +25,9 @@
       "Bash(npx better-sqlite3:*)",
       "Bash(python3 -c \"import sqlite3; conn=sqlite3.connect\\('payload.db'\\); cur=conn.cursor\\(\\); cur.execute\\('SELECT id, email FROM users'\\); print\\(cur.fetchall\\(\\)\\); conn.close\\(\\)\")",
       "Bash(python -c \"import sqlite3; conn=sqlite3.connect\\('payload.db'\\); cur=conn.cursor\\(\\); cur.execute\\('SELECT id, email FROM users'\\); print\\(cur.fetchall\\(\\)\\); conn.close\\(\\)\")",
-      "Bash(sqlite3 payload.db \"SELECT id, email FROM users;\")"
+      "Bash(sqlite3 payload.db \"SELECT id, email FROM users;\")",
+      "Bash(npm run:*)",
+      "Bash(NODE_OPTIONS=\"--no-deprecation --experimental-print-required-tla\" npx payload generate:types)"
     ]
   }
 }
