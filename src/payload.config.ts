@@ -9,6 +9,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Projects } from './collections/Projects'
 import { Posts } from './collections/Posts'
+import { Notification } from './globals/Notification'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,6 +22,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Projects, Posts],
+  globals: [Notification],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'super-secret-key-change-in-production',
   typescript: {
