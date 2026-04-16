@@ -89,14 +89,17 @@ export function Preloader() {
               >
                 {line}
                 {/* Show progress bar on line 2 */}
-                {i === 1 && (
-                  <span className="ml-2 text-accent-blue">
-                    {"█".repeat(Math.floor(progress / 10))}
-                    {"░".repeat(10 - Math.floor(progress / 10))}
-                    {" "}
-                    {progress}%
-                  </span>
-                )}
+                {i === 1 && (() => {
+                  const filled = Math.max(0, Math.min(10, Math.floor(progress / 10)));
+                  return (
+                    <span className="ml-2 text-accent-blue">
+                      {"█".repeat(filled)}
+                      {"░".repeat(10 - filled)}
+                      {" "}
+                      {Math.max(0, Math.min(100, progress))}%
+                    </span>
+                  );
+                })()}
               </motion.div>
             ))}
             {visibleLines > 0 && (
