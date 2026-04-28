@@ -136,6 +136,13 @@ export function Navbar({ onChatToggle }: { onChatToggle?: () => void }) {
                   AI Chat
                 </button>
               )}
+              <div className="flex items-center justify-between px-4 py-3 font-mono text-sm rounded-lg text-text-secondary">
+                <span>
+                  <span className="text-text-muted mr-2">{">"}</span>
+                  Theme
+                </span>
+                <ThemeToggle />
+              </div>
             </div>
           </motion.div>
         )}
