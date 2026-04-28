@@ -384,3 +384,8 @@ body::before {
     0 0 12px rgba(5, 150, 105, 0.20),
     0 0 24px rgba(5, 150, 105, 0.06);
 }
+
+/* Boost ambient hero icon opacity — accents on white need more presence than on near-black */
+[data-theme="light"] .floating-icon {
+  opacity: 0.32;
+}

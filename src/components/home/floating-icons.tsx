@@ -15,7 +15,7 @@ export function FloatingIcons() {
       {icons.map((icon) => (
         <div
           key={icon.label}
-          className="absolute opacity-[0.12]"
+          className="floating-icon absolute opacity-[0.12]"
           style={{
             top: icon.top,
             left: icon.left,
