@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Terminal, MessageSquare } from "lucide-react";
 import { navLinks } from "@/lib/data";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar({ onChatToggle }: { onChatToggle?: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,10 +72,11 @@ export function Navbar({ onChatToggle }: { onChatToggle?: () => void }) {
               </Link>
             );
           })}
+          <ThemeToggle className="ml-2" />
           {onChatToggle && (
             <button
               onClick={onChatToggle}
-              className="ml-2 p-2 text-text-secondary hover:text-accent-blue hover:bg-accent-blue/10 rounded-md transition-all"
+              className="ml-1 p-2 text-text-secondary hover:text-accent-blue hover:bg-accent-blue/10 rounded-md transition-all"
               aria-label="Toggle AI chat"
             >
               <MessageSquare className="w-4 h-4" />
@@ -134,6 +136,13 @@ export function Navbar({ onChatToggle }: { onChatToggle?: () => void }) {
                   AI Chat
                 </button>
               )}
+              <div className="flex items-center justify-between px-4 py-3 font-mono text-sm rounded-lg text-text-secondary">
+                <span>
+                  <span className="text-text-muted mr-2">{">"}</span>
+                  Theme
+                </span>
+                <ThemeToggle />
+              </div>
             </div>
           </motion.div>
         )}

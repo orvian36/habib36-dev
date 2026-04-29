@@ -3,6 +3,7 @@ import { JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ClientShell } from "@/components/layout/client-shell";
 import { NotificationBanner } from "@/components/layout/notification-banner";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -62,10 +63,13 @@ export default function FrontendLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col">
-        <NotificationBanner />
-        <ClientShell>{children}</ClientShell>
+        <ThemeProvider>
+          <NotificationBanner />
+          <ClientShell>{children}</ClientShell>
+        </ThemeProvider>
       </body>
     </html>
   );

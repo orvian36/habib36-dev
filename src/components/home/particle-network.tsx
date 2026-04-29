@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 interface Particle {
   x: number;
@@ -9,8 +10,32 @@ interface Particle {
   vy: number;
 }
 
+interface ThemeColors {
+  particle: string;
+  lineRgb: [number, number, number];
+  lineMaxOpacity: number;
+}
+
+const DARK_COLORS: ThemeColors = {
+  particle: "rgba(0, 212, 255, 0.3)",
+  lineRgb: [0, 212, 255],
+  lineMaxOpacity: 0.1,
+};
+
+const LIGHT_COLORS: ThemeColors = {
+  particle: "rgba(2, 132, 168, 0.55)",
+  lineRgb: [2, 132, 168],
+  lineMaxOpacity: 0.35,
+};
+
 export function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { resolvedTheme } = useTheme();
+  const colorsRef = useRef<ThemeColors>(DARK_COLORS);
+
+  useEffect(() => {
+    colorsRef.current = resolvedTheme === "light" ? LIGHT_COLORS : DARK_COLORS;
+  }, [resolvedTheme]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -20,10 +45,8 @@ export function ParticleNetwork() {
 
     let animId: number;
     let particles: Particle[] = [];
-    const PARTICLE_COUNT = 60;
-    const CONNECTION_DIST = 120;
-    const PARTICLE_COLOR = "rgba(0, 212, 255, 0.3)";
-    const LINE_COLOR_BASE = [0, 212, 255];
+    const PARTICLE_COUNT = 110;
+    const CONNECTION_DIST = 130;
 
     function resize() {
       if (!canvas) return;
@@ -60,6 +83,8 @@ export function ParticleNetwork() {
         if (p.y < 0 || p.y > h) p.vy *= -1;
       }
 
+      const { particle: particleColor, lineRgb, lineMaxOpacity } = colorsRef.current;
+
       // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -67,11 +92,11 @@ export function ParticleNetwork() {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECTION_DIST) {
-            const opacity = 0.1 * (1 - dist / CONNECTION_DIST);
+            const opacity = lineMaxOpacity * (1 - dist / CONNECTION_DIST);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${LINE_COLOR_BASE.join(",")}, ${opacity})`;
+            ctx.strokeStyle = `rgba(${lineRgb.join(",")}, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -82,7 +107,7 @@ export function ParticleNetwork() {
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = PARTICLE_COLOR;
+        ctx.fillStyle = particleColor;
         ctx.fill();
       }
 
