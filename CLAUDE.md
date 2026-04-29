@@ -21,7 +21,7 @@ pnpm payload         # Run Payload CLI commands directly
 
 ## Architecture
 
-This is a **personal portfolio site** (habib36.dev) built with **Next.js 16** and **Payload CMS 3** embedded in the same app. Database is **SQLite** (`payload.db` at project root).
+This is a **personal portfolio site** (habib36.dev) built with **Next.js 16** and **Payload CMS 3** embedded in the same app. Database is **PostgreSQL** (Supabase), connected via `DATABASE_URL`.
 
 ### Route Groups
 
@@ -35,7 +35,7 @@ This is a **personal portfolio site** (habib36.dev) built with **Next.js 16** an
 - Config: `src/payload.config.ts`
 - Collections: `Users`, `Media`, `Projects`, `Posts` (in `src/collections/`)
 - Rich text: Lexical editor
-- DB adapter: `@payloadcms/db-sqlite`
+- DB adapter: `@payloadcms/db-postgres` (Supabase PostgreSQL 17)
 - Client helper: `src/lib/payload.ts` exports `getPayloadClient()`
 - Types are generated to `src/payload-types.ts`
 
@@ -52,6 +52,6 @@ This is a **personal portfolio site** (habib36.dev) built with **Next.js 16** an
 
 - Next.js `withPayload()` wrapper in `next.config.ts` is required for Payload integration
 - Payload secret defaults to a hardcoded value — set `PAYLOAD_SECRET` env var in production
-- Database URL defaults to `file:./payload.db` — set `DATABASE_URL` env var to override
+- `DATABASE_URL` is required — points to Supabase Postgres (use `?sslmode=no-verify` for local dev to bypass Node's strict cert chain check)
 - `@payload-config` path alias is used by Payload internals (resolved by the withPayload plugin)
 - Projects and Posts collections have draft/versioning enabled

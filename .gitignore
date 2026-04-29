@@ -40,4 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# legacy sqlite db (project now uses postgres)
+payload.db
+
 
