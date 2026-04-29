@@ -6,7 +6,7 @@ import { ArrowRight, Download, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/data";
 import { ParticleNetwork } from "./particle-network";
-import { FloatingIcons } from "./floating-icons";
+// import { FloatingIcons } from "./floating-icons";
 
 const typingLines = [
   "Building production RAG systems",
@@ -91,8 +91,8 @@ export function HeroSection() {
       {/* Radial gradient overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,var(--bg-primary)_70%)]" />
 
-      {/* Floating tech icons */}
-      <FloatingIcons />
+      {/* Floating tech icons — temporarily disabled */}
+      {/* <FloatingIcons /> */}
 
       {/* Animated orbs */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent-blue/5 rounded-full blur-[120px] animate-float" />
