@@ -45,8 +45,8 @@ export function ParticleNetwork() {
 
     let animId: number;
     let particles: Particle[] = [];
-    const PARTICLE_COUNT = 60;
-    const CONNECTION_DIST = 120;
+    const PARTICLE_COUNT = 110;
+    const CONNECTION_DIST = 130;
 
     function resize() {
       if (!canvas) return;
