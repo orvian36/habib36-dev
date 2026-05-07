@@ -1,21 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 
 export function CustomCursor() {
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
   const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
   const ringX = useSpring(0, { stiffness: 150, damping: 20 });
   const ringY = useSpring(0, { stiffness: 150, damping: 20 });
-  const isTouchDevice = useRef(false);
 
   useEffect(() => {
-    // Detect touch device
-    isTouchDevice.current = window.matchMedia("(pointer: coarse)").matches;
-    if (isTouchDevice.current) return;
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    setIsTouch(touch);
+    if (touch) return;
 
     setVisible(true);
 
@@ -38,7 +38,7 @@ export function CustomCursor() {
     };
 
     const handleMouseEnter = () => {
-      if (!isTouchDevice.current) setVisible(true);
+      setVisible(true);
     };
 
     document.addEventListener("mousemove", handleMouseMove, { passive: true });
@@ -54,9 +54,7 @@ export function CustomCursor() {
     };
   }, [cursorX, cursorY, ringX, ringY]);
 
-  if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
-    return null;
-  }
+  if (isTouch) return null;
 
   return (
     <>
