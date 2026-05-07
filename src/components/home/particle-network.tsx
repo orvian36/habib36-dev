@@ -43,22 +43,27 @@ export function ParticleNetwork() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animId: number;
+    let animId = 0;
     let particles: Particle[] = [];
+    let initialized = false;
     const PARTICLE_COUNT = 110;
     const CONNECTION_DIST = 130;
 
-    function resize() {
-      if (!canvas) return;
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-      ctx!.scale(window.devicePixelRatio, window.devicePixelRatio);
+    function setupCanvas(): boolean {
+      const w = canvas!.offsetWidth;
+      const h = canvas!.offsetHeight;
+      if (w === 0 || h === 0) return false;
+      const dpr = window.devicePixelRatio || 1;
+      canvas!.width = w * dpr;
+      canvas!.height = h * dpr;
+      ctx!.scale(dpr, dpr);
+      return true;
     }
 
     function initParticles() {
-      particles = [];
       const w = canvas!.offsetWidth;
       const h = canvas!.offsetHeight;
+      particles = [];
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         particles.push({
           x: Math.random() * w,
@@ -69,13 +74,27 @@ export function ParticleNetwork() {
       }
     }
 
-    function draw() {
-      if (!canvas || !ctx) return;
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
-      ctx.clearRect(0, 0, w, h);
+    function tryInit(): boolean {
+      if (initialized) return true;
+      if (setupCanvas()) {
+        initParticles();
+        initialized = true;
+        return true;
+      }
+      return false;
+    }
 
-      // Update positions
+    function draw() {
+      if (!tryInit()) {
+        // Canvas has no layout yet — keep polling each frame.
+        animId = requestAnimationFrame(draw);
+        return;
+      }
+
+      const w = canvas!.offsetWidth;
+      const h = canvas!.offsetHeight;
+      ctx!.clearRect(0, 0, w, h);
+
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
@@ -85,7 +104,6 @@ export function ParticleNetwork() {
 
       const { particle: particleColor, lineRgb, lineMaxOpacity } = colorsRef.current;
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -93,38 +111,47 @@ export function ParticleNetwork() {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECTION_DIST) {
             const opacity = lineMaxOpacity * (1 - dist / CONNECTION_DIST);
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${lineRgb.join(",")}, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+            ctx!.beginPath();
+            ctx!.moveTo(particles[i].x, particles[i].y);
+            ctx!.lineTo(particles[j].x, particles[j].y);
+            ctx!.strokeStyle = `rgba(${lineRgb.join(",")}, ${opacity})`;
+            ctx!.lineWidth = 0.5;
+            ctx!.stroke();
           }
         }
       }
 
-      // Draw particles
       for (const p of particles) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = particleColor;
-        ctx.fill();
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+        ctx!.fillStyle = particleColor;
+        ctx!.fill();
       }
 
       animId = requestAnimationFrame(draw);
     }
 
-    resize();
-    initParticles();
+    // ResizeObserver fires once the canvas gets its first non-zero box,
+    // and again on every layout change (URL bar collapse on mobile, rotation, etc).
+    let lastW = 0;
+    let lastH = 0;
+    const ro = new ResizeObserver(() => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      if (w === lastW && h === lastH) return;
+      lastW = w;
+      lastH = h;
+      if (!initialized) {
+        tryInit();
+      } else if (w > 0 && h > 0) {
+        setupCanvas();
+        initParticles();
+      }
+    });
+    ro.observe(canvas);
+
     draw();
 
-    const handleResize = () => {
-      resize();
-      initParticles();
-    };
-    window.addEventListener("resize", handleResize);
-
-    // Pause when tab not visible
     const handleVisibility = () => {
       if (document.hidden) {
         cancelAnimationFrame(animId);
@@ -136,7 +163,7 @@ export function ParticleNetwork() {
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener("resize", handleResize);
+      ro.disconnect();
       document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);

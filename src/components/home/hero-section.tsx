@@ -76,14 +76,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Particle constellation canvas */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className="absolute inset-0"
-      >
-        <ParticleNetwork />
-      </motion.div>
+      <ParticleNetwork />
 
       {/* Grid background */}
       <div className="absolute inset-0 grid-bg opacity-20" />
