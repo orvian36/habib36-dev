@@ -55,3 +55,14 @@ This is a **personal portfolio site** (habib36.dev) built with **Next.js 16** an
 - `DATABASE_URL` is required — points to Supabase Postgres (use `?sslmode=no-verify` for local dev to bypass Node's strict cert chain check)
 - `@payload-config` path alias is used by Payload internals (resolved by the withPayload plugin)
 - Projects and Posts collections have draft/versioning enabled
+
+## graphify
+
+This project has a graphify knowledge graph at graphify-out/.
+
+Rules:
+- Before answering architecture or codebase questions, read graphify-out/GRAPH_REPORT.md for god nodes and community structure
+- If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
+- For cross-module "how does X relate to Y" questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over grep — these traverse the graph's EXTRACTED + INFERRED edges instead of scanning files
+- After modifying code files in this session, run `graphify update .` to keep the graph current (AST-only, no API cost)
+- All graphify temp/helper scripts and intermediate files (e.g. `_gf_*.py`, `.graphify_*.json`) must be created inside `graphify-out/temp/` — never in the project root. Create the folder if it doesn't exist. Delete it when the graphify operation completes.

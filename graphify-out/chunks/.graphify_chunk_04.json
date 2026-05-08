@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "screenshot_habib36dev_homepage",
+      "label": "habib36.dev Portfolio Homepage Screenshot",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": "2026-05-07",
+      "author": "webgeekhabib007",
+      "contributor": null
+    },
+    {
+      "id": "screenshot_navbar_mobile",
+      "label": "Mobile Navbar (habib36.dev)",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "screenshot_dark_theme",
+      "label": "Dark Theme Design System",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "screenshot_terminal_branding",
+      "label": "Terminal/CLI Branding (>_ prefix)",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "screenshot_cyan_accent",
+      "label": "Cyan Accent Color Design",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "screenshot_portfolio_identity",
+      "label": "Portfolio Identity: Full-Stack Engineer / Production AI Systems",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "screenshot_habib36dev_homepage",
+      "target": "screenshot_navbar_mobile",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "screenshot_habib36dev_homepage",
+      "target": "screenshot_dark_theme",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "screenshot_habib36dev_homepage",
+      "target": "screenshot_terminal_branding",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "screenshot_habib36dev_homepage",
+      "target": "screenshot_cyan_accent",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "screenshot_terminal_branding",
+      "target": "screenshot_cyan_accent",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 9.59.58 PM.jpeg",
+      "source_location": null,
+      "weight": 0.95
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 20265,
+  "output_tokens": 0
+}

@@ -1,0 +1,147 @@
+{
+  "nodes": [
+    {
+      "id": "img_hero_section",
+      "label": "Hero Section UI Component",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "img_habibur_rahman_person",
+      "label": "Habibur Rahman (Portfolio Owner)",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "img_dark_theme_design",
+      "label": "Dark Theme Developer Aesthetic",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "img_terminal_prompt_logo",
+      "label": "Terminal Prompt Logo (>_ habib36.dev)",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "img_rag_systems_claim",
+      "label": "Production RAG Systems Claim (Weaviate + LLMs)",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "img_view_projects_cta",
+      "label": "View Projects CTA Button",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "img_download_resume_cta",
+      "label": "Download Resume CTA Button",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "img_typewriter_animation",
+      "label": "Typewriter Terminal Cursor Animation",
+      "file_type": "image",
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "img_hero_section",
+      "target": "img_rag_systems_claim",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "img_hero_section",
+      "target": "img_view_projects_cta",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "img_hero_section",
+      "target": "img_download_resume_cta",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "img_dark_theme_design",
+      "target": "img_terminal_prompt_logo",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "img_dark_theme_design",
+      "target": "img_typewriter_animation",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "imgs/WhatsApp Image 2026-05-07 at 10.45.04 PM.jpeg",
+      "source_location": null,
+      "weight": 0.85
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 23901,
+  "output_tokens": 0
+}

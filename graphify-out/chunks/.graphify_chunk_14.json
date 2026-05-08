@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "projects_mobile_screenshot",
+      "label": "Projects Page Mobile Screenshot",
+      "file_type": "image",
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "project_card_component",
+      "label": "Project Card Component",
+      "file_type": "code",
+      "source_file": "src/components/projects/ProjectCard.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projects_search_filter",
+      "label": "Projects Search and Filter UI",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "natural_language_sql_project",
+      "label": "Natural Language to SQL Project",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "production_rag_pipeline_project",
+      "label": "Production RAG Pipeline Project",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "adversarial_signal_detection_project",
+      "label": "Traffic Signal Detection YOLOv8 Project",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "projects_mobile_screenshot",
+      "target": "project_card_component",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "projects_mobile_screenshot",
+      "target": "projects_search_filter",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "project_card_component",
+      "target": "natural_language_sql_project",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "project_card_component",
+      "target": "production_rag_pipeline_project",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "project_card_component",
+      "target": "adversarial_signal_detection_project",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 20112,
+  "output_tokens": 0
+}

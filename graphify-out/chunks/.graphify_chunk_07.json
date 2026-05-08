@@ -1,0 +1,221 @@
+{
+  "nodes": [
+    {
+      "id": "blog_desktop_screenshot",
+      "label": "Blog Page Desktop Screenshot",
+      "file_type": "image",
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_page",
+      "label": "Blog Page",
+      "file_type": "code",
+      "source_file": "src/app/(frontend)/blog/page.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_card_component",
+      "label": "Blog Post Card Component",
+      "file_type": "code",
+      "source_file": "src/components/blog/blog-card.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "search_bar_component",
+      "label": "Search Bar Component",
+      "file_type": "code",
+      "source_file": "src/components/blog/search-bar.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "tag_filter_component",
+      "label": "Tag Filter Component",
+      "file_type": "code",
+      "source_file": "src/components/blog/tag-filter.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "posts_collection",
+      "label": "Posts CMS Collection",
+      "file_type": "code",
+      "source_file": "src/collections/Posts.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "chat_widget",
+      "label": "Chat Widget (floating button)",
+      "file_type": "code",
+      "source_file": "src/components/chat/chat-widget.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_post_rag_pipeline",
+      "label": "Blog Post: Building a Production RAG Pipeline with Weaviate",
+      "file_type": "document",
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_post_nextjs_payload",
+      "label": "Blog Post: Next.js + Payload CMS Setup Guide",
+      "file_type": "document",
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_post_cp_journey",
+      "label": "Blog Post: 3000+ Problems CP Journey",
+      "file_type": "document",
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_post_langchain_sql",
+      "label": "Blog Post: Natural Language to SQL with LangChain Agents",
+      "file_type": "document",
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_post_ai_chatbot",
+      "label": "Blog Post: AI Chatbot for Developer Portfolio",
+      "file_type": "document",
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "blog_desktop_screenshot",
+      "target": "blog_page",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "blog_desktop_screenshot",
+      "target": "blog_card_component",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "blog_desktop_screenshot",
+      "target": "search_bar_component",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "blog_desktop_screenshot",
+      "target": "tag_filter_component",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "blog_desktop_screenshot",
+      "target": "chat_widget",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "blog_page",
+      "target": "blog_card_component",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "blog_page",
+      "target": "posts_collection",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "blog_post_rag_pipeline",
+      "target": "blog_post_langchain_sql",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/screenshots/blog-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 22348,
+  "output_tokens": 0
+}

@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "resume_mobile_png",
+      "label": "Resume Mobile Screenshot",
+      "file_type": "image",
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_mobile_layout",
+      "label": "Resume Mobile Layout",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "competitive_programming_codeforces",
+      "label": "Codeforces Profile (1554 rating)",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "competitive_programming_leetcode",
+      "label": "LeetCode Profile (3882 problems)",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "competitive_programming_codechef",
+      "label": "CodeChef Profile (3741)",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_social_links",
+      "label": "Resume Social Links (GitHub, LinkedIn, Email)",
+      "file_type": "rationale",
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "resume_mobile_png",
+      "target": "resume_mobile_layout",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "resume_mobile_png",
+      "target": "resume_social_links",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "resume_mobile_png",
+      "target": "competitive_programming_codeforces",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "resume_mobile_png",
+      "target": "competitive_programming_leetcode",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "resume_mobile_png",
+      "target": "competitive_programming_codechef",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 20390,
+  "output_tokens": 0
+}

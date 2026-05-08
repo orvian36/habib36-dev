@@ -1,0 +1,4 @@
+node_modules
+.graphifyignore
+graphify-out
+imgs/*
