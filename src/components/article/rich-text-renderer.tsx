@@ -8,6 +8,7 @@ import { DividerBlockComponent } from "@/blocks/divider/component";
 import { ImageBlockComponent } from "@/blocks/image/component";
 import { ImagePairBlockComponent } from "@/blocks/image-pair/component";
 import { PullQuoteBlockComponent } from "@/blocks/pull-quote/component";
+import { VideoBlockComponent } from "@/blocks/video/component";
 import { makeUniqueSlugger } from "@/lib/article/slugify";
 
 function getNodeText(node: unknown): string {
@@ -60,6 +61,10 @@ export function RichTextRenderer({
       pullQuote: ({ node }) => {
         const { quote, cite } = node.fields as { quote: string; cite?: string | null };
         return <PullQuoteBlockComponent quote={quote} cite={cite} />;
+      },
+      video: ({ node }) => {
+        const { provider, url, caption } = node.fields as { provider: "youtube" | "loom" | "mp4"; url: string; caption?: string | null };
+        return <VideoBlockComponent provider={provider} url={url} caption={caption} />;
       },
     },
   });

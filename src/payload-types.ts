@@ -581,6 +581,21 @@ export interface PullQuoteBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoBlock".
+ */
+export interface VideoBlock {
+  provider: 'youtube' | 'loom' | 'mp4';
+  /**
+   * YouTube: full watch URL or short URL. Loom: full share URL. MP4: direct file URL.
+   */
+  url: string;
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'video';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
