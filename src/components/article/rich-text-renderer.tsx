@@ -3,6 +3,7 @@ import {
   type JSXConvertersFunction,
 } from "@payloadcms/richtext-lexical/react";
 import type { SerializedEditorState } from "lexical";
+import { CalloutBlockComponent } from "@/blocks/callout/component";
 import { DividerBlockComponent } from "@/blocks/divider/component";
 import { makeUniqueSlugger } from "@/lib/article/slugify";
 
@@ -37,6 +38,10 @@ export function RichTextRenderer({
       );
     },
     blocks: {
+      callout: ({ node }) => {
+        const { variant, text } = node.fields as { variant: "info" | "success" | "warn" | "danger"; text: string };
+        return <CalloutBlockComponent variant={variant} text={text} />;
+      },
       divider: ({ node }) => {
         const { glyph, label } = node.fields as { glyph?: string | null; label?: string | null };
         return <DividerBlockComponent glyph={glyph} label={label} />;
