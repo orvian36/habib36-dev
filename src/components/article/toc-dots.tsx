@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Heading = { id: string; text: string; level: 2 | 3 };
 
@@ -8,7 +8,7 @@ export function TocDots({ rootId }: { rootId: string }) {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const root = document.getElementById(rootId);
     if (!root) return;
     const els = Array.from(
@@ -20,17 +20,10 @@ export function TocDots({ rootId }: { rootId: string }) {
       text: el.textContent ?? "",
       level: (el.tagName === "H2" ? 2 : 3) as 2 | 3,
     }));
-
-    // Update headings and skip observer setup if empty
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setHeadings(next);
+    if (next.length === 0) return;
 
-    // Early return if no headings to observe
-    if (next.length === 0) {
-      return;
-    }
-
-    // Observer only added after headings exist
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
