@@ -1,13 +1,12 @@
-// src/lib/article/slugify.ts
 export function slugify(text: string): string {
   return text
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '')   // strip diacritics
-    .replace(/[^a-z0-9\s-]/g, '')      // strip punctuation
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
     .trim()
-    .replace(/\s+/g, '-')              // spaces -> dashes
-    .replace(/-+/g, '-')               // collapse runs of dashes
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
     .slice(0, 80)
 }
 

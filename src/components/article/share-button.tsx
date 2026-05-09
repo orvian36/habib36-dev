@@ -1,26 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Share2, Check } from "lucide-react";
 
 export function ShareButton({ title }: { title: string }) {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    },
+    []
+  );
 
   async function onClick() {
-    const url = typeof window !== "undefined" ? window.location.href : "";
-    const shareData = { title, url };
-    try {
-      if (typeof navigator !== "undefined" && "share" in navigator) {
-        await navigator.share(shareData);
+    const url = window.location.href;
+    if ("share" in navigator) {
+      try {
+        await navigator.share({ title, url });
         return;
+      } catch (err) {
+        // Only fall through to clipboard if the user explicitly aborted.
+        // Other errors (permission, etc.) should not silently masquerade as a successful share.
+        if (!(err instanceof DOMException && err.name === "AbortError")) {
+          return;
+        }
       }
-    } catch {
-      // user cancelled — fall through to clipboard
     }
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setCopied(false), 1500);
     } catch {
       // clipboard blocked — silent
     }

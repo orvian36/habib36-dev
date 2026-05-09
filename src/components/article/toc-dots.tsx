@@ -54,7 +54,7 @@ export function TocDots({ rootId }: { rootId: string }) {
             key={h.id}
             href={`#${h.id}`}
             className="relative flex items-center group/dot py-1"
-            aria-current={active ? "true" : undefined}
+            aria-current={active ? "location" : undefined}
           >
             <span
               className={`block rounded-full transition-all ${
