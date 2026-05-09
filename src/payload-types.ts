@@ -553,6 +553,23 @@ export interface ImageBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImagePairBlock".
+ */
+export interface ImagePairBlock {
+  left: {
+    image: number | Media;
+    label?: string | null;
+  };
+  right: {
+    image: number | Media;
+    label?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imagePair';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "PullQuoteBlock".
  */
 export interface PullQuoteBlock {
