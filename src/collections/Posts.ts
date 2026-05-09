@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { lexicalEditor, BlocksFeature } from '@payloadcms/richtext-lexical'
 import { blocks } from '@/blocks'
+import { validateSharedSlug } from '@/lib/slug-validation'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -26,6 +27,7 @@ export const Posts: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+      validate: validateSharedSlug({ selfCollection: 'posts' }),
     },
     {
       name: 'excerpt',

@@ -47,7 +47,7 @@ export function FeaturedProjects({ projects }: { projects: ProjectItem[] }) {
             >
               <TiltCard className="h-full">
               <Link
-                href={`/projects/${project.slug}`}
+                href={`/${project.slug}`}
                 className="card-surface card-glow block p-6 h-full group"
               >
                 {/* Header */}

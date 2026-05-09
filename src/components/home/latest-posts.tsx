@@ -44,7 +44,7 @@ export function LatestPosts({ posts }: { posts: PostItem[] }) {
             >
               <TiltCard>
               <Link
-                href={`/blog/${post.slug}`}
+                href={`/${post.slug}`}
                 className="card-surface card-glow block p-6 h-full group"
               >
                 <Badge variant="accent" className="mb-3">

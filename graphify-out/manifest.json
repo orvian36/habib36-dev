@@ -4,8 +4,8 @@
     "hash": "dfa1f5f6a7037bf39dc510f30b180002"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\next-env.d.ts": {
-    "mtime": 1778313151.2646282,
-    "hash": "2a74d3909800ca5467fa83b0ab4a4890"
+    "mtime": 1778326262.4292424,
+    "hash": "d0f8375ae1199dc7acd3977fc33b78b8"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\next.config.ts": {
     "mtime": 1776035113.3488362,
@@ -48,20 +48,12 @@
     "hash": "8aa988b633d5a7abbd92195698a97813"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\blog\\blog-grid.tsx": {
-    "mtime": 1776055470.2752538,
-    "hash": "0c78758e6263626f3bd683b819109c40"
+    "mtime": 1778334478.3435657,
+    "hash": "a92029a8cd55859c35a0f19d1b6181f8"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\blog\\page.tsx": {
     "mtime": 1776055470.2762456,
     "hash": "4537e38853d06c7d03293ad84df3fc8d"
-  },
-  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\blog\\[slug]\\blog-post-detail.tsx": {
-    "mtime": 1778313007.1362813,
-    "hash": "56b6b70fc2016881759c6471699bf8ba"
-  },
-  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\blog\\[slug]\\page.tsx": {
-    "mtime": 1778311591.6846738,
-    "hash": "2f0454c2610add12db7e208fa63657da"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\contact\\page.tsx": {
     "mtime": 1776015129.7083347,
@@ -72,28 +64,24 @@
     "hash": "fbaf52045d42b75e10855e0177ae2d15"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\projects\\projects-grid.tsx": {
-    "mtime": 1776055470.3725605,
-    "hash": "0fb0a27356282147f14cc31b3171db0e"
-  },
-  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\projects\\[slug]\\page.tsx": {
-    "mtime": 1778312932.6050224,
-    "hash": "a1e18ccdb89a5498bd2d872a3a1fa017"
-  },
-  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\projects\\[slug]\\project-detail.tsx": {
-    "mtime": 1778313012.581387,
-    "hash": "ba9853d65d8f7632d59b44d1028d3387"
+    "mtime": 1778334476.839556,
+    "hash": "b42079a87ac62cf83177cec75b53ac21"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\resume\\page.tsx": {
     "mtime": 1776032270.7197683,
     "hash": "1b3865ca92b015218681ed81c11e85b7"
+  },
+  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(frontend)\\[slug]\\page.tsx": {
+    "mtime": 1778334461.896314,
+    "hash": "a698e84d14c03ae8cda1017fb9160933"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(payload)\\layout.tsx": {
     "mtime": 1776035107.654179,
     "hash": "c5cf79503cedf6a9235f3bc86a21145b"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(payload)\\admin\\importMap.js": {
-    "mtime": 1777434478.957436,
-    "hash": "de248c4a98bebf3c31e223cba03f6e6f"
+    "mtime": 1778326771.1460125,
+    "hash": "652e74a5c4f163fab10ceac9033e7d52"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\app\\(payload)\\admin\\[[...segments]]\\page.tsx": {
     "mtime": 1776035098.4119017,
@@ -196,20 +184,20 @@
     "hash": "29bbc3c664770a8c813b6ddf8c70a50f"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\collections\\Posts.ts": {
-    "mtime": 1778311524.329467,
-    "hash": "5768797a904213dc69ced63f6e272b24"
+    "mtime": 1778334466.532898,
+    "hash": "b896ebec21d81dd1f19fcf4b0afd5f2e"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\collections\\Projects.ts": {
-    "mtime": 1778312906.5145366,
-    "hash": "0f904f31d498c09c81d0670175b73f79"
+    "mtime": 1778334469.9309862,
+    "hash": "4af9fd414f3ace587027ab9ba7bda2e3"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\collections\\Users.ts": {
     "mtime": 1776035048.2014358,
     "hash": "7106857e8560ad31a6d146338282e7a8"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\article\\article-shell.tsx": {
-    "mtime": 1778313027.5057778,
-    "hash": "f8e95da72b0c342d78c4ffc26f9a491c"
+    "mtime": 1778325961.3290942,
+    "hash": "1159d34db2ca091f310020d780675b36"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\article\\copy-button.tsx": {
     "mtime": 1778311372.3313475,
@@ -235,6 +223,10 @@
     "mtime": 1778311379.004341,
     "hash": "b7e3d895de7a5a2364099b0088272d25"
   },
+  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\blog\\blog-post-detail.tsx": {
+    "mtime": 1778334418.524036,
+    "hash": "51d674fd366a57738f4b3fdf0e787f70"
+  },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\chat\\chat-widget.tsx": {
     "mtime": 1776014761.2316427,
     "hash": "b2eccceca0fa5e2103192a2063534e26"
@@ -252,8 +244,8 @@
     "hash": "e0a93d2b051b13b6f724df240b836f82"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\home\\featured-projects.tsx": {
-    "mtime": 1776036809.5105414,
-    "hash": "09925fcf9ae2aba36bd089686a9310ac"
+    "mtime": 1778334476.0211728,
+    "hash": "30aea3bbc83dd8aa58342acbf51b4225"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\home\\floating-icons.tsx": {
     "mtime": 1777434477.8050225,
@@ -268,8 +260,8 @@
     "hash": "0e00a2087a4882113290d489ddddc337"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\home\\latest-posts.tsx": {
-    "mtime": 1776036815.3847666,
-    "hash": "3e7326e5a1080e3feb15e472ac421204"
+    "mtime": 1778334474.337734,
+    "hash": "5ae778217ca2c395517d0bcd79c20cb9"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\home\\particle-network.tsx": {
     "mtime": 1778171685.1643069,
@@ -314,6 +306,10 @@
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\layout\\theme-toggle.tsx": {
     "mtime": 1777434477.8160148,
     "hash": "a6f89c5032839ed439e15f8f8b800d97"
+  },
+  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\projects\\project-detail.tsx": {
+    "mtime": 1778334409.4131148,
+    "hash": "da6384d92d96c0ad869cccdd9c3e532c"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\components\\resume\\interactive-timeline.tsx": {
     "mtime": 1776032224.8613377,
@@ -374,6 +370,10 @@
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\lib\\payload.ts": {
     "mtime": 1776036652.0763175,
     "hash": "c24e2448e41a08af85816e82fcedda45"
+  },
+  "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\lib\\slug-validation.ts": {
+    "mtime": 1778334401.4051726,
+    "hash": "5ee093458799b7d4322236cb08748883"
   },
   "C:\\Users\\Best Laptop Gallery\\Desktop\\live\\habib36-dev\\src\\lib\\article\\slugify.ts": {
     "mtime": 1778311378.5466578,

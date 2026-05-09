@@ -1,16 +1,16 @@
 # Graph Report - habib36-dev  (2026-05-09)
 
 ## Corpus Check
-- 95 files · ~796,806 words
+- 95 files · ~796,968 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 291 nodes · 257 edges · 75 communities (59 shown, 16 thin omitted)
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 36 edges (avg confidence: 0.89)
+- 297 nodes · 265 edges · 74 communities (57 shown, 17 thin omitted)
+- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.89)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c6cbd9e5`
+- Built from commit: `8e516933`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -35,10 +35,12 @@
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 19|Community 19]]
 - [[_COMMUNITY_Community 20|Community 20]]
-- [[_COMMUNITY_Community 22|Community 22]]
+- [[_COMMUNITY_Community 21|Community 21]]
 - [[_COMMUNITY_Community 23|Community 23]]
-- [[_COMMUNITY_Community 30|Community 30]]
+- [[_COMMUNITY_Community 24|Community 24]]
 - [[_COMMUNITY_Community 31|Community 31]]
+- [[_COMMUNITY_Community 32|Community 32]]
+- [[_COMMUNITY_Community 62|Community 62]]
 - [[_COMMUNITY_Community 63|Community 63]]
 - [[_COMMUNITY_Community 64|Community 64]]
 - [[_COMMUNITY_Community 65|Community 65]]
@@ -50,14 +52,13 @@
 - [[_COMMUNITY_Community 71|Community 71]]
 - [[_COMMUNITY_Community 72|Community 72]]
 - [[_COMMUNITY_Community 73|Community 73]]
-- [[_COMMUNITY_Community 74|Community 74]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `getPayloadClient()` - 13 edges
+1. `getPayloadClient()` - 15 edges
 2. `Badge()` - 12 edges
-3. `SectionHeading()` - 11 edges
-4. `Payload CMS 3` - 11 edges
-5. `Button()` - 10 edges
+3. `Button()` - 12 edges
+4. `SectionHeading()` - 11 edges
+5. `Payload CMS 3` - 11 edges
 6. `habib36.dev Personal Portfolio Site` - 10 edges
 7. `About Page` - 7 edges
 8. `Frontend Route Group (src/app/(frontend)/)` - 7 edges
@@ -82,10 +83,10 @@
 - **Frontend Subsystem** — claudemd_frontend_route_group, claudemd_frontend_layout, claudemd_client_shell, claudemd_components_dir, claudemd_static_data, claudemd_globals_css [EXTRACTED 1.00]
 - **Environment Configuration Pattern** — claudemd_payload_secret, claudemd_database_url, claudemd_payload_config_alias, claudemd_withpayload [INFERRED 0.85]
 
-## Communities (75 total, 16 thin omitted)
+## Communities (74 total, 17 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.12
+Cohesion: 0.11
 Nodes (7): Certifications(), LatestPosts(), BlogPostDetail(), Badge(), Button(), SectionHeading(), TiltCard()
 
 ### Community 1 - "Community 1"
@@ -93,8 +94,8 @@ Cohesion: 0.1
 Nodes (23): AGENTS.md Reference, Payload Collections (Users, Media, Projects, Posts), DATABASE_URL Environment Variable, @payloadcms/db-postgres Adapter, ESLint Config (eslint.config.mjs), Graphify Knowledge Graph Tool, Graphify Output Directory (graphify-out/), Lexical Rich Text Editor (+15 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.13
-Nodes (10): BlogPage(), HomePage(), InlineChatPrompt(), StatsBar(), NotificationBanner(), getPayloadClient(), ProjectsPage(), BlogPostPage() (+2 more)
+Cohesion: 0.12
+Nodes (11): BlogPage(), HomePage(), InlineChatPrompt(), StatsBar(), NotificationBanner(), getPayloadClient(), ProjectsPage(), BlogPostPage() (+3 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.11
@@ -156,33 +157,33 @@ Nodes (5): Availability Badge (Available for new projects), Contact Page Mobile 
 Cohesion: 0.83
 Nodes (3): capture(), main(), waitForServer()
 
-### Community 22 - "Community 22"
+### Community 23 - "Community 23"
 Cohesion: 0.5
 Nodes (4): Home Page Mobile Screenshot, Mobile Responsive Layout Design, Portfolio Project Cards, Stats Counters (3000+ commits, 15+ projects, 10+ clients)
 
-### Community 23 - "Community 23"
+### Community 24 - "Community 24"
 Cohesion: 0.67
 Nodes (4): CSS Variable Theming (Dark/Light Mode), FOUC Prevention Strategy, Theme Toggle Implementation Plan (2026-04-28), Theme Toggle Design Spec (2026-04-28)
 
 ## Knowledge Gaps
 - **86 isolated node(s):** `About Page Desktop Screenshot`, `About Me Section`, `Verified Learning / Certifications Section`, `Navbar Component`, `Footer Component` (+81 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `getPayloadClient()` connect `Community 2` to `Community 7`?**
-  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
 - **Why does `Badge()` connect `Community 0` to `Community 4`?**
   _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `Button()` connect `Community 0` to `Community 19`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Are the 6 inferred relationships involving `getPayloadClient()` (e.g. with `HomePage()` and `BlogPage()`) actually correct?**
-  _`getPayloadClient()` has 6 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `Button()` connect `Community 0` to `Community 20`?**
+  _High betweenness centrality (0.017) - this node is a cross-community bridge._
+- **Are the 7 inferred relationships involving `getPayloadClient()` (e.g. with `HomePage()` and `BlogPage()`) actually correct?**
+  _`getPayloadClient()` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `About Page Desktop Screenshot`, `About Me Section`, `Verified Learning / Certifications Section` to the rest of the system?**
   _86 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.12 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.1 - nodes in this community are weakly interconnected._
