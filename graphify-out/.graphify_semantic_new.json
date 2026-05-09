@@ -1,7 +1,2146 @@
 {
-  "nodes": [],
-  "edges": [],
+  "nodes": [
+    {
+      "id": "instrumentation_register",
+      "label": "register",
+      "file_type": "code",
+      "source_file": "apps/web/src/instrumentation.ts"
+    },
+    {
+      "id": "instrumentation_onRequestError",
+      "label": "onRequestError",
+      "file_type": "code",
+      "source_file": "apps/web/src/instrumentation.ts"
+    },
+    {
+      "id": "payload_types_config",
+      "label": "Config",
+      "file_type": "code",
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "id": "payload_types_user",
+      "label": "User",
+      "file_type": "code",
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "id": "payload_types_media",
+      "label": "Media",
+      "file_type": "code",
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "id": "payload_types_project",
+      "label": "Project",
+      "file_type": "code",
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "id": "payload_types_post",
+      "label": "Post",
+      "file_type": "code",
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "id": "payload_types_form",
+      "label": "Form",
+      "file_type": "code",
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "id": "payload_config_default",
+      "label": "Default Config",
+      "file_type": "code",
+      "source_file": "apps/web/src/payload.config.ts"
+    },
+    {
+      "id": "proxy_lookupRedirect",
+      "label": "lookupRedirect",
+      "file_type": "code",
+      "source_file": "apps/web/src/proxy.ts"
+    },
+    {
+      "id": "proxy_proxy",
+      "label": "proxy",
+      "file_type": "code",
+      "source_file": "apps/web/src/proxy.ts"
+    },
+    {
+      "id": "frontend_home_page",
+      "label": "HomePage",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(frontend)/page.tsx"
+    },
+    {
+      "id": "frontend_about_page",
+      "label": "AboutPage",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(frontend)/about/page.tsx"
+    },
+    {
+      "id": "lib_payload_getPayloadClient",
+      "label": "getPayloadClient",
+      "file_type": "code",
+      "source_file": "lib/payload"
+    },
+    {
+      "id": "page_generateMetadata",
+      "label": "generateMetadata",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(frontend)/[slug]/page.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "page_SlugPage",
+      "label": "SlugPage",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(frontend)/[slug]/page.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "page_ResumePage",
+      "label": "ResumePage",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(frontend)/resume/page.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "page_SearchPage",
+      "label": "SearchPage",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(frontend)/search/page.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "search_client_SearchInput",
+      "label": "SearchInput",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(frontend)/search/search-client.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "layout_Layout",
+      "label": "Layout",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(payload)/layout.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "importMap_importMap",
+      "label": "importMap",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(payload)/admin/importMap.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "page_Page",
+      "label": "Page",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(payload)/admin/[[...segments]]/page.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "route_GET",
+      "label": "GET",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/(payload)/api/[...slug]/route.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "lib_getPayloadClient",
+      "label": "getPayloadClient",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/payload",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "lib_findBySlug",
+      "label": "findBySlug",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/find-by-slug",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "project_detail_ProjectDetail",
+      "label": "ProjectDetail",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/projects/project-detail",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blog_post_detail_BlogPostDetail",
+      "label": "BlogPostDetail",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/blog/blog-post-detail",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "interactive_timeline_InteractiveTimeline",
+      "label": "InteractiveTimeline",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/resume/interactive-timeline",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "data_siteConfig",
+      "label": "siteConfig",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/data",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "payload_config_config",
+      "label": "config",
+      "file_type": "code",
+      "source_file": "@payload-config",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "index_blocks",
+      "label": "blocks",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/index.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "callout_config_CalloutBlock",
+      "label": "CalloutBlock",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/callout/config.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "callout_component_CalloutBlockComponent",
+      "label": "CalloutBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/callout/component.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "code_config_CodeBlock",
+      "label": "CodeBlock",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/code/config.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "code_component_CodeBlockComponent",
+      "label": "CodeBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/code/component.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "divider_config_DividerBlock",
+      "label": "DividerBlock",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/divider/config.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "divider_component_DividerBlockComponent",
+      "label": "DividerBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/divider/component.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_component_ImageBlockComponent",
+      "label": "ImageBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/blocks/image/component.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projects_projects",
+      "label": "Projects Collection",
+      "file_type": "code",
+      "source_file": "apps/web/src/collections/Projects.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projects_blocks",
+      "label": "Blocks",
+      "file_type": "code",
+      "source_file": "apps/web/src/collections/Projects.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projects_validateSharedSlug",
+      "label": "validateSharedSlug",
+      "file_type": "code",
+      "source_file": "apps/web/src/collections/Projects.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "users_users",
+      "label": "Users Collection",
+      "file_type": "code",
+      "source_file": "apps/web/src/collections/Users.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_shell_article_shell",
+      "label": "ArticleShell",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_scroll_progress",
+      "label": "ScrollProgress",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_share_button",
+      "label": "ShareButton",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_toc_dots",
+      "label": "TocDots",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_mobile_toc",
+      "label": "MobileToc",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_rich_text_renderer",
+      "label": "RichTextRenderer",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_copy_button",
+      "label": "CopyButton",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/copy-button.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_mobile_toc_component",
+      "label": "MobileToc",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/mobile-toc.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_project_meta_strip",
+      "label": "ProjectMetaStrip",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/project-meta-strip.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_rich_text_renderer_component",
+      "label": "RichTextRenderer",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_share_button_component",
+      "label": "ShareButton",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/share-button.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_callout",
+      "label": "CalloutBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_code",
+      "label": "CodeBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_divider",
+      "label": "DividerBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_image",
+      "label": "ImageBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_image_pair",
+      "label": "ImagePairBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_mermaid",
+      "label": "MermaidBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_pull_quote",
+      "label": "PullQuoteBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_stats",
+      "label": "StatsBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_steps",
+      "label": "StepsBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "blocks_video",
+      "label": "VideoBlockComponent",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "hero_section_HeroSection",
+      "label": "HeroSection",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/hero-section.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "hero_section_StaggeredName",
+      "label": "StaggeredName",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/hero-section.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "inline_chat_prompt_InlineChatPrompt",
+      "label": "InlineChatPrompt",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/inline-chat-prompt.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "latest_posts_LatestPosts",
+      "label": "LatestPosts",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/latest-posts.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "particle_network_ParticleNetwork",
+      "label": "ParticleNetwork",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/particle-network.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "proof_of_work_ProofOfWork",
+      "label": "ProofOfWork",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/proof-of-work.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stats_bar_StatsBar",
+      "label": "StatsBar",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/stats-bar.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "typewriter_code_TypewriterCode",
+      "label": "TypewriterCode",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/home/typewriter-code.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "client_shell_ClientShell",
+      "label": "ClientShell",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_button_Button",
+      "label": "Button",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/button.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "lib_data_siteConfig",
+      "label": "siteConfig",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/data.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_badge_Badge",
+      "label": "Badge",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/badge.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_section_heading_SectionHeading",
+      "label": "SectionHeading",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/section-heading.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_tilt_card_TiltCard",
+      "label": "TiltCard",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/tilt-card.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_animated_counter_AnimatedCounter",
+      "label": "AnimatedCounter",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/animated-counter.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "layout_navbar_Navbar",
+      "label": "Navbar",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/navbar.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "layout_footer_Footer",
+      "label": "Footer",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/footer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "chat_chat_widget_ChatWidget",
+      "label": "ChatWidget",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/chat/chat-widget.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_scroll_progress_ScrollProgress",
+      "label": "ScrollProgress",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/scroll-progress.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_page_transition_PageTransition",
+      "label": "PageTransition",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/page-transition.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ui_custom_cursor_CustomCursor",
+      "label": "CustomCursor",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/ui/custom-cursor.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "layout_preloader_Preloader",
+      "label": "Preloader",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/preloader.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "footer_footer",
+      "label": "Footer",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/footer.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "footer_siteconfig",
+      "label": "siteConfig",
+      "file_type": "concept",
+      "source_file": "@/lib/data",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "footer_navlinks",
+      "label": "navLinks",
+      "file_type": "concept",
+      "source_file": "@/lib/data",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "navbar_navbar",
+      "label": "Navbar",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/navbar.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "navbar_navlinks",
+      "label": "navLinks",
+      "file_type": "concept",
+      "source_file": "@/lib/data",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "navbar_themetoggle",
+      "label": "ThemeToggle",
+      "file_type": "code",
+      "source_file": "./theme-toggle",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "notificationbanner_notificationbanner",
+      "label": "NotificationBanner",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/notification-banner.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "notificationbanner_getpayloadclient",
+      "label": "getPayloadClient",
+      "file_type": "concept",
+      "source_file": "@/lib/payload",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "notificationbanner_notificationbarclient",
+      "label": "NotificationBarClient",
+      "file_type": "code",
+      "source_file": "./notification-bar-client",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "notificationbarclient_notificationbarclient",
+      "label": "NotificationBarClient",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/notification-bar-client.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "preloader_preloader",
+      "label": "Preloader",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/preloader.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "themetoggle_themetoggle",
+      "label": "ThemeToggle",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/layout/theme-toggle.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projectdetail_projectdetail",
+      "label": "ProjectDetail",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/projects/project-detail.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projectdetail_articleshell",
+      "label": "ArticleShell",
+      "file_type": "concept",
+      "source_file": "@/components/article/article-shell",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projectdetail_projectmetastrip",
+      "label": "ProjectMetaStrip",
+      "file_type": "concept",
+      "source_file": "@/components/article/project-meta-strip",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projectdetail_button",
+      "label": "Button",
+      "file_type": "concept",
+      "source_file": "@/components/ui/button",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "interactivetimeline_interactivetimeline",
+      "label": "InteractiveTimeline",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/resume/interactive-timeline.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "interactivetimeline_badge",
+      "label": "Badge",
+      "file_type": "concept",
+      "source_file": "@/components/ui/badge",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "claudemd_claudemd",
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "pnpmworkspaceyaml_pnpmworkspaceyaml",
+      "label": "pnpm-workspace.yaml",
+      "file_type": "code",
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_readme",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "apps_web_packagejson_packagejson",
+      "label": "apps/web package.json",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "apps_chatbot_packagejson_packagejson",
+      "label": "apps/chatbot package.json",
+      "file_type": "code",
+      "source_file": "apps/chatbot/package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "apps_web_src_lib_article_slugify_slugify",
+      "label": "slugify",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/article/slugify.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "scripts_capture_screenshots_capture_screenshots",
+      "label": "capture-screenshots",
+      "file_type": "code",
+      "source_file": "scripts/capture-screenshots.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "turborepo_concept_turborepo",
+      "label": "Turborepo",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "payloadcms_concept_payloadcms",
+      "label": "Payload CMS 3",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "fastapi_concept_fastapi",
+      "label": "FastAPI",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "home_desktop_home_desktop",
+      "label": "Home Desktop Screenshot",
+      "file_type": "image",
+      "source_file": "apps/web/public/screenshots/home-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "home_mobile_home_mobile",
+      "label": "Home Mobile Screenshot",
+      "file_type": "image",
+      "source_file": "apps/web/public/screenshots/home-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projects_desktop_projects_desktop",
+      "label": "Projects Desktop Screenshot",
+      "file_type": "image",
+      "source_file": "apps/web/public/screenshots/projects-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projects_mobile_screenshot",
+      "label": "Projects Mobile Screenshot",
+      "file_type": "image",
+      "source_file": "apps/web/public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_desktop_screenshot",
+      "label": "Resume Desktop Screenshot",
+      "file_type": "image",
+      "source_file": "apps/web/public/screenshots/resume-desktop.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_mobile_screenshot",
+      "label": "Resume Mobile Screenshot",
+      "file_type": "image",
+      "source_file": "apps/web/public/screenshots/resume-mobile.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "instrumentation_register",
+      "target": "instrumentation_onRequestError",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/instrumentation.ts"
+    },
+    {
+      "source": "payload_config_default",
+      "target": "payload_types_config",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "apps/web/src/payload.config.ts"
+    },
+    {
+      "source": "payload_types_config",
+      "target": "payload_types_user",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "source": "payload_types_config",
+      "target": "payload_types_media",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "source": "payload_types_config",
+      "target": "payload_types_project",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "source": "payload_types_config",
+      "target": "payload_types_post",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/payload-types.ts"
+    },
+    {
+      "source": "proxy_lookupRedirect",
+      "target": "lib_payload_getPayloadClient",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/proxy.ts"
+    },
+    {
+      "source": "proxy_proxy",
+      "target": "proxy_lookupRedirect",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/proxy.ts"
+    },
+    {
+      "source": "frontend_home_page",
+      "target": "lib_payload_getPayloadClient",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/page.tsx"
+    },
+    {
+      "source": "frontend_home_page",
+      "target": "payload_types_project",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/src/app/(frontend)/page.tsx"
+    },
+    {
+      "source": "frontend_home_page",
+      "target": "payload_types_post",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/src/app/(frontend)/page.tsx"
+    },
+    {
+      "source": "page_generateMetadata",
+      "target": "lib_findBySlug",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/[slug]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_SlugPage",
+      "target": "lib_findBySlug",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/[slug]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_SlugPage",
+      "target": "lib_getPayloadClient",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/[slug]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_SlugPage",
+      "target": "project_detail_ProjectDetail",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/[slug]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_SlugPage",
+      "target": "blog_post_detail_BlogPostDetail",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/[slug]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_ResumePage",
+      "target": "interactive_timeline_InteractiveTimeline",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/resume/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_ResumePage",
+      "target": "data_siteConfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/resume/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_SearchPage",
+      "target": "lib_getPayloadClient",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/search/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_SearchPage",
+      "target": "search_client_SearchInput",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(frontend)/search/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "layout_Layout",
+      "target": "payload_config_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(payload)/layout.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "layout_Layout",
+      "target": "importMap_importMap",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(payload)/layout.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_Page",
+      "target": "payload_config_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(payload)/admin/[[...segments]]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_Page",
+      "target": "importMap_importMap",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(payload)/admin/[[...segments]]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "route_GET",
+      "target": "payload_config_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/(payload)/api/[...slug]/route.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_SlugPage",
+      "target": "page_SearchPage",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "index_blocks",
+      "target": "callout_config_CalloutBlock",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/blocks/index.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "index_blocks",
+      "target": "code_config_CodeBlock",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/blocks/index.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "index_blocks",
+      "target": "divider_config_DividerBlock",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/blocks/index.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "callout_config_CalloutBlock",
+      "target": "callout_component_CalloutBlockComponent",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/src/blocks/callout/config.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "code_config_CodeBlock",
+      "target": "code_component_CodeBlockComponent",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/src/blocks/code/config.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "divider_config_DividerBlock",
+      "target": "divider_component_DividerBlockComponent",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/src/blocks/divider/config.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "projects_projects",
+      "target": "projects_blocks",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/collections/Projects.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "projects_projects",
+      "target": "projects_validateSharedSlug",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/collections/Projects.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_shell_article_shell",
+      "target": "article_scroll_progress",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_shell_article_shell",
+      "target": "article_share_button",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_shell_article_shell",
+      "target": "article_toc_dots",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_shell_article_shell",
+      "target": "article_mobile_toc",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_shell_article_shell",
+      "target": "article_rich_text_renderer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/article-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_callout",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_code",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_divider",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_image",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_image_pair",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_mermaid",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_pull_quote",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_stats",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_steps",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_rich_text_renderer_component",
+      "target": "blocks_video",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/article/rich-text-renderer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_project_meta_strip",
+      "target": "projects_projects",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/src/components/article/project-meta-strip.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "hero_section_HeroSection",
+      "target": "particle_network_ParticleNetwork",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/hero-section.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "hero_section_HeroSection",
+      "target": "ui_button_Button",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/hero-section.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "hero_section_HeroSection",
+      "target": "lib_data_siteConfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/hero-section.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "hero_section_HeroSection",
+      "target": "hero_section_StaggeredName",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/hero-section.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "latest_posts_LatestPosts",
+      "target": "ui_section_heading_SectionHeading",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/latest-posts.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "latest_posts_LatestPosts",
+      "target": "ui_tilt_card_TiltCard",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/latest-posts.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "latest_posts_LatestPosts",
+      "target": "ui_badge_Badge",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/latest-posts.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "latest_posts_LatestPosts",
+      "target": "ui_button_Button",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/latest-posts.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "proof_of_work_ProofOfWork",
+      "target": "ui_section_heading_SectionHeading",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/proof-of-work.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "proof_of_work_ProofOfWork",
+      "target": "ui_animated_counter_AnimatedCounter",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/proof-of-work.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "proof_of_work_ProofOfWork",
+      "target": "typewriter_code_TypewriterCode",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/proof-of-work.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "stats_bar_StatsBar",
+      "target": "ui_animated_counter_AnimatedCounter",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/home/stats-bar.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "client_shell_ClientShell",
+      "target": "layout_preloader_Preloader",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "client_shell_ClientShell",
+      "target": "ui_scroll_progress_ScrollProgress",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "client_shell_ClientShell",
+      "target": "ui_custom_cursor_CustomCursor",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "client_shell_ClientShell",
+      "target": "layout_navbar_Navbar",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "client_shell_ClientShell",
+      "target": "ui_page_transition_PageTransition",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "client_shell_ClientShell",
+      "target": "layout_footer_Footer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "client_shell_ClientShell",
+      "target": "chat_chat_widget_ChatWidget",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/client-shell.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "footer_footer",
+      "target": "footer_siteconfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/footer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "footer_footer",
+      "target": "footer_navlinks",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/footer.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "navbar_navlinks",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/navbar.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "navbar_themetoggle",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/navbar.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "notificationbanner_notificationbanner",
+      "target": "notificationbanner_getpayloadclient",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/notification-banner.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "notificationbanner_notificationbanner",
+      "target": "notificationbanner_notificationbarclient",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/layout/notification-banner.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "projectdetail_projectdetail",
+      "target": "projectdetail_articleshell",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/projects/project-detail.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "projectdetail_projectdetail",
+      "target": "projectdetail_projectmetastrip",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/projects/project-detail.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "projectdetail_projectdetail",
+      "target": "projectdetail_button",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/projects/project-detail.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "interactivetimeline_interactivetimeline",
+      "target": "interactivetimeline_badge",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/components/resume/interactive-timeline.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "claudemd_claudemd",
+      "target": "turborepo_concept_turborepo",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "claudemd_claudemd",
+      "target": "payloadcms_concept_payloadcms",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "claudemd_claudemd",
+      "target": "fastapi_concept_fastapi",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpmworkspaceyaml_pnpmworkspaceyaml",
+      "target": "apps_web_packagejson_packagejson",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpmworkspaceyaml_pnpmworkspaceyaml",
+      "target": "apps_chatbot_packagejson_packagejson",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme_readme",
+      "target": "turborepo_concept_turborepo",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme_readme",
+      "target": "payloadcms_concept_payloadcms",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme_readme",
+      "target": "fastapi_concept_fastapi",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_capture_screenshots_capture_screenshots",
+      "target": "apps_web_packagejson_packagejson",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "scripts/capture-screenshots.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "home_desktop_home_desktop",
+      "target": "home_mobile_home_mobile",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "apps/web/public/screenshots/home-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "home_desktop_home_desktop",
+      "target": "projects_desktop_projects_desktop",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/public/screenshots/home-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "resume_desktop_screenshot",
+      "target": "resume_mobile_screenshot",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "apps/web/public/screenshots/resume-desktop.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "projects_mobile_screenshot",
+      "target": "resume_mobile_screenshot",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "apps/web/public/screenshots/projects-mobile.png",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
   "hyperedges": [],
-  "input_tokens": 0,
-  "output_tokens": 0
+  "input_tokens": 149721,
+  "output_tokens": 20502
 }

@@ -5,7 +5,6 @@ export const config = {
   matcher: ['/((?!api|admin|_next|_static|favicon.ico|robots.txt|sitemap.xml).*)'],
 }
 
-export const runtime = 'nodejs'
 
 type CacheEntry = { to: string; type: '301' | '302' } | null
 const cache = new Map<string, { value: CacheEntry; expires: number }>()
@@ -40,7 +39,7 @@ async function lookupRedirect(pathname: string): Promise<CacheEntry> {
   }
 }
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname, search } = req.nextUrl
   const hit = await lookupRedirect(pathname)
   if (!hit) return NextResponse.next()
