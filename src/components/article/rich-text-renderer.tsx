@@ -15,6 +15,8 @@ import { StepsBlockComponent } from "@/blocks/steps/component";
 import { VideoBlockComponent } from "@/blocks/video/component";
 import { makeUniqueSlugger } from "@/lib/article/slugify";
 
+type BlockNodeFields = { node: { fields: Record<string, unknown> } };
+
 function getNodeText(node: unknown): string {
   if (!node) return "";
   if (typeof node === "object" && "text" in node && typeof (node as Record<string, unknown>).text === "string") {
@@ -46,43 +48,43 @@ export function RichTextRenderer({
       );
     },
     blocks: {
-      callout: ({ node }) => {
+      callout: ({ node }: BlockNodeFields) => {
         const { variant, text } = node.fields as { variant: "info" | "success" | "warn" | "danger"; text: string };
         return <CalloutBlockComponent variant={variant} text={text} />;
       },
-      code: ({ node }) => {
+      code: ({ node }: BlockNodeFields) => {
         const { language, filename, code } = node.fields as { language: string; filename?: string | null; code: string };
         return <CodeBlockComponent language={language} filename={filename} code={code} />;
       },
-      divider: ({ node }) => {
+      divider: ({ node }: BlockNodeFields) => {
         const { glyph, label } = node.fields as { glyph?: string | null; label?: string | null };
         return <DividerBlockComponent glyph={glyph} label={label} />;
       },
-      image: ({ node }) => {
+      image: ({ node }: BlockNodeFields) => {
         const fields = node.fields as { image: { url?: string | null; alt?: string | null; width?: number | null; height?: number | null } | string | null; alt?: string | null; caption?: string | null };
         return <ImageBlockComponent image={fields.image} alt={fields.alt} caption={fields.caption} />;
       },
-      imagePair: ({ node }) => {
+      imagePair: ({ node }: BlockNodeFields) => {
         const fields = node.fields as { left: { image: { url?: string | null; alt?: string | null; width?: number | null; height?: number | null } | string | null; label?: string | null }; right: { image: { url?: string | null; alt?: string | null; width?: number | null; height?: number | null } | string | null; label?: string | null } };
         return <ImagePairBlockComponent left={fields.left} right={fields.right} />;
       },
-      mermaid: ({ node }) => {
+      mermaid: ({ node }: BlockNodeFields) => {
         const { source } = node.fields as { source: string };
         return <MermaidBlockComponent source={source} />;
       },
-      pullQuote: ({ node }) => {
+      pullQuote: ({ node }: BlockNodeFields) => {
         const { quote, cite } = node.fields as { quote: string; cite?: string | null };
         return <PullQuoteBlockComponent quote={quote} cite={cite} />;
       },
-      stats: ({ node }) => {
+      stats: ({ node }: BlockNodeFields) => {
         const { items } = node.fields as { items: { value: string; label: string; color?: string }[] };
         return <StatsBlockComponent items={items} />;
       },
-      steps: ({ node }) => {
+      steps: ({ node }: BlockNodeFields) => {
         const { items } = node.fields as { items: { title: string; body?: string | null }[] };
         return <StepsBlockComponent items={items} />;
       },
-      video: ({ node }) => {
+      video: ({ node }: BlockNodeFields) => {
         const { provider, url, caption } = node.fields as { provider: "youtube" | "loom" | "mp4"; url: string; caption?: string | null };
         return <VideoBlockComponent provider={provider} url={url} caption={caption} />;
       },
