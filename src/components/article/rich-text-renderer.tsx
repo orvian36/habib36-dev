@@ -5,6 +5,7 @@ import {
 import type { SerializedEditorState } from "lexical";
 import { CalloutBlockComponent } from "@/blocks/callout/component";
 import { DividerBlockComponent } from "@/blocks/divider/component";
+import { ImageBlockComponent } from "@/blocks/image/component";
 import { PullQuoteBlockComponent } from "@/blocks/pull-quote/component";
 import { makeUniqueSlugger } from "@/lib/article/slugify";
 
@@ -46,6 +47,10 @@ export function RichTextRenderer({
       divider: ({ node }) => {
         const { glyph, label } = node.fields as { glyph?: string | null; label?: string | null };
         return <DividerBlockComponent glyph={glyph} label={label} />;
+      },
+      image: ({ node }) => {
+        const fields = node.fields as { image: { url?: string | null; alt?: string | null; width?: number | null; height?: number | null } | string | null; alt?: string | null; caption?: string | null };
+        return <ImageBlockComponent image={fields.image} alt={fields.alt} caption={fields.caption} />;
       },
       pullQuote: ({ node }) => {
         const { quote, cite } = node.fields as { quote: string; cite?: string | null };

@@ -538,6 +538,21 @@ export interface DividerBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageBlock".
+ */
+export interface ImageBlock {
+  image: number | Media;
+  /**
+   * Falls back to media alt if empty.
+   */
+  alt?: string | null;
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "PullQuoteBlock".
  */
 export interface PullQuoteBlock {
