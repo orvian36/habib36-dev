@@ -70,7 +70,7 @@ export default buildConfig({
       formSubmissionOverrides: {
         admin: { group: 'Forms' },
       },
-      defaultToEmail: process.env.EMAIL_FROM_ADDRESS,
+      defaultToEmail: process.env.EMAIL_FROM_ADDRESS || 'noreply@habib36.dev',
     }),
     seoPlugin({
       collections: ['posts', 'projects'],
@@ -112,15 +112,14 @@ export default buildConfig({
           },
         ],
       },
-      beforeSync: ({ originalDoc, searchDoc }) => {
-        const isPost = 'excerpt' in originalDoc && 'category' in originalDoc
+      beforeSync: ({ originalDoc, searchDoc, collectionSlug }) => {
         return {
           ...searchDoc,
           excerpt: (originalDoc as { excerpt?: string; description?: string }).excerpt
             ?? (originalDoc as { description?: string }).description
             ?? '',
           category: (originalDoc as { category?: string }).category ?? null,
-          docType: isPost ? 'post' : 'project',
+          docType: collectionSlug === 'posts' ? 'post' : 'project',
         }
       },
       syncDrafts: false,
