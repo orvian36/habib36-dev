@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { getPayloadClient } from '@/lib/payload'
+import type { Where } from 'payload'
 
 export async function GET(req: NextRequest) {
   const q = req.nextUrl.searchParams.get('q')?.trim() ?? ''
@@ -9,7 +10,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const payload = await getPayloadClient()
-    const where: Record<string, unknown> = {
+    const where: Where = {
       or: [
         { title: { like: q } },
         { excerpt: { like: q } },

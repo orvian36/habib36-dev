@@ -20,7 +20,7 @@ type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export function ContactForm({ form }: { form: Form }) {
   const fields = (form.fields ?? []) as unknown as FormField[]
-  const [values, setValues] = useState<Record<string, string | boolean>>(() =>
+  const [values, setValues] = useState<Record<string, string | boolean | number>>(() =>
     Object.fromEntries(
       fields.map((f) => [f.name, typeof f.defaultValue === 'boolean' ? f.defaultValue : (f.defaultValue ?? '')]),
     ),
@@ -28,7 +28,7 @@ export function ContactForm({ form }: { form: Form }) {
   const [status, setStatus] = useState<SubmitStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const setValue = (name: string, value: string | boolean) =>
+  const setValue = (name: string, value: string | boolean | number) =>
     setValues((s) => ({ ...s, [name]: value }))
 
   const onSubmit = async (e: FormEvent) => {

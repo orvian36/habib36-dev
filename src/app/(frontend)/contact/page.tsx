@@ -19,14 +19,22 @@ const socialLinks = [
   { icon: Mail, label: 'Email', href: `mailto:${siteConfig.email}`, handle: siteConfig.email },
 ]
 
+export const dynamic = 'force-dynamic'
+
 export default async function ContactPage() {
   const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'forms',
-    where: { title: { equals: 'Contact' } },
-    limit: 1,
-    depth: 1,
-  })
+  let docs: any[] = []
+  try {
+    const res = await payload.find({
+      collection: 'forms',
+      where: { title: { equals: 'Contact' } },
+      limit: 1,
+      depth: 1,
+    })
+    docs = res.docs
+  } catch (err) {
+    // Database table might not exist during build time before seeding
+  }
   const form = docs[0] ?? null
 
   return (
