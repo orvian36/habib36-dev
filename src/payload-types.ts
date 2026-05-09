@@ -510,6 +510,170 @@ export interface CollectionsWidget {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CalloutBlock".
+ */
+export interface CalloutBlock {
+  variant: 'info' | 'success' | 'warn' | 'danger';
+  text: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callout';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CodeBlock".
+ */
+export interface CodeBlock {
+  /**
+   * Add more in the schema as needed.
+   */
+  language:
+    | 'ts'
+    | 'js'
+    | 'tsx'
+    | 'jsx'
+    | 'bash'
+    | 'json'
+    | 'yaml'
+    | 'sql'
+    | 'python'
+    | 'go'
+    | 'rust'
+    | 'html'
+    | 'css'
+    | 'md'
+    | 'plaintext';
+  /**
+   * Optional filename header.
+   */
+  filename?: string | null;
+  code: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'code';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DividerBlock".
+ */
+export interface DividerBlock {
+  /**
+   * Optional glyph shown in the middle of the rule.
+   */
+  glyph?: string | null;
+  /**
+   * Optional small label shown in the middle.
+   */
+  label?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'divider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageBlock".
+ */
+export interface ImageBlock {
+  image: number | Media;
+  /**
+   * Falls back to media alt if empty.
+   */
+  alt?: string | null;
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImagePairBlock".
+ */
+export interface ImagePairBlock {
+  left: {
+    image: number | Media;
+    label?: string | null;
+  };
+  right: {
+    image: number | Media;
+    label?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imagePair';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MermaidBlock".
+ */
+export interface MermaidBlock {
+  /**
+   * Mermaid syntax (e.g. graph LR; A-->B).
+   */
+  source: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mermaid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PullQuoteBlock".
+ */
+export interface PullQuoteBlock {
+  quote: string;
+  cite?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pullQuote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock".
+ */
+export interface StatsBlock {
+  items: {
+    /**
+     * e.g. -47%, 3.2k, 99.9%
+     */
+    value: string;
+    label: string;
+    color?: ('green' | 'blue' | 'purple' | 'orange') | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StepsBlock".
+ */
+export interface StepsBlock {
+  items: {
+    title: string;
+    body?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'steps';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoBlock".
+ */
+export interface VideoBlock {
+  provider: 'youtube' | 'loom' | 'mp4';
+  /**
+   * YouTube: full watch URL or short URL. Loom: full share URL. MP4: direct file URL.
+   */
+  url: string;
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'video';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

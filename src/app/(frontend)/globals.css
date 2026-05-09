@@ -389,3 +389,118 @@ body::before {
 [data-theme="light"] .floating-icon svg {
   opacity: 0.6;
 }
+
+/* ========================================
+   Article reading typography
+   ======================================== */
+
+.prose-article {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.prose-article > * + * {
+  margin-top: 1rem;
+}
+
+.prose-article h2 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  scroll-margin-top: 6rem;
+}
+
+.prose-article h3 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  scroll-margin-top: 6rem;
+}
+
+.prose-article p {
+  color: var(--text-primary);
+}
+
+.prose-article a {
+  color: var(--accent-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent-blue-dim);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+
+.prose-article a:hover {
+  text-decoration-color: var(--accent-blue);
+}
+
+.prose-article strong { color: var(--text-primary); font-weight: 700; }
+.prose-article em { color: var(--text-secondary); }
+
+.prose-article ul,
+.prose-article ol {
+  padding-left: 1.5rem;
+}
+.prose-article ul { list-style: disc; }
+.prose-article ol { list-style: decimal; }
+.prose-article li::marker { color: var(--text-muted); }
+.prose-article li + li { margin-top: 0.4rem; }
+
+.prose-article blockquote {
+  border-left: 2px solid var(--border-hover);
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.prose-article code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--bg-tertiary);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  color: var(--accent-blue);
+}
+
+.prose-article hr {
+  border: none;
+  border-top: 1px solid var(--border-primary);
+  margin: 2rem 0;
+}
+
+/* ========================================
+   Code block (Shiki) overrides
+   ======================================== */
+
+.article-shiki pre.shiki {
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  background: transparent !important;
+}
+
+.article-shiki code {
+  background: transparent !important;
+  font-family: inherit;
+  color: inherit;
+}
+
+[data-theme="light"] .article-shiki .shiki,
+[data-theme="light"] .article-shiki .shiki span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
+}

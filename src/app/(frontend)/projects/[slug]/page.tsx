@@ -15,6 +15,7 @@ export default async function ProjectDetailPage({
       slug: { equals: slug },
       _status: { equals: 'published' },
     },
+    depth: 2,
     limit: 1,
   })
 
@@ -25,11 +26,17 @@ export default async function ProjectDetailPage({
     slug: doc.slug,
     title: doc.title,
     description: doc.description,
-    tech: (doc.tech ?? []).map((t: { name: string } | string) => (typeof t === 'object' ? t.name : t)),
+    tech: (doc.tech ?? []).map((t: { name: string } | string) =>
+      typeof t === 'object' ? t.name : t
+    ),
     featured: doc.featured ?? false,
     github: doc.github ?? undefined,
     live: doc.live ?? undefined,
-    metrics: (doc.metrics ?? []).map((m: { value: string } | string) => (typeof m === 'object' ? m.value : m)),
+    metrics: (doc.metrics ?? []).map((m: { value: string } | string) =>
+      typeof m === 'object' ? m.value : m
+    ),
+    content: doc.content,
+    image: typeof doc.image === 'object' ? doc.image : null,
   }
 
   return <ProjectDetail project={project} />
