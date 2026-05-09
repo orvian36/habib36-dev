@@ -15,13 +15,13 @@ export default async function BlogPostPage({
       slug: { equals: slug },
       _status: { equals: 'published' },
     },
+    depth: 2,
     limit: 1,
   })
 
   const doc = docs[0]
   if (!doc) notFound()
 
-  // Get related posts (same category, exclude current)
   const { docs: relatedDocs } = await payload.find({
     collection: 'posts',
     where: {
@@ -37,9 +37,13 @@ export default async function BlogPostPage({
     title: doc.title,
     excerpt: doc.excerpt,
     category: doc.category,
-    tags: (doc.tags ?? []).map((t: { tag: string } | string) => (typeof t === 'object' ? t.tag : t)),
+    tags: (doc.tags ?? []).map((t: { tag: string } | string) =>
+      typeof t === 'object' ? t.tag : t
+    ),
     date: doc.publishedAt ?? doc.createdAt,
     readingTime: doc.readingTime ?? '5 min',
+    content: doc.content,
+    image: typeof doc.image === 'object' ? doc.image : null,
   }
 
   const relatedPosts = relatedDocs.map((r) => ({
