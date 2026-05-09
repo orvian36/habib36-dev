@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { GitFork, ExternalLink, Search } from "lucide-react";
@@ -22,9 +22,40 @@ export function ProjectsGrid({ projects }: { projects: Project[] }) {
   const [search, setSearch] = useState("");
   const [activeTech, setActiveTech] = useState<string | null>(null);
 
+  const [remoteResults, setRemoteResults] = useState<typeof projects | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    const handle = setTimeout(async () => {
+      if (!search.trim()) {
+        if (!cancelled) setRemoteResults(null)
+        return
+      }
+      try {
+        const res = await fetch(
+          `/api/search?q=${encodeURIComponent(search)}&docType=project`,
+        )
+        const data = await res.json()
+        if (cancelled) return
+        const mapped = (data.docs as Array<{ slug: string; title: string; excerpt?: string }>).map(
+          (d) => projects.find((p) => p.slug === d.slug),
+        ).filter(Boolean) as typeof projects
+        setRemoteResults(mapped)
+      } catch {
+        setRemoteResults(null)
+      }
+    }, 250)
+    return () => {
+      cancelled = true
+      clearTimeout(handle)
+    }
+  }, [search, projects])
+
+  const baseList = remoteResults ?? projects
+
   const allTechs = [...new Set(projects.flatMap((p) => p.tech))].sort();
 
-  const filtered = projects.filter((p) => {
+  const filtered = baseList.filter((p) => {
     const matchesSearch =
       !search ||
       p.title.toLowerCase().includes(search.toLowerCase()) ||
