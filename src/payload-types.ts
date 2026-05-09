@@ -521,6 +521,39 @@ export interface CalloutBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CodeBlock".
+ */
+export interface CodeBlock {
+  /**
+   * Add more in the schema as needed.
+   */
+  language:
+    | 'ts'
+    | 'js'
+    | 'tsx'
+    | 'jsx'
+    | 'bash'
+    | 'json'
+    | 'yaml'
+    | 'sql'
+    | 'python'
+    | 'go'
+    | 'rust'
+    | 'html'
+    | 'css'
+    | 'md'
+    | 'plaintext';
+  /**
+   * Optional filename header.
+   */
+  filename?: string | null;
+  code: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'code';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "DividerBlock".
  */
 export interface DividerBlock {

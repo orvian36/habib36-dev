@@ -476,3 +476,31 @@ body::before {
   border-top: 1px solid var(--border-primary);
   margin: 2rem 0;
 }
+
+/* ========================================
+   Code block (Shiki) overrides
+   ======================================== */
+
+.article-shiki pre.shiki {
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  background: transparent !important;
+}
+
+.article-shiki code {
+  background: transparent !important;
+  font-family: inherit;
+  color: inherit;
+}
+
+[data-theme="light"] .article-shiki .shiki,
+[data-theme="light"] .article-shiki .shiki span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
+}

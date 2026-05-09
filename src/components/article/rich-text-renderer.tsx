@@ -4,6 +4,7 @@ import {
 } from "@payloadcms/richtext-lexical/react";
 import type { SerializedEditorState } from "lexical";
 import { CalloutBlockComponent } from "@/blocks/callout/component";
+import { CodeBlockComponent } from "@/blocks/code/component";
 import { DividerBlockComponent } from "@/blocks/divider/component";
 import { ImageBlockComponent } from "@/blocks/image/component";
 import { ImagePairBlockComponent } from "@/blocks/image-pair/component";
@@ -47,6 +48,10 @@ export function RichTextRenderer({
       callout: ({ node }) => {
         const { variant, text } = node.fields as { variant: "info" | "success" | "warn" | "danger"; text: string };
         return <CalloutBlockComponent variant={variant} text={text} />;
+      },
+      code: ({ node }) => {
+        const { language, filename, code } = node.fields as { language: string; filename?: string | null; code: string };
+        return <CodeBlockComponent language={language} filename={filename} code={code} />;
       },
       divider: ({ node }) => {
         const { glyph, label } = node.fields as { glyph?: string | null; label?: string | null };
