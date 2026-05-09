@@ -6,11 +6,13 @@ import type { SerializedEditorState } from "lexical";
 import { DividerBlockComponent } from "@/blocks/divider/component";
 import { makeUniqueSlugger } from "@/lib/article/slugify";
 
-function getNodeText(node: any): string {
+function getNodeText(node: unknown): string {
   if (!node) return "";
-  if (typeof node.text === "string") return node.text;
-  if (Array.isArray(node.children)) {
-    return node.children.map(getNodeText).join("");
+  if (typeof node === "object" && "text" in node && typeof (node as Record<string, unknown>).text === "string") {
+    return (node as Record<string, string>).text;
+  }
+  if (typeof node === "object" && "children" in node && Array.isArray((node as Record<string, unknown>).children)) {
+    return ((node as Record<string, unknown>).children as unknown[]).map(getNodeText).join("");
   }
   return "";
 }
@@ -36,7 +38,7 @@ export function RichTextRenderer({
     },
     blocks: {
       divider: ({ node }) => (
-        <DividerBlockComponent {...(node.fields as any)} />
+        <DividerBlockComponent {...(node.fields as Record<string, unknown>)} />
       ),
     },
   });
