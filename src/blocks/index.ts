@@ -5,6 +5,7 @@ import { ImageBlock } from './image/config'
 import { ImagePairBlock } from './image-pair/config'
 import { PullQuoteBlock } from './pull-quote/config'
 import { StatsBlock } from './stats/config'
+import { StepsBlock } from './steps/config'
 import { VideoBlock } from './video/config'
 
 export const blocks: Block[] = [
@@ -14,5 +15,6 @@ export const blocks: Block[] = [
   ImagePairBlock,
   PullQuoteBlock,
   StatsBlock,
+  StepsBlock,
   VideoBlock,
 ]

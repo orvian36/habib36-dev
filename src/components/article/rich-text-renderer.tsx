@@ -9,6 +9,7 @@ import { ImageBlockComponent } from "@/blocks/image/component";
 import { ImagePairBlockComponent } from "@/blocks/image-pair/component";
 import { PullQuoteBlockComponent } from "@/blocks/pull-quote/component";
 import { StatsBlockComponent } from "@/blocks/stats/component";
+import { StepsBlockComponent } from "@/blocks/steps/component";
 import { VideoBlockComponent } from "@/blocks/video/component";
 import { makeUniqueSlugger } from "@/lib/article/slugify";
 
@@ -66,6 +67,10 @@ export function RichTextRenderer({
       stats: ({ node }) => {
         const { items } = node.fields as { items: { value: string; label: string; color?: string }[] };
         return <StatsBlockComponent items={items} />;
+      },
+      steps: ({ node }) => {
+        const { items } = node.fields as { items: { title: string; body?: string | null }[] };
+        return <StepsBlockComponent items={items} />;
       },
       video: ({ node }) => {
         const { provider, url, caption } = node.fields as { provider: "youtube" | "loom" | "mp4"; url: string; caption?: string | null };
