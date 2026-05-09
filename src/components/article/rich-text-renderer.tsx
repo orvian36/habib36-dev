@@ -37,9 +37,10 @@ export function RichTextRenderer({
       );
     },
     blocks: {
-      divider: ({ node }) => (
-        <DividerBlockComponent {...(node.fields as Record<string, unknown>)} />
-      ),
+      divider: ({ node }) => {
+        const { glyph, label } = node.fields as { glyph?: string | null; label?: string | null };
+        return <DividerBlockComponent glyph={glyph} label={label} />;
+      },
     },
   });
 
