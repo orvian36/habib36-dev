@@ -13,7 +13,6 @@ export type Crumb = { label: string; href?: string };
 export type BadgeVariant = "default" | "accent" | "green" | "orange" | "purple";
 
 export type ArticleShellProps = {
-  kind: "post" | "project";
   breadcrumb: Crumb[];
   badge?: { text: string; variant?: BadgeVariant };
   title: string;

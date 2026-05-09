@@ -21,7 +21,6 @@ type Project = {
 export function ProjectDetail({ project }: { project: Project }) {
   return (
     <ArticleShell
-      kind="project"
       breadcrumb={[
         { label: "Home", href: "/" },
         { label: "Projects", href: "/projects" },

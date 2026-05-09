@@ -32,7 +32,6 @@ export function BlogPostDetail({
 }) {
   return (
     <ArticleShell
-      kind="post"
       breadcrumb={[
         { label: "Home", href: "/" },
         { label: "Blog", href: "/blog" },
