@@ -5,6 +5,7 @@ import {
 import type { SerializedEditorState } from "lexical";
 import { CalloutBlockComponent } from "@/blocks/callout/component";
 import { DividerBlockComponent } from "@/blocks/divider/component";
+import { PullQuoteBlockComponent } from "@/blocks/pull-quote/component";
 import { makeUniqueSlugger } from "@/lib/article/slugify";
 
 function getNodeText(node: unknown): string {
@@ -45,6 +46,10 @@ export function RichTextRenderer({
       divider: ({ node }) => {
         const { glyph, label } = node.fields as { glyph?: string | null; label?: string | null };
         return <DividerBlockComponent glyph={glyph} label={label} />;
+      },
+      pullQuote: ({ node }) => {
+        const { quote, cite } = node.fields as { quote: string; cite?: string | null };
+        return <PullQuoteBlockComponent quote={quote} cite={cite} />;
       },
     },
   });
