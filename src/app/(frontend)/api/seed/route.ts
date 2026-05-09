@@ -226,6 +226,133 @@ export async function GET() {
       results.push('Posts already seeded')
     }
 
+    // --- Seed contact form (idempotent) ---
+    const existingForm = await payload.find({
+      collection: 'forms',
+      where: { title: { equals: 'Contact' } },
+      limit: 1,
+    })
+    if (existingForm.totalDocs === 0) {
+      await payload.create({
+        collection: 'forms',
+        data: {
+          title: 'Contact',
+          fields: [
+            {
+              blockType: 'text',
+              name: 'name',
+              label: 'Name',
+              required: true,
+              width: 100,
+            },
+            {
+              blockType: 'email',
+              name: 'email',
+              label: 'Email',
+              required: true,
+              width: 100,
+            },
+            {
+              blockType: 'textarea',
+              name: 'message',
+              label: 'Message',
+              required: true,
+              width: 100,
+            },
+          ],
+          submitButtonLabel: 'Send Message',
+          confirmationType: 'message',
+          confirmationMessage: {
+            root: {
+              type: 'root',
+              children: [
+                {
+                  type: 'paragraph',
+                  children: [{ type: 'text', text: "Thanks! I'll get back to you soon.", version: 1 }],
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              version: 1,
+            },
+          },
+          emails: [
+            {
+              emailTo: process.env.EMAIL_FROM_ADDRESS || 'admin@habib36.dev',
+              emailFrom: process.env.EMAIL_FROM_ADDRESS || 'admin@habib36.dev',
+              subject: 'New contact form submission',
+              message: {
+                root: {
+                  type: 'root',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        { type: 'text', text: 'New submission from the contact form.', version: 1 },
+                      ],
+                      version: 1,
+                    },
+                  ],
+                  direction: 'ltr',
+                  format: '',
+                  indent: 0,
+                  version: 1,
+                },
+              },
+            },
+          ],
+        },
+      })
+      results.push('Created contact form')
+    } else {
+      results.push('Contact form already exists')
+    }
+
+    // --- Seed flatten redirects (idempotent) ---
+    const allProjects = await payload.find({ collection: 'projects', limit: 100, depth: 0 })
+    const allPosts = await payload.find({ collection: 'posts', limit: 100, depth: 0 })
+    type RedirectSeed = { from: string; to: string; collection: 'projects' | 'posts'; id: string | number }
+    const redirectSeeds: RedirectSeed[] = [
+      ...allProjects.docs.map((p) => ({ from: `/projects/${p.slug}`, to: `/${p.slug}`, collection: 'projects' as const, id: p.id })),
+      ...allPosts.docs.map((p) => ({ from: `/blog/${p.slug}`, to: `/${p.slug}`, collection: 'posts' as const, id: p.id })),
+    ]
+    for (const r of redirectSeeds) {
+      const existing = await payload.find({
+        collection: 'redirects',
+        where: { from: { equals: r.from } },
+        limit: 1,
+      })
+      if (existing.totalDocs > 0) continue
+      await payload.create({
+        collection: 'redirects',
+        data: {
+          from: r.from,
+          to: { url: r.to, type: 'reference', reference: { relationTo: r.collection, value: r.id } },
+          type: '301',
+        } as never,
+      })
+      results.push(`Created redirect ${r.from} -> ${r.to}`)
+    }
+
+    // --- Search backfill: re-save each published post/project to fire sync hooks ---
+    for (const p of allProjects.docs) {
+      await payload.update({
+        collection: 'projects',
+        id: p.id,
+        data: { title: p.title },
+      })
+    }
+    for (const p of allPosts.docs) {
+      await payload.update({
+        collection: 'posts',
+        id: p.id,
+        data: { title: p.title },
+      })
+    }
+    results.push(`Search backfill: ${allProjects.docs.length + allPosts.docs.length} docs re-saved`)
+
     return Response.json({ success: true, results })
   } catch (error) {
     return Response.json(

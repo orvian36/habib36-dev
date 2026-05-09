@@ -55,7 +55,11 @@
       "Bash(git push *)",
       "Bash(gh pr *)",
       "Bash(grep -E \"habib36-dev\\\\\\\\\\\\\\\\src\\\\\\\\\\\\\\\\\\(app\\\\\\\\\\\\\\\\\\\\\\(frontend\\\\\\\\\\\\\\\\\\\\\\)\\\\\\\\\\\\\\\\\\\\[slug\\\\\\\\\\\\\\\\\\\\]|components\\\\\\\\\\\\\\\\\\(blog|projects\\)|collections\\\\\\\\\\\\\\\\\\(Posts|Projects\\)|lib\\\\\\\\\\\\\\\\slug-validation|components\\\\\\\\\\\\\\\\home\\\\\\\\\\\\\\\\\\(latest-posts|featured-projects\\)|app\\\\\\\\\\\\\\\\\\\\\\(frontend\\\\\\\\\\\\\\\\\\\\\\)\\\\\\\\\\\\\\\\\\(blog|projects\\)\\\\\\\\\\\\\\\\\\(blog-grid|projects-grid\\)\\)\")",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(git *)",
+      "Bash(npm view *)",
+      "Bash(npm audit *)",
+      "Bash(npm info *)"
     ]
   }
 }

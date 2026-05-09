@@ -9,6 +9,7 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   external?: boolean;
+  disabled?: boolean;
 }
 
 const baseStyles =
@@ -38,8 +39,11 @@ export function Button({
   onClick,
   type = "button",
   external,
+  disabled,
 }: ButtonProps) {
-  const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className} ${
+    disabled ? "opacity-50 cursor-not-allowed" : ""
+  }`;
 
   if (href) {
     if (external) {
@@ -57,7 +61,7 @@ export function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button type={type} onClick={onClick} className={classes} disabled={disabled}>
       {children}
     </button>
   );
