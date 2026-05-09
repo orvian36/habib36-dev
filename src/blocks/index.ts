@@ -4,6 +4,7 @@ import { DividerBlock } from './divider/config'
 import { ImageBlock } from './image/config'
 import { ImagePairBlock } from './image-pair/config'
 import { PullQuoteBlock } from './pull-quote/config'
+import { StatsBlock } from './stats/config'
 import { VideoBlock } from './video/config'
 
 export const blocks: Block[] = [
@@ -12,5 +13,6 @@ export const blocks: Block[] = [
   ImageBlock,
   ImagePairBlock,
   PullQuoteBlock,
+  StatsBlock,
   VideoBlock,
 ]

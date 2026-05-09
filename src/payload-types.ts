@@ -581,6 +581,24 @@ export interface PullQuoteBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock".
+ */
+export interface StatsBlock {
+  items: {
+    /**
+     * e.g. -47%, 3.2k, 99.9%
+     */
+    value: string;
+    label: string;
+    color?: ('green' | 'blue' | 'purple' | 'orange') | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "VideoBlock".
  */
 export interface VideoBlock {
