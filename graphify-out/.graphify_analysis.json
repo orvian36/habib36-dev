@@ -1,0 +1,1113 @@
+{
+  "communities": {
+    "0": [
+      "apps_web_src_blocks_callout_component_tsx",
+      "apps_web_src_blocks_code_component_tsx",
+      "apps_web_src_blocks_mermaid_component_tsx",
+      "apps_web_src_blocks_mermaid_mermaid_client_tsx",
+      "apps_web_src_blocks_pull_quote_component_tsx",
+      "apps_web_src_blocks_stats_component_tsx",
+      "apps_web_src_components_article_rich_text_renderer_tsx",
+      "apps_web_src_lib_article_slugify_ts",
+      "article_copy_button_copybutton",
+      "article_rich_text_renderer_getnodetext",
+      "article_slugify_makeuniqueslugger",
+      "article_slugify_slugify",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_callout_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_code_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_divider_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_image_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_image_pair_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_mermaid_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_mermaid_mermaid_client",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_pull_quote_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_stats_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_steps_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_video_component",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_article_copy_button",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_lib_article_slugify",
+      "callout_component_calloutblockcomponent",
+      "code_component_codeblockcomponent",
+      "divider_component_dividerblockcomponent",
+      "image_component_imageblockcomponent",
+      "image_pair_component_imagepairblockcomponent",
+      "mermaid_component_mermaidblockcomponent",
+      "mermaid_mermaid_client_mermaidclient",
+      "pull_quote_component_pullquoteblockcomponent",
+      "shiki",
+      "src_blocks_callout_component_tsx",
+      "src_blocks_code_component_tsx",
+      "src_blocks_mermaid_component_tsx",
+      "src_blocks_mermaid_mermaid_client_tsx",
+      "src_blocks_pull_quote_component_tsx",
+      "src_blocks_stats_component_tsx",
+      "src_components_article_copy_button_tsx",
+      "src_components_article_rich_text_renderer_tsx",
+      "src_lib_article_slugify_ts",
+      "stats_component_statsblockcomponent",
+      "steps_component_stepsblockcomponent",
+      "video_component_videoblockcomponent"
+    ],
+    "1": [
+      "apps_web_src_app_frontend_api_search_route_ts",
+      "apps_web_src_app_frontend_blog_page_tsx",
+      "apps_web_src_app_frontend_projects_page_tsx",
+      "apps_web_src_app_frontend_slug_page_tsx",
+      "apps_web_src_components_layout_notification_banner_tsx",
+      "apps_web_src_lib_find_by_slug_ts",
+      "apps_web_src_lib_payload_ts",
+      "apps_web_src_proxy_ts",
+      "blog_blog_grid_bloggrid",
+      "blog_blog_post_detail_blogpostdetail",
+      "blog_page_blogpage",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_app_frontend_blog_blog_grid",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_app_frontend_projects_projects_grid",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_blog_blog_post_detail",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_layout_notification_bar_client",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_projects_project_detail",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_lib_find_by_slug",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_lib_payload",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_payload_types",
+      "layout_notification_banner_notificationbanner",
+      "layout_notification_bar_client_notificationbarclient",
+      "lib_find_by_slug_findbyslug",
+      "lib_payload_getpayloadclient",
+      "projects_page_projectspage",
+      "projects_project_detail_projectdetail",
+      "projects_projects_grid_projectsgrid",
+      "search_route_get",
+      "server",
+      "slug_page_blogpostpage",
+      "slug_page_generatemetadata",
+      "slug_page_projectdetailpage",
+      "slug_page_slugpage",
+      "src_app_frontend_api_search_route_ts",
+      "src_app_frontend_blog_page_tsx",
+      "src_app_frontend_blog_slug_page_tsx",
+      "src_app_frontend_projects_page_tsx",
+      "src_app_frontend_projects_slug_page_tsx",
+      "src_app_frontend_slug_page_tsx",
+      "src_components_layout_notification_banner_tsx",
+      "src_payload_types_media",
+      "src_payload_types_post",
+      "src_payload_types_project",
+      "src_proxy_lookupredirect",
+      "src_proxy_proxy"
+    ],
+    "2": [
+      "apps_web_src_app_frontend_layout_tsx",
+      "apps_web_src_components_article_article_shell_tsx",
+      "apps_web_src_components_article_toc_dots_tsx",
+      "apps_web_src_components_layout_client_shell_tsx",
+      "apps_web_src_components_ui_scroll_progress_tsx",
+      "article_mobile_toc_mobiletoc",
+      "article_rich_text_renderer_richtextrenderer",
+      "article_share_button_sharebutton",
+      "article_toc_dots_tocdots",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_app_frontend_globals_css",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_article_mobile_toc",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_article_rich_text_renderer",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_article_share_button",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_article_toc_dots",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_chat_chat_widget",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_layout_client_shell",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_layout_footer",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_layout_navbar",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_layout_notification_banner",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_layout_preloader",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_theme_theme_provider",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_custom_cursor",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_page_transition",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_scroll_progress",
+      "chat_chat_widget_chatwidget",
+      "frontend_layout_frontendlayout",
+      "google",
+      "layout_client_shell_clientshell",
+      "layout_footer_footer",
+      "layout_navbar_navbar",
+      "layout_preloader_preloader",
+      "src_app_frontend_layout_tsx",
+      "src_components_article_article_shell_tsx",
+      "src_components_article_share_button_tsx",
+      "src_components_article_toc_dots_tsx",
+      "src_components_layout_client_shell_tsx",
+      "src_components_theme_theme_provider_tsx",
+      "src_components_ui_custom_cursor_tsx",
+      "src_components_ui_page_transition_tsx",
+      "src_components_ui_scroll_progress_tsx",
+      "theme_theme_provider_themeprovider",
+      "ui_custom_cursor_customcursor",
+      "ui_page_transition_pagetransition",
+      "ui_scroll_progress_scrollprogress"
+    ],
+    "3": [
+      "claudemd_agents_md",
+      "claudemd_client_shell",
+      "claudemd_collections",
+      "claudemd_components_dir",
+      "claudemd_database_url",
+      "claudemd_db_postgres_adapter",
+      "claudemd_eslint_config",
+      "claudemd_framer_motion",
+      "claudemd_frontend_layout",
+      "claudemd_frontend_route_group",
+      "claudemd_globals_css",
+      "claudemd_graphify",
+      "claudemd_graphify_out",
+      "claudemd_lexical_editor",
+      "claudemd_lucide_react",
+      "claudemd_next_config",
+      "claudemd_nextjs",
+      "claudemd_payload_client_helper",
+      "claudemd_payload_cms",
+      "claudemd_payload_config",
+      "claudemd_payload_config_alias",
+      "claudemd_payload_route_group",
+      "claudemd_payload_secret",
+      "claudemd_payload_types",
+      "claudemd_pnpm",
+      "claudemd_portfolio_site",
+      "claudemd_postgresql",
+      "claudemd_root_layout",
+      "claudemd_seed_script",
+      "claudemd_static_data",
+      "claudemd_tailwind_css",
+      "claudemd_withpayload"
+    ],
+    "4": [
+      "apps_web_src_blocks_callout_config_ts",
+      "apps_web_src_blocks_code_config_ts",
+      "apps_web_src_blocks_divider_config_ts",
+      "apps_web_src_blocks_image_config_ts",
+      "apps_web_src_blocks_image_pair_config_ts",
+      "apps_web_src_blocks_mermaid_config_ts",
+      "apps_web_src_blocks_pull_quote_config_ts",
+      "apps_web_src_blocks_stats_config_ts",
+      "apps_web_src_blocks_steps_config_ts",
+      "apps_web_src_blocks_video_config_ts",
+      "apps_web_src_collections_media_ts",
+      "apps_web_src_collections_posts_ts",
+      "apps_web_src_collections_projects_ts",
+      "apps_web_src_collections_users_ts",
+      "apps_web_src_globals_notification_ts",
+      "apps_web_src_lib_slug_validation_ts",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_lib_slug_validation",
+      "lib_slug_validation_validatesharedslug",
+      "payload",
+      "richtext_lexical",
+      "src_blocks_blocks",
+      "src_collections_posts_ts",
+      "src_collections_projects_ts",
+      "src_lib_slug_validation_ts"
+    ],
+    "5": [
+      "apps_web_src_app_frontend_blog_blog_grid_tsx",
+      "apps_web_src_app_frontend_projects_projects_grid_tsx",
+      "apps_web_src_app_frontend_search_search_client_tsx",
+      "apps_web_src_components_article_copy_button_tsx",
+      "apps_web_src_components_article_mobile_toc_tsx",
+      "apps_web_src_components_article_share_button_tsx",
+      "apps_web_src_components_chat_chat_widget_tsx",
+      "apps_web_src_components_home_inline_chat_prompt_tsx",
+      "apps_web_src_components_home_typewriter_code_tsx",
+      "apps_web_src_components_layout_notification_bar_client_tsx",
+      "apps_web_src_components_layout_theme_toggle_tsx",
+      "apps_web_src_components_resume_interactive_timeline_tsx",
+      "apps_web_src_components_ui_custom_cursor_tsx",
+      "apps_web_src_components_ui_skill_bar_tsx",
+      "chat_chat_widget_handlesend",
+      "framer_motion",
+      "home_typewriter_code_tokenizeline",
+      "layout_notification_bar_client_handledismiss",
+      "layout_notification_bar_client_hashmessage",
+      "lucide_react",
+      "react",
+      "src_components_chat_chat_widget_tsx",
+      "src_components_home_typewriter_code_tsx",
+      "src_components_layout_notification_bar_client_tsx"
+    ],
+    "6": [
+      "apps_web_src_components_ui_badge_tsx",
+      "apps_web_src_components_ui_section_heading_tsx",
+      "apps_web_src_components_ui_tilt_card_tsx",
+      "contact_page_handlesubmit",
+      "home_certifications_certifications",
+      "home_latest_posts_latestposts",
+      "slug_blog_post_detail_blogpostdetail",
+      "src_app_frontend_about_page_tsx",
+      "src_app_frontend_blog_blog_grid_tsx",
+      "src_app_frontend_blog_slug_blog_post_detail_tsx",
+      "src_app_frontend_contact_page_tsx",
+      "src_app_frontend_projects_projects_grid_tsx",
+      "src_app_frontend_projects_slug_project_detail_tsx",
+      "src_components_article_project_meta_strip_tsx",
+      "src_components_home_certifications_tsx",
+      "src_components_home_featured_projects_tsx",
+      "src_components_home_latest_posts_tsx",
+      "src_components_resume_interactive_timeline_tsx",
+      "src_components_ui_badge_tsx",
+      "src_components_ui_section_heading_tsx",
+      "src_components_ui_tilt_card_tsx",
+      "ui_badge_badge",
+      "ui_section_heading_sectionheading",
+      "ui_tilt_card_tiltcard"
+    ],
+    "7": [
+      "apps_web_src_payload_config_ts",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_collections_media",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_collections_posts",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_collections_projects",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_collections_users",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_globals_notification",
+      "collections_media_media",
+      "collections_posts_posts",
+      "collections_projects_projects",
+      "collections_users_users",
+      "db_postgres",
+      "email_nodemailer",
+      "globals_notification_notification",
+      "path",
+      "plugin_form_builder",
+      "plugin_redirects",
+      "plugin_search",
+      "plugin_sentry",
+      "plugin_seo",
+      "sharp",
+      "url"
+    ],
+    "8": [
+      "apps_web_src_blocks_index_ts",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_callout_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_code_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_divider_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_image_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_image_pair_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_mermaid_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_pull_quote_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_stats_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_steps_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_blocks_video_config",
+      "callout_config_calloutblock",
+      "code_config_codeblock",
+      "divider_config_dividerblock",
+      "image_config_imageblock",
+      "image_pair_config_imagepairblock",
+      "mermaid_config_mermaidblock",
+      "pull_quote_config_pullquoteblock",
+      "stats_config_statsblock",
+      "steps_config_stepsblock",
+      "video_config_videoblock"
+    ],
+    "9": [
+      "apps_web_src_app_frontend_about_page_tsx",
+      "apps_web_src_app_frontend_contact_page_tsx",
+      "apps_web_src_app_frontend_resume_page_tsx",
+      "apps_web_src_components_home_hero_section_tsx",
+      "apps_web_src_components_layout_footer_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_app_frontend_contact_contact_form",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_certifications",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_particle_network",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_resume_interactive_timeline",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_skill_bar",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_lib_data",
+      "contact_contact_form_contactform",
+      "lib_data_achievements",
+      "lib_data_education",
+      "lib_data_experience",
+      "lib_data_navlinks",
+      "lib_data_siteconfig",
+      "lib_data_skills",
+      "resume_interactive_timeline_interactivetimeline",
+      "ui_skill_bar_skillbar"
+    ],
+    "10": [
+      "apps_web_src_app_frontend_page_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_about_snippet",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_cta_section",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_featured_projects",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_hero_section",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_inline_chat_prompt",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_latest_posts",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_proof_of_work",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_stats_bar",
+      "frontend_page_homepage",
+      "home_about_snippet_aboutsnippet",
+      "home_cta_section_ctasection",
+      "home_featured_projects_featuredprojects",
+      "home_hero_section_herosection",
+      "home_inline_chat_prompt_inlinechatprompt",
+      "home_proof_of_work_proofofwork",
+      "home_stats_bar_statsbar",
+      "src_app_frontend_page_tsx",
+      "src_components_home_inline_chat_prompt_tsx",
+      "src_components_home_stats_bar_tsx"
+    ],
+    "11": [
+      "about_desktop_screenshot",
+      "about_me_section",
+      "about_mobile_screenshot",
+      "about_page",
+      "academic_background_section",
+      "codechef_stat",
+      "codeforces_stat",
+      "cp_showcase_section",
+      "dark_theme_design",
+      "kuet_education",
+      "leetcode_stat",
+      "mobile_layout_pattern",
+      "skill_bars_ui",
+      "skill_progress_bars",
+      "technical_skills_section",
+      "verified_learning_section"
+    ],
+    "12": [
+      "apps_web_src_app_frontend_search_page_tsx",
+      "apps_web_src_components_article_project_meta_strip_tsx",
+      "apps_web_src_components_home_certifications_tsx",
+      "apps_web_src_components_home_featured_projects_tsx",
+      "apps_web_src_components_home_latest_posts_tsx",
+      "apps_web_src_components_ui_button_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_app_frontend_search_search_client",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_badge",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_section_heading",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_tilt_card",
+      "lib_data_certifications",
+      "link",
+      "search_search_client_searchinput",
+      "src_app_frontend_search_page_tsx",
+      "src_app_frontend_search_search_client_tsx"
+    ],
+    "13": [
+      "apps_web_src_app_frontend_contact_contact_form_tsx",
+      "apps_web_src_components_home_about_snippet_tsx",
+      "apps_web_src_components_home_cta_section_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_button",
+      "contact_contact_form_onsubmit",
+      "contact_contact_form_setvalue",
+      "src_app_frontend_contact_contact_form_tsx",
+      "src_app_frontend_resume_page_tsx",
+      "src_components_blog_blog_post_detail_tsx",
+      "src_components_home_about_snippet_tsx",
+      "src_components_home_cta_section_tsx",
+      "src_components_projects_project_detail_tsx",
+      "src_components_ui_button_tsx",
+      "src_payload_types_form",
+      "ui_button_button"
+    ],
+    "14": [
+      "featured_work_section",
+      "frontend_home_page",
+      "habibur_rahman_brand",
+      "hero_section",
+      "home_desktop_screenshot",
+      "lib_payload_getPayloadClient",
+      "payload_config_default",
+      "payload_types_config",
+      "payload_types_media",
+      "payload_types_post",
+      "payload_types_project",
+      "payload_types_user",
+      "proxy_lookupRedirect",
+      "proxy_proxy",
+      "testimonials_section"
+    ],
+    "15": [
+      "hero_section_HeroSection",
+      "hero_section_StaggeredName",
+      "latest_posts_LatestPosts",
+      "lib_data_siteConfig",
+      "particle_network_ParticleNetwork",
+      "proof_of_work_ProofOfWork",
+      "stats_bar_StatsBar",
+      "typewriter_code_TypewriterCode",
+      "ui_animated_counter_AnimatedCounter",
+      "ui_badge_Badge",
+      "ui_button_Button",
+      "ui_section_heading_SectionHeading",
+      "ui_tilt_card_TiltCard"
+    ],
+    "16": [
+      "contact_desktop_screenshot",
+      "contact_form",
+      "contact_page",
+      "download_pdf_button",
+      "resume_desktop_png",
+      "resume_education_section",
+      "resume_experience_section",
+      "resume_page",
+      "resume_skills_section",
+      "site_data",
+      "social_links_sidebar"
+    ],
+    "17": [
+      "article_rich_text_renderer_component",
+      "blocks_callout",
+      "blocks_code",
+      "blocks_divider",
+      "blocks_image",
+      "blocks_image_pair",
+      "blocks_mermaid",
+      "blocks_pull_quote",
+      "blocks_stats",
+      "blocks_steps",
+      "blocks_video"
+    ],
+    "18": [
+      "apps_web_src_blocks_image_component_tsx",
+      "apps_web_src_blocks_image_pair_component_tsx",
+      "apps_web_src_components_blog_blog_post_detail_tsx",
+      "apps_web_src_components_projects_project_detail_tsx",
+      "article_article_shell_articleshell",
+      "article_project_meta_strip_projectmetastrip",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_article_article_shell",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_article_project_meta_strip",
+      "image",
+      "lexical"
+    ],
+    "19": [
+      "admin_importmap_importmap",
+      "apps_web_src_app_payload_admin_segments_page_tsx",
+      "apps_web_src_app_payload_layout_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_app_payload_admin_importmap",
+      "layouts",
+      "segments_page_generatemetadata",
+      "segments_page_page",
+      "src_app_payload_admin_segments_page_tsx",
+      "views"
+    ],
+    "20": [
+      "apps_web_src_components_home_proof_of_work_tsx",
+      "apps_web_src_components_home_stats_bar_tsx",
+      "apps_web_src_components_ui_animated_counter_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_home_typewriter_code",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_ui_animated_counter",
+      "home_typewriter_code_typewritercode",
+      "src_components_home_proof_of_work_tsx",
+      "src_components_ui_animated_counter_tsx",
+      "ui_animated_counter_animatedcounter"
+    ],
+    "21": [
+      "apps_web_src_app_frontend_api_seed_route_ts",
+      "payload_layout_layout",
+      "seed_route_get",
+      "src_app_frontend_api_seed_route_ts",
+      "src_app_payload_api_slug_route_ts",
+      "src_app_payload_layout_tsx",
+      "src_lib_payload_ts",
+      "src_payload_config_ts"
+    ],
+    "22": [
+      "apps_web_src_components_layout_navbar_tsx",
+      "apps_web_src_components_ui_page_transition_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_components_layout_theme_toggle",
+      "layout_navbar_handlescroll",
+      "layout_theme_toggle_themetoggle",
+      "navigation",
+      "src_components_layout_navbar_tsx",
+      "src_components_layout_theme_toggle_tsx"
+    ],
+    "23": [
+      "blog_post_detail_BlogPostDetail",
+      "lib_findBySlug",
+      "lib_getPayloadClient",
+      "page_SearchPage",
+      "page_SlugPage",
+      "page_generateMetadata",
+      "project_detail_ProjectDetail",
+      "search_client_SearchInput"
+    ],
+    "24": [
+      "chat_chat_widget_ChatWidget",
+      "client_shell_ClientShell",
+      "layout_footer_Footer",
+      "layout_navbar_Navbar",
+      "layout_preloader_Preloader",
+      "ui_custom_cursor_CustomCursor",
+      "ui_page_transition_PageTransition",
+      "ui_scroll_progress_ScrollProgress"
+    ],
+    "25": [
+      "adversarial_signal_detection_project",
+      "natural_language_sql_project",
+      "production_rag_pipeline_project",
+      "project_card_component",
+      "projects_mobile_screenshot",
+      "projects_search_filter",
+      "resume_desktop_screenshot",
+      "resume_mobile_screenshot"
+    ],
+    "26": [
+      "apps_web_next_config_ts",
+      "apps_web_sentry_client_config_ts",
+      "apps_web_sentry_edge_config_ts",
+      "apps_web_sentry_server_config_ts",
+      "next",
+      "nextjs",
+      "withpayload"
+    ],
+    "27": [
+      "apps_web_src_components_home_particle_network_tsx",
+      "apps_web_src_components_theme_theme_provider_tsx",
+      "home_hero_section_staggeredname",
+      "home_particle_network_particlenetwork",
+      "next_themes",
+      "src_components_home_hero_section_tsx",
+      "src_components_home_particle_network_tsx"
+    ],
+    "28": [
+      "blog_card_component",
+      "blog_desktop_screenshot",
+      "blog_page",
+      "chat_widget",
+      "posts_collection",
+      "search_bar_component",
+      "tag_filter_component"
+    ],
+    "29": [
+      "featured_badge",
+      "project_card_nl_to_sql",
+      "project_card_production_rag",
+      "project_card_traffic_signal",
+      "projects_desktop_png",
+      "projects_page",
+      "tech_tag_system"
+    ],
+    "30": [
+      "concept_animated_counter",
+      "concept_custom_cursor",
+      "concept_particle_network",
+      "concept_scroll_progress",
+      "concept_tilt_card",
+      "plan_uiux_improvements",
+      "spec_uiux_design"
+    ],
+    "31": [
+      "node_path",
+      "playwright",
+      "promises",
+      "scripts_capture_screenshots_capture",
+      "scripts_capture_screenshots_main",
+      "scripts_capture_screenshots_ts",
+      "scripts_capture_screenshots_waitforserver"
+    ],
+    "32": [
+      "callout_component_CalloutBlockComponent",
+      "callout_config_CalloutBlock",
+      "code_component_CodeBlockComponent",
+      "code_config_CodeBlock",
+      "divider_component_DividerBlockComponent",
+      "divider_config_DividerBlock",
+      "index_blocks"
+    ],
+    "33": [
+      "competitive_programming_codechef",
+      "competitive_programming_codeforces",
+      "competitive_programming_leetcode",
+      "resume_mobile_layout",
+      "resume_mobile_png",
+      "resume_social_links"
+    ],
+    "34": [
+      "article_mobile_toc",
+      "article_rich_text_renderer",
+      "article_scroll_progress",
+      "article_share_button",
+      "article_shell_article_shell",
+      "article_toc_dots"
+    ],
+    "35": [
+      "claude_md",
+      "concept_nextjs_app_router",
+      "concept_payload_cms",
+      "concept_rag_chatbot",
+      "concept_supabase_postgres",
+      "prd_habib36"
+    ],
+    "36": [
+      "apps_web_src_instrumentation_ts",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_sentry_edge_config",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_sentry_server_config",
+      "src_instrumentation_register",
+      "src_instrumentation_ts"
+    ],
+    "37": [
+      "apps_web_src_components_layout_preloader_tsx",
+      "layout_preloader_animateprogress",
+      "layout_preloader_handledismiss",
+      "layout_preloader_repeat",
+      "src_components_layout_preloader_tsx"
+    ],
+    "38": [
+      "blogmobilepng_blogcard",
+      "blogmobilepng_categorytabs",
+      "blogmobilepng_darkmode",
+      "blogmobilepng_screenshot",
+      "blogmobilepng_searchbar"
+    ],
+    "39": [
+      "availability_badge",
+      "contact_mobile_screenshot",
+      "github_profile",
+      "linkedin_profile",
+      "social_links_section"
+    ],
+    "40": [
+      "claudemd_claudemd",
+      "fastapi_concept_fastapi",
+      "payloadcms_concept_payloadcms",
+      "readme_readme",
+      "turborepo_concept_turborepo"
+    ],
+    "41": [
+      "importMap_importMap",
+      "layout_Layout",
+      "page_Page",
+      "payload_config_config",
+      "route_GET"
+    ],
+    "42": [
+      "apps_web_src_components_home_floating_icons_tsx",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_src_lib_dev_tools",
+      "home_floating_icons_handleclickoutside",
+      "lib_dev_tools_devtools",
+      "src_components_home_floating_icons_tsx"
+    ],
+    "43": [
+      "home_mobile_screenshot",
+      "mobile_layout_design",
+      "portfolio_projects",
+      "stats_counters"
+    ],
+    "44": [
+      "concept_css_variable_theming",
+      "concept_fouc_prevention",
+      "plan_theme_toggle",
+      "spec_theme_toggle_design"
+    ],
+    "45": [
+      "apps_web_eslint_config_mjs",
+      "config",
+      "core_web_vitals",
+      "typescript"
+    ],
+    "46": [
+      "apps_web_src_blocks_video_component_tsx",
+      "src_blocks_video_component_tsx",
+      "video_component_loomembed",
+      "video_component_youtubeid"
+    ],
+    "47": [
+      "article_project_meta_strip",
+      "projects_blocks",
+      "projects_projects",
+      "projects_validateSharedSlug"
+    ],
+    "48": [
+      "projectdetail_articleshell",
+      "projectdetail_button",
+      "projectdetail_projectdetail",
+      "projectdetail_projectmetastrip"
+    ],
+    "49": [
+      "apps_chatbot_packagejson_packagejson",
+      "apps_web_packagejson_packagejson",
+      "pnpmworkspaceyaml_pnpmworkspaceyaml",
+      "scripts_capture_screenshots_capture_screenshots"
+    ],
+    "50": [
+      "app_layout_rootlayout",
+      "apps_web_src_app_layout_tsx",
+      "src_app_layout_tsx"
+    ],
+    "51": [
+      "apps_web_src_app_payload_api_slug_route_ts",
+      "css",
+      "routes"
+    ],
+    "52": [
+      "apps_chatbot_main_py",
+      "chatbot_main_health_check",
+      "fastapi"
+    ],
+    "53": [
+      "apps_web_src_app_payload_admin_importmap_js",
+      "client",
+      "rsc"
+    ],
+    "54": [
+      "data_siteConfig",
+      "interactive_timeline_InteractiveTimeline",
+      "page_ResumePage"
+    ],
+    "55": [
+      "footer_footer",
+      "footer_navlinks",
+      "footer_siteconfig"
+    ],
+    "56": [
+      "navbar_navbar",
+      "navbar_navlinks",
+      "navbar_themetoggle"
+    ],
+    "57": [
+      "notificationbanner_getpayloadclient",
+      "notificationbanner_notificationbanner",
+      "notificationbanner_notificationbarclient"
+    ],
+    "58": [
+      "home_desktop_home_desktop",
+      "home_mobile_home_mobile",
+      "projects_desktop_projects_desktop"
+    ],
+    "59": [
+      "src_middleware_lookupredirect",
+      "src_middleware_middleware",
+      "src_middleware_ts"
+    ],
+    "60": [
+      "blog_post_langchain_sql",
+      "blog_post_rag_pipeline"
+    ],
+    "61": [
+      "plan_notification_banner",
+      "spec_notification_design"
+    ],
+    "62": [
+      "instrumentation_onRequestError",
+      "instrumentation_register"
+    ],
+    "63": [
+      "interactivetimeline_badge",
+      "interactivetimeline_interactivetimeline"
+    ],
+    "64": [
+      "apps_web_next_env_d_ts",
+      "c_users_best_laptop_gallery_desktop_live_habib36_dev_apps_web_next_dev_types_routes_d_ts"
+    ],
+    "65": [
+      "next_env_d_ts"
+    ],
+    "66": [
+      "postcss_config_mjs"
+    ],
+    "67": [
+      "src_collections_media_ts"
+    ],
+    "68": [
+      "src_collections_users_ts"
+    ],
+    "69": [
+      "src_components_layout_footer_tsx"
+    ],
+    "70": [
+      "src_components_ui_skill_bar_tsx"
+    ],
+    "71": [
+      "src_globals_notification_ts"
+    ],
+    "72": [
+      "src_lib_data_ts"
+    ],
+    "73": [
+      "src_lib_dev_tools_ts"
+    ],
+    "74": [
+      "navbar_component"
+    ],
+    "75": [
+      "footer_component"
+    ],
+    "76": [
+      "portfolio_site"
+    ],
+    "77": [
+      "dev_banner"
+    ],
+    "78": [
+      "blog_post_nextjs_payload"
+    ],
+    "79": [
+      "blog_post_cp_journey"
+    ],
+    "80": [
+      "blog_post_ai_chatbot"
+    ],
+    "81": [
+      "stats_section"
+    ],
+    "82": [
+      "cta_section"
+    ],
+    "83": [
+      "resume_competitive_programming_section"
+    ],
+    "84": [
+      "apps_web_postcss_config_mjs"
+    ],
+    "85": [
+      "apps_web_src_payload_types_ts"
+    ],
+    "86": [
+      "apps_web_src_blocks_divider_component_tsx"
+    ],
+    "87": [
+      "apps_web_src_blocks_steps_component_tsx"
+    ],
+    "88": [
+      "apps_web_src_lib_data_ts"
+    ],
+    "89": [
+      "apps_web_src_lib_dev_tools_ts"
+    ],
+    "90": [
+      "payload_types_form"
+    ],
+    "91": [
+      "frontend_about_page"
+    ],
+    "92": [
+      "image_component_ImageBlockComponent"
+    ],
+    "93": [
+      "users_users"
+    ],
+    "94": [
+      "article_copy_button"
+    ],
+    "95": [
+      "article_mobile_toc_component"
+    ],
+    "96": [
+      "article_share_button_component"
+    ],
+    "97": [
+      "inline_chat_prompt_InlineChatPrompt"
+    ],
+    "98": [
+      "notificationbarclient_notificationbarclient"
+    ],
+    "99": [
+      "preloader_preloader"
+    ],
+    "100": [
+      "themetoggle_themetoggle"
+    ],
+    "101": [
+      "apps_web_src_lib_article_slugify_slugify"
+    ]
+  },
+  "cohesion": {
+    "0": 0.05,
+    "1": 0.07,
+    "2": 0.05,
+    "3": 0.07,
+    "4": 0.1,
+    "5": 0.16,
+    "6": 0.11,
+    "7": 0.1,
+    "8": 0.1,
+    "9": 0.14,
+    "10": 0.11,
+    "11": 0.12,
+    "12": 0.18,
+    "13": 0.17,
+    "14": 0.14,
+    "15": 0.15,
+    "16": 0.22,
+    "17": 0.18,
+    "18": 0.27,
+    "19": 0.28,
+    "20": 0.25,
+    "21": 0.25,
+    "22": 0.29,
+    "23": 0.29,
+    "24": 0.25,
+    "25": 0.25,
+    "26": 0.29,
+    "27": 0.29,
+    "28": 0.33,
+    "29": 0.29,
+    "30": 0.29,
+    "31": 0.38,
+    "32": 0.29,
+    "33": 0.33,
+    "34": 0.33,
+    "35": 0.4,
+    "36": 0.4,
+    "37": 0.6,
+    "38": 0.4,
+    "39": 0.4,
+    "40": 0.6,
+    "41": 0.5,
+    "42": 0.4,
+    "43": 0.5,
+    "44": 0.67,
+    "45": 0.5,
+    "46": 0.67,
+    "47": 0.5,
+    "48": 0.5,
+    "49": 0.5,
+    "50": 0.67,
+    "51": 0.67,
+    "52": 0.67,
+    "53": 0.67,
+    "54": 0.67,
+    "55": 0.67,
+    "56": 0.67,
+    "57": 0.67,
+    "58": 0.67,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0
+  },
+  "gods": [
+    {
+      "id": "lib_payload_getpayloadclient",
+      "label": "getPayloadClient()",
+      "degree": 28
+    },
+    {
+      "id": "ui_section_heading_sectionheading",
+      "label": "SectionHeading()",
+      "degree": 23
+    },
+    {
+      "id": "ui_button_button",
+      "label": "Button()",
+      "degree": 23
+    },
+    {
+      "id": "ui_badge_badge",
+      "label": "Badge()",
+      "degree": 22
+    },
+    {
+      "id": "article_rich_text_renderer_component",
+      "label": "RichTextRenderer",
+      "degree": 10
+    },
+    {
+      "id": "ui_tilt_card_tiltcard",
+      "label": "TiltCard()",
+      "degree": 8
+    },
+    {
+      "id": "about_page",
+      "label": "About Page",
+      "degree": 7
+    },
+    {
+      "id": "frontend_home_page",
+      "label": "Frontend Home Page",
+      "degree": 7
+    },
+    {
+      "id": "client_shell_ClientShell",
+      "label": "ClientShell",
+      "degree": 7
+    },
+    {
+      "id": "home_certifications_certifications",
+      "label": "Certifications()",
+      "degree": 6
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Resume Page Desktop Screenshot",
+      "target": "Resume Page",
+      "source_files": [
+        "public/screenshots/resume-desktop.png",
+        "src/app/(frontend)/resume/page.tsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (image \u2194 code); connects across different repos/directories; peripheral node `Resume Page Desktop Screenshot` unexpectedly reaches hub `Resume Page`"
+    },
+    {
+      "source": "Resume Page",
+      "target": "Resume Skills Section",
+      "source_files": [
+        "src/app/(frontend)/resume/page.tsx",
+        "public/screenshots/resume-desktop.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 image); connects across different repos/directories; peripheral node `Resume Skills Section` unexpectedly reaches hub `Resume Page`"
+    },
+    {
+      "source": "Resume Page",
+      "target": "Resume Experience Section",
+      "source_files": [
+        "src/app/(frontend)/resume/page.tsx",
+        "public/screenshots/resume-desktop.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 image); connects across different repos/directories; peripheral node `Resume Experience Section` unexpectedly reaches hub `Resume Page`"
+    },
+    {
+      "source": "Resume Page",
+      "target": "Resume Education Section",
+      "source_files": [
+        "src/app/(frontend)/resume/page.tsx",
+        "public/screenshots/resume-desktop.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 image); connects across different repos/directories; peripheral node `Resume Education Section` unexpectedly reaches hub `Resume Page`"
+    },
+    {
+      "source": "Resume Page",
+      "target": "Download PDF Button",
+      "source_files": [
+        "src/app/(frontend)/resume/page.tsx",
+        "public/screenshots/resume-desktop.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 image); connects across different repos/directories; peripheral node `Download PDF Button` unexpectedly reaches hub `Resume Page`"
+    }
+  ]
+}
