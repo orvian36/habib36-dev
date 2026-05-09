@@ -84,7 +84,7 @@ export function BlogPostDetail({
                 {relatedPosts.map((related) => (
                   <Link
                     key={related.slug}
-                    href={`/blog/${related.slug}`}
+                    href={`/${related.slug}`}
                     className="card-surface p-5 group hover:border-border-hover transition-all"
                   >
                     <h4 className="font-mono text-sm font-bold text-text-primary group-hover:text-accent-blue transition-colors">

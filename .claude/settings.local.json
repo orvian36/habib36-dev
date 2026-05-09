@@ -32,7 +32,29 @@
       "Bash(python -c \"import graphify\")",
       "Bash(pip install *)",
       "Bash(rm -f graphify-out/.graphify_ast.json graphify-out/.graphify_semantic.json graphify-out/.graphify_analysis.json graphify-out/.graphify_labels.json graphify-out/.graphify_cached.json graphify-out/.graphify_uncached.txt graphify-out/.graphify_semantic_new.json graphify-out/.graphify_extract.json graphify-out/.graphify_old.json graphify-out/.graphify_chunk_*.json .graphify_incremental.json)",
-      "Bash(rm -rf graphify-out/temp)"
+      "Bash(rm -rf graphify-out/temp)",
+      "Bash(C:/Users/Best Laptop Gallery/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/brainstorming/scripts/start-server.sh *)",
+      "Bash(findstr *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git checkout *)",
+      "Bash(pnpm add *)",
+      "Bash(git commit *)",
+      "Bash(pnpm lint *)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(pnpm generate:types)",
+      "Bash(pnpm exec *)",
+      "Bash(npx eslint *)",
+      "Bash(pnpm build *)",
+      "Bash(graphify update *)",
+      "Bash(pnpm dev *)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs",
+      "Bash(pnpm payload *)",
+      "Bash(taskkill *)",
+      "Bash(git push *)",
+      "Bash(gh pr *)",
+      "Bash(grep -E \"habib36-dev\\\\\\\\\\\\\\\\src\\\\\\\\\\\\\\\\\\(app\\\\\\\\\\\\\\\\\\\\\\(frontend\\\\\\\\\\\\\\\\\\\\\\)\\\\\\\\\\\\\\\\\\\\[slug\\\\\\\\\\\\\\\\\\\\]|components\\\\\\\\\\\\\\\\\\(blog|projects\\)|collections\\\\\\\\\\\\\\\\\\(Posts|Projects\\)|lib\\\\\\\\\\\\\\\\slug-validation|components\\\\\\\\\\\\\\\\home\\\\\\\\\\\\\\\\\\(latest-posts|featured-projects\\)|app\\\\\\\\\\\\\\\\\\\\\\(frontend\\\\\\\\\\\\\\\\\\\\\\)\\\\\\\\\\\\\\\\\\(blog|projects\\)\\\\\\\\\\\\\\\\\\(blog-grid|projects-grid\\)\\)\")"
     ]
   }
 }

@@ -93,7 +93,7 @@ export function ProjectsGrid({ projects }: { projects: Project[] }) {
               layout
             >
               <Link
-                href={`/projects/${project.slug}`}
+                href={`/${project.slug}`}
                 className="card-surface card-glow block p-6 h-full group"
               >
                 {/* Featured badge */}

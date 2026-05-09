@@ -94,7 +94,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
               layout
             >
               <Link
-                href={`/blog/${post.slug}`}
+                href={`/${post.slug}`}
                 className="card-surface card-glow block p-6 h-full group"
               >
                 <div className="flex items-center gap-2 mb-3">
