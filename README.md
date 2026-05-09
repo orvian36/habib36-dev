@@ -15,6 +15,7 @@ Dark, terminal-inspired portfolio powered by **Next.js 16**, **Payload CMS 3**, 
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://python.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)](https://postgresql.org/)
 
 [Live Site](https://habib36.dev) &nbsp;·&nbsp; [Admin Panel](https://habib36.dev/admin) &nbsp;·&nbsp; [Blog](https://habib36.dev/blog) &nbsp;·&nbsp; [Contact](https://habib36.dev/contact)
 
@@ -69,7 +70,7 @@ Dark, terminal-inspired portfolio powered by **Next.js 16**, **Payload CMS 3**, 
 - **Python FastAPI Service** — Dedicated AI chatbot service managed natively via `uv` alongside Node.
 - **Fully typed** — Payload-generated types flow directly into frontend components.
 - **Tailwind CSS v4** via `@tailwindcss/postcss` — custom design tokens, dark-first terminal aesthetic.
-- **SQLite out of the box** (`payload.db`) — zero-config local dev, swap to Postgres for prod.
+- **PostgreSQL Database** — Robust data layer using `@payloadcms/db-postgres`.
 
 ---
 
@@ -80,7 +81,7 @@ Dark, terminal-inspired portfolio powered by **Next.js 16**, **Payload CMS 3**, 
 | **Monorepo** | Turborepo, pnpm workspaces |
 | **Frontend/CMS** | Next.js 16, React 19, Payload CMS 3 |
 | **Python Service** | FastAPI, Uvicorn, uv |
-| **Database** | SQLite via `@payloadcms/db-sqlite` |
+| **Database** | PostgreSQL via `@payloadcms/db-postgres` |
 | **Styling & UI** | Tailwind CSS v4, Framer Motion 12, Lucide React |
 | **Language** | TypeScript 5, Python 3.10+ |
 
@@ -97,7 +98,7 @@ Dark, terminal-inspired portfolio powered by **Next.js 16**, **Payload CMS 3**, 
 │   │                                                     │   │
 │   │   /about     /projects     /admin      /api/*       │   │
 │   │                                                     │   │
-│   │   [Payload CMS 3]  ───────────► [SQLite]            │   │
+│   │   [Payload CMS 3]  ───────────► [PostgreSQL]        │   │
 │   └─────────────────────────────────────────────────────┘   │
 │                                                             │
 │   ┌─────────────────────────────────────────────────────┐   │
@@ -132,12 +133,12 @@ Open:
 - **Admin panel** → <http://localhost:3000/admin>
 - **Chatbot API** → <http://localhost:8000/health>
 
-### Optional environment
+### Environment
 
 ```bash
 # apps/web/.env
 PAYLOAD_SECRET=replace-with-a-strong-secret
-DATABASE_URL=file:./payload.db   # default; set a Postgres URL for prod
+DATABASE_URL=postgresql://postgres:password@127.0.0.1:5432/yourdb
 ```
 
 ### Seed the CMS
@@ -176,7 +177,6 @@ habib36-dev/
 ├── apps/
 │   ├── web/                    # Next.js 16 + Payload CMS 3
 │   │   ├── src/                # Frontend and Admin logic
-│   │   ├── payload.db          # SQLite DB (local)
 │   │   ├── next.config.ts      
 │   │   └── package.json        
 │   └── chatbot/                # Python FastAPI service
@@ -205,7 +205,7 @@ pnpm --filter web screenshots   # in another — writes to apps/web/public/scree
 
 Works out of the box on any Node-compatible host and standard Python hosts. For production:
 
-1. Setup `PAYLOAD_SECRET` and `DATABASE_URL` in `apps/web`.
+1. Setup `PAYLOAD_SECRET` and your PostgreSQL `DATABASE_URL` in `apps/web`.
 2. `pnpm build` at the root.
 3. Start the Next.js process for `web`, and `uvicorn` for the `chatbot`.
 
