@@ -1,18 +1,13 @@
-# Graph Report - habib36-dev  (2026-05-09)
+# Graph Report - .  (2026-05-09)
 
 ## Corpus Check
-- 95 files · ~796,968 words
+- 58 files · ~0 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 297 nodes · 265 edges · 74 communities (57 shown, 17 thin omitted)
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.89)
+- 315 nodes · 276 edges · 82 communities (63 shown, 19 thin omitted)
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.89)
 - Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `8e516933`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Community 0|Community 0]]
@@ -35,15 +30,13 @@
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 19|Community 19]]
 - [[_COMMUNITY_Community 20|Community 20]]
-- [[_COMMUNITY_Community 21|Community 21]]
+- [[_COMMUNITY_Community 22|Community 22]]
 - [[_COMMUNITY_Community 23|Community 23]]
 - [[_COMMUNITY_Community 24|Community 24]]
-- [[_COMMUNITY_Community 31|Community 31]]
-- [[_COMMUNITY_Community 32|Community 32]]
-- [[_COMMUNITY_Community 62|Community 62]]
-- [[_COMMUNITY_Community 63|Community 63]]
-- [[_COMMUNITY_Community 64|Community 64]]
-- [[_COMMUNITY_Community 65|Community 65]]
+- [[_COMMUNITY_Community 27|Community 27]]
+- [[_COMMUNITY_Community 28|Community 28]]
+- [[_COMMUNITY_Community 33|Community 33]]
+- [[_COMMUNITY_Community 34|Community 34]]
 - [[_COMMUNITY_Community 66|Community 66]]
 - [[_COMMUNITY_Community 67|Community 67]]
 - [[_COMMUNITY_Community 68|Community 68]]
@@ -52,11 +45,15 @@
 - [[_COMMUNITY_Community 71|Community 71]]
 - [[_COMMUNITY_Community 72|Community 72]]
 - [[_COMMUNITY_Community 73|Community 73]]
+- [[_COMMUNITY_Community 74|Community 74]]
+- [[_COMMUNITY_Community 75|Community 75]]
+- [[_COMMUNITY_Community 76|Community 76]]
+- [[_COMMUNITY_Community 77|Community 77]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `getPayloadClient()` - 15 edges
-2. `Badge()` - 12 edges
-3. `Button()` - 12 edges
+2. `Button()` - 13 edges
+3. `Badge()` - 12 edges
 4. `SectionHeading()` - 11 edges
 5. `Payload CMS 3` - 11 edges
 6. `habib36.dev Personal Portfolio Site` - 10 edges
@@ -77,25 +74,19 @@
 - `Resume Page` --implements--> `Download PDF Button`  [INFERRED]
   src/app/(frontend)/resume/page.tsx → public/screenshots/resume-desktop.png
 
-## Hyperedges (group relationships)
-- **Portfolio Site Technology Stack** — claudemd_portfolio_site, claudemd_nextjs, claudemd_payload_cms, claudemd_postgresql, claudemd_tailwind_css, claudemd_framer_motion, claudemd_pnpm [EXTRACTED 1.00]
-- **Payload CMS Subsystem** — claudemd_payload_cms, claudemd_payload_config, claudemd_collections, claudemd_payload_client_helper, claudemd_payload_types, claudemd_db_postgres_adapter, claudemd_lexical_editor [EXTRACTED 1.00]
-- **Frontend Subsystem** — claudemd_frontend_route_group, claudemd_frontend_layout, claudemd_client_shell, claudemd_components_dir, claudemd_static_data, claudemd_globals_css [EXTRACTED 1.00]
-- **Environment Configuration Pattern** — claudemd_payload_secret, claudemd_database_url, claudemd_payload_config_alias, claudemd_withpayload [INFERRED 0.85]
-
-## Communities (74 total, 17 thin omitted)
+## Communities (82 total, 19 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.11
+Cohesion: 0.09
 Nodes (7): Certifications(), LatestPosts(), BlogPostDetail(), Badge(), Button(), SectionHeading(), TiltCard()
 
 ### Community 1 - "Community 1"
-Cohesion: 0.1
-Nodes (23): AGENTS.md Reference, Payload Collections (Users, Media, Projects, Posts), DATABASE_URL Environment Variable, @payloadcms/db-postgres Adapter, ESLint Config (eslint.config.mjs), Graphify Knowledge Graph Tool, Graphify Output Directory (graphify-out/), Lexical Rich Text Editor (+15 more)
+Cohesion: 0.11
+Nodes (11): BlogPage(), HomePage(), InlineChatPrompt(), StatsBar(), NotificationBanner(), getPayloadClient(), ProjectsPage(), BlogPostPage() (+3 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.12
-Nodes (11): BlogPage(), HomePage(), InlineChatPrompt(), StatsBar(), NotificationBanner(), getPayloadClient(), ProjectsPage(), BlogPostPage() (+3 more)
+Cohesion: 0.1
+Nodes (23): AGENTS.md Reference, Payload Collections (Users, Media, Projects, Posts), DATABASE_URL Environment Variable, @payloadcms/db-postgres Adapter, ESLint Config (eslint.config.mjs), Graphify Knowledge Graph Tool, Graphify Output Directory (graphify-out/), Lexical Rich Text Editor (+15 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.11
@@ -168,22 +159,22 @@ Nodes (4): CSS Variable Theming (Dark/Light Mode), FOUC Prevention Strategy, The
 ## Knowledge Gaps
 - **86 isolated node(s):** `About Page Desktop Screenshot`, `About Me Section`, `Verified Learning / Certifications Section`, `Navbar Component`, `Footer Component` (+81 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `getPayloadClient()` connect `Community 2` to `Community 7`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+- **Why does `getPayloadClient()` connect `Community 1` to `Community 7`?**
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
 - **Why does `Badge()` connect `Community 0` to `Community 4`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `Button()` connect `Community 0` to `Community 20`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `Button()` connect `Community 0` to `Community 19`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `getPayloadClient()` (e.g. with `HomePage()` and `BlogPage()`) actually correct?**
   _`getPayloadClient()` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `About Page Desktop Screenshot`, `About Me Section`, `Verified Learning / Certifications Section` to the rest of the system?**
   _86 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.11 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.1 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11 - nodes in this community are weakly interconnected._
