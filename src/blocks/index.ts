@@ -4,6 +4,7 @@ import { CodeBlock } from './code/config'
 import { DividerBlock } from './divider/config'
 import { ImageBlock } from './image/config'
 import { ImagePairBlock } from './image-pair/config'
+import { MermaidBlock } from './mermaid/config'
 import { PullQuoteBlock } from './pull-quote/config'
 import { StatsBlock } from './stats/config'
 import { StepsBlock } from './steps/config'
@@ -15,6 +16,7 @@ export const blocks: Block[] = [
   DividerBlock,
   ImageBlock,
   ImagePairBlock,
+  MermaidBlock,
   PullQuoteBlock,
   StatsBlock,
   StepsBlock,

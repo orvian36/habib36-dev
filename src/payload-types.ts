@@ -603,6 +603,19 @@ export interface ImagePairBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MermaidBlock".
+ */
+export interface MermaidBlock {
+  /**
+   * Mermaid syntax (e.g. graph LR; A-->B).
+   */
+  source: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mermaid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "PullQuoteBlock".
  */
 export interface PullQuoteBlock {

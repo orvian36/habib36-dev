@@ -8,6 +8,7 @@ import { CodeBlockComponent } from "@/blocks/code/component";
 import { DividerBlockComponent } from "@/blocks/divider/component";
 import { ImageBlockComponent } from "@/blocks/image/component";
 import { ImagePairBlockComponent } from "@/blocks/image-pair/component";
+import { MermaidBlockComponent } from "@/blocks/mermaid/component";
 import { PullQuoteBlockComponent } from "@/blocks/pull-quote/component";
 import { StatsBlockComponent } from "@/blocks/stats/component";
 import { StepsBlockComponent } from "@/blocks/steps/component";
@@ -64,6 +65,10 @@ export function RichTextRenderer({
       imagePair: ({ node }) => {
         const fields = node.fields as { left: { image: { url?: string | null; alt?: string | null; width?: number | null; height?: number | null } | string | null; label?: string | null }; right: { image: { url?: string | null; alt?: string | null; width?: number | null; height?: number | null } | string | null; label?: string | null } };
         return <ImagePairBlockComponent left={fields.left} right={fields.right} />;
+      },
+      mermaid: ({ node }) => {
+        const { source } = node.fields as { source: string };
+        return <MermaidBlockComponent source={source} />;
       },
       pullQuote: ({ node }) => {
         const { quote, cite } = node.fields as { quote: string; cite?: string | null };
