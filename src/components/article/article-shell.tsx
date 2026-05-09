@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ShareButton } from "./share-button";
 import { TocDots } from "./toc-dots";
+import { MobileToc } from "./mobile-toc";
 import { RichTextRenderer } from "./rich-text-renderer";
 
 export type Crumb = { label: string; href?: string };
@@ -98,15 +99,18 @@ export function ArticleShell({
           {cover && <div className="mb-10">{cover}</div>}
 
           {content && (
-            <div className="lg:grid lg:grid-cols-[1fr_minmax(0,640px)_1fr] lg:gap-6">
-              <div className="hidden lg:block" />
-              <div id={ARTICLE_BODY_ID}>
-                <RichTextRenderer content={content} />
+            <>
+              <MobileToc rootId={ARTICLE_BODY_ID} />
+              <div className="lg:grid lg:grid-cols-[1fr_minmax(0,640px)_1fr] lg:gap-6">
+                <div className="hidden lg:block" />
+                <div id={ARTICLE_BODY_ID}>
+                  <RichTextRenderer content={content} />
+                </div>
+                <aside className="hidden lg:block">
+                  <TocDots rootId={ARTICLE_BODY_ID} />
+                </aside>
               </div>
-              <aside className="hidden lg:block">
-                <TocDots rootId={ARTICLE_BODY_ID} />
-              </aside>
-            </div>
+            </>
           )}
 
           {footer && <div className="mt-12">{footer}</div>}
