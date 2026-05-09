@@ -40,7 +40,7 @@ async function lookupRedirect(pathname: string): Promise<CacheEntry> {
   }
 }
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname, search } = req.nextUrl
   const hit = await lookupRedirect(pathname)
   if (!hit) return NextResponse.next()
