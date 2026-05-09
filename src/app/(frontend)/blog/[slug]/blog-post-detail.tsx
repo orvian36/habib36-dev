@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NextImage from "next/image";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import type { SerializedEditorState } from "lexical";
 import { ArticleShell } from "@/components/article/article-shell";
@@ -57,6 +58,21 @@ export function BlogPostDetail({
         </>
       }
       tags={post.tags}
+      cover={
+        post.image?.url ? (
+          <div className="rounded-xl overflow-hidden border border-border-primary bg-bg-tertiary">
+            <NextImage
+              src={post.image.url}
+              alt={post.image.alt ?? ""}
+              width={1600}
+              height={900}
+              sizes="(min-width: 768px) 720px, 100vw"
+              priority
+              className="w-full h-auto"
+            />
+          </div>
+        ) : undefined
+      }
       content={post.content}
       footer={
         <>

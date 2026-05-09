@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import NextImage from "next/image";
 import type { SerializedEditorState } from "lexical";
 import { ArticleShell } from "@/components/article/article-shell";
 import { ProjectMetaStrip } from "@/components/article/project-meta-strip";
@@ -36,6 +37,21 @@ export function ProjectDetail({ project }: { project: Project }) {
           github={project.github}
           live={project.live}
         />
+      }
+      cover={
+        project.image?.url ? (
+          <div className="rounded-xl overflow-hidden border border-border-primary bg-bg-tertiary">
+            <NextImage
+              src={project.image.url}
+              alt={project.image.alt ?? ""}
+              width={1600}
+              height={900}
+              sizes="(min-width: 768px) 720px, 100vw"
+              priority
+              className="w-full h-auto"
+            />
+          </div>
+        ) : undefined
       }
       content={project.content}
       footer={
