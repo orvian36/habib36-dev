@@ -1,6 +1,6 @@
 import time
 
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.testclient import TestClient
 
 from chatbot.api.auth import (
@@ -19,7 +19,7 @@ def _app(secret: str, *, kind: str):
     app = FastAPI()
     deps = require_internal_hmac if kind == "internal" else require_ingest_hmac
 
-    @app.post("/protected", dependencies=[deps])
+    @app.post("/protected", dependencies=[Depends(deps)])
     async def protected(request: Request):
         return {"ok": True}
 
