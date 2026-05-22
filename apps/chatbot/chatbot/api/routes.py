@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import time
+from typing import Annotated
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -42,6 +43,8 @@ from .sse import sse_event
 
 router = APIRouter()
 
+Ctx = Annotated[AppContext, Depends(get_context)]
+
 
 def _to_messages(history: list[ChatMessage]) -> list[Message]:
     return [Message(role=m.role, content=m.content) for m in history]
@@ -61,7 +64,7 @@ async def metrics() -> Response:
 
 
 @router.post("/chat", response_model=ChatResponse, dependencies=[Depends(require_internal_hmac)])
-async def chat(body: ChatRequest, ctx: AppContext = Depends(get_context)) -> ChatResponse:
+async def chat(body: ChatRequest, ctx: Ctx) -> ChatResponse:
     trace_id = body.trace_id or str(uuid4())
 
     try:
@@ -122,7 +125,7 @@ async def chat(body: ChatRequest, ctx: AppContext = Depends(get_context)) -> Cha
 
 
 @router.post("/chat/stream", dependencies=[Depends(require_internal_hmac)])
-async def chat_stream(body: ChatRequest, ctx: AppContext = Depends(get_context)) -> StreamingResponse:
+async def chat_stream(body: ChatRequest, ctx: Ctx) -> StreamingResponse:
     trace_id = body.trace_id or str(uuid4())
     try:
         await ctx.budget.assert_can_spend(estimated_tokens=ctx.per_request_token_cap)
@@ -159,14 +162,14 @@ async def chat_stream(body: ChatRequest, ctx: AppContext = Depends(get_context))
                     "groundedness": final.get("groundedness"),
                 },
             )
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             yield sse_event("error", {"error": str(exc), "trace_id": trace_id})
 
     return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 
 @router.post("/ingest", response_model=IngestResponse, dependencies=[Depends(require_ingest_hmac)])
-async def ingest(body: IngestRequest, ctx: AppContext = Depends(get_context)) -> IngestResponse:
+async def ingest(body: IngestRequest, ctx: Ctx) -> IngestResponse:
     trace_id = str(uuid4())
     svc = IngestService(chunker=Chunker(), embedder=ctx.embedder, repo=ChunksRepo(ctx.pool))
     summary = await svc.ingest(body.documents)
@@ -179,7 +182,7 @@ async def ingest(body: IngestRequest, ctx: AppContext = Depends(get_context)) ->
     dependencies=[Depends(require_ingest_hmac)],
 )
 async def delete_document(
-    collection: str, slug: str, ctx: AppContext = Depends(get_context),
+    collection: str, slug: str, ctx: Ctx,
 ) -> DeleteResponse:
     svc = IngestService(chunker=Chunker(), embedder=ctx.embedder, repo=ChunksRepo(ctx.pool))
     deleted = await svc.delete(collection, slug)
@@ -187,7 +190,7 @@ async def delete_document(
 
 
 @router.post("/chat/feedback", dependencies=[Depends(require_internal_hmac)])
-async def chat_feedback(body: FeedbackRequest, ctx: AppContext = Depends(get_context)) -> dict[str, bool]:
+async def chat_feedback(body: FeedbackRequest, ctx: Ctx) -> dict[str, bool]:
     ok = await ctx.chat_log_repo.record_feedback(UUID(body.trace_id), body.vote)
     if not ok:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="trace_id not found")

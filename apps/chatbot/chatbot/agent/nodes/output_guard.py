@@ -37,7 +37,7 @@ async def output_guard(
         verdict = json.loads(response.text.strip())
         if verdict.get("system_leak") or verdict.get("scope_violation"):
             return {**state, "answer": SAFETY_REPLACEMENT}
-    except (json.JSONDecodeError, ValueError, Exception) as exc:  # noqa: BLE001
+    except (json.JSONDecodeError, ValueError, Exception) as exc:
         log.warning("output_guard LLM check failed: %s — falling back to rules only", exc)
 
     cleaned = redact(answer)

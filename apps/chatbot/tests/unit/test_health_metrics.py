@@ -1,11 +1,8 @@
 """Unit-style smoke tests for /health and /metrics — no DB needed (fake context)."""
-import asyncpg
 from fastapi.testclient import TestClient
 
 from chatbot.api.deps import AppContext
 from chatbot.config import Settings, get_settings
-from chatbot.db.chat_log_repo import ChatLogRepo
-from chatbot.llm.budget import BudgetGate
 from chatbot.llm.fake import FakeEmbeddingClient, FakeLLMClient
 from chatbot.main import create_app
 
