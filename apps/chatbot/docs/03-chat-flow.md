@@ -97,7 +97,9 @@ Source: `chatbot/api/schemas.py`. Handler: `chatbot/api/routes.py:66`.
 `Source` fields: `id`, `title`, `source_type`, `slug`, `url`, `score`, `excerpt`.
 
 `ChatMetadata` fields: `groundedness` (`grounded`/`partial`/`ungrounded`/`null`),
-`retrieval_attempts`, `generation_attempts`, `latency_ms`, `tokens` (`in_`/`out`).
+`retrieval_attempts`, `generation_attempts`, `latency_ms`,
+`tokens` — `{"in": int, "out": int}` (the Python attribute is `in_` because `in` is a reserved
+word; Pydantic serialises it as `"in"`).
 
 **Example response:**
 
@@ -137,6 +139,7 @@ sequenceDiagram
   participant W as apps/web
   participant F as FastAPI
   participant G as LangGraph (astream_events)
+  participant B as BudgetGate
   W->>F: POST /chat/stream (JSON, X-Internal-Auth)
   F->>F: verify HMAC, budget gate
   F-->>W: 200 text/event-stream
@@ -148,8 +151,11 @@ sequenceDiagram
     G-->>F: on_chain_end name=X
     F-->>W: event: node {name: X, status: "completed"}
   end
+  F->>G: graph.ainvoke(initial) (second invocation — see "Known wart")
+  G-->>F: final AgentState
+  F->>B: record_spend(tokens_in, tokens_out)
   F-->>W: event: done {answer, sources, intent, trace_id, groundedness}
-  Note over F,W: on exception: event: error {error, trace_id}
+  Note over F,W: on exception anywhere above: event: error {error, trace_id}
 ```
 
 Handler: `chatbot/api/routes.py:127`. Budget gate: `:131–133`.
@@ -184,21 +190,29 @@ event: error
 data: {"error": "<message>", "trace_id": "..."}
 ```
 
-**Implementation nuance:** the stream handler calls `ctx.graph.astream_events()`
-to emit node/token events, then calls `ctx.graph.ainvoke(initial)` a **second
-time** on the same initial state to obtain the final `AgentState` for
-`record_spend` and the `done` payload (`routes.py:152–163`). This means the
-graph runs twice per streaming request; token counts recorded via `record_spend`
-reflect the second (ainvoke) run only. If the second invocation throws, the
-`except` at `:165` catches it and emits `event: error` — the HTTP status
-remains 200 because headers were already sent.
+**Known wart:** the stream handler calls `ctx.graph.astream_events()` to emit
+node/token events, then calls `ctx.graph.ainvoke(initial)` a **second time** on
+the same initial state — meaning the graph effectively runs twice per streaming
+request, roughly doubling LLM token spend relative to a single pass. Because
+`record_spend` only accounts for the second (ainvoke) pass's `tokens`, recorded
+daily-budget usage under-counts streaming requests. This is likely unintended; a
+future refactor should either capture the final state from `astream_events`
+events or share the result across both code paths. If the second invocation
+throws, the `except` at `:165` catches it and emits `event: error` — the HTTP
+status remains 200 because headers were already sent.
+
+**Persistence asymmetry:** unlike `/chat`, the stream handler does not call
+`chat_log_repo.insert` and therefore does not persist a `ChatLogRow`. Streaming
+requests do not appear in offline evaluation or `/chat/feedback` joins — see
+`07-observability.md`.
 
 ---
 
 ## 5. Auth path
 
-`X-Internal-Auth` carries the HMAC signature; the companion timestamp header is
-`X-Internal-Timestamp`. The `require_internal_hmac` FastAPI dependency
+Both `X-Internal-Auth` (the HMAC signature) and `X-Internal-Timestamp` (the
+signing time) are required; the `_verify` helper at `chatbot/api/auth.py:29`
+raises 401 if either is missing. The `require_internal_hmac` FastAPI dependency
 (`chatbot/api/auth.py:45`) verifies the signature against configured secrets and
 rejects replayed requests outside the configured replay window. See
 [06-security.md](06-security.md) for the canonical-string construction scheme.
