@@ -11,6 +11,10 @@ The agent is a state machine. Every node has the signature `AgentState → Agent
 
 ---
 
+> All source paths below are relative to `apps/chatbot/` (so `chatbot/agent/graph.py` lives on disk at `apps/chatbot/chatbot/agent/graph.py`).
+
+---
+
 ## 2. AgentState reference
 
 Defined at `chatbot/agent/state.py:42-65` (`total=False`, so all keys are optional at construction time; `default_state()` at line 68 initialises the mandatory ones).
@@ -34,7 +38,7 @@ Defined at `chatbot/agent/state.py:42-65` (`total=False`, so all keys are option
 | `sources` | `list[SourceRef]` | `extract_citations`; fallback nodes (→ `[]`) | HTTP response serialiser |
 | `terminal` | `bool` | `respond`, all fallback nodes | HTTP response serialiser |
 | `node_timings_ms` | `dict[str, float]` | `default_state` (→ `{}`); middleware timing wrapper | observability |
-| `tokens` | `dict[str, int]` | `default_state` (→ `{"in": 0, "out": 0}`); every LLM-calling node accumulates | `respond` (default fill), observability |
+| `tokens` | `dict[str, int]` | `default_state` (→ `{"in": 0, "out": 0}`); every LLM-calling node except `output_guard` accumulates `in`/`out` | `respond` (default fill), observability |
 
 ---
 
@@ -108,7 +112,7 @@ First node in every execution. Strips ASCII control characters, rejects empty or
 
 Asks Gemini Flash for a single-token label from the `Intent` literal set (`smalltalk`, `off_topic`, `about_habibur`, `tech_concept`, `unsafe`). Uses `temperature=0.0` and `max_tokens=8` for a near-deterministic, cheap classification. Any label not in the valid set falls back to `off_topic`, so malformed LLM output is safe by default. Accumulates token counts into `state["tokens"]`.
 
-**Failure modes:** An `LLMError` propagates (no internal catch). A garbled label that is not in `_VALID` routes to `refuse_off_topic` via the default branch in `_route_after_classify`.
+**Failure modes:** An `LLMError` propagates (no internal catch). A garbled label not in `_VALID` is normalised to `"off_topic"` inside `classify_intent` before routing; `_route_after_classify` then takes its explicit `"off_topic"` → `refuse_off_topic` branch.
 
 ---
 
@@ -148,7 +152,7 @@ Calls `searcher.search(query)` where `searcher` is injected as a `HybridSearcher
 - **Reads:** `query`, `chunks`, `tokens`
 - **Writes:** `chunks` (filtered), `chunk_grades`, `tokens`
 
-Sends all retrieved chunks to Gemini Flash in a single call and expects a JSON array of grades (`"yes"`, `"partial"`, `"no"`). Filters `chunks` in-place, keeping only those graded `yes` or `partial`. If the LLM response is malformed or the array length mismatches, all chunks are retained with grade `partial` (fail-open). Empty input (`chunks == []`) short-circuits immediately without an LLM call, returning empty `chunk_grades`.
+Sends all retrieved chunks to Gemini Flash in a single call and expects a JSON array of grades (`"yes"`, `"partial"`, `"no"`). Filters `chunks` in-place, keeping only those graded `yes` or `partial`. Both `chunks` and `chunk_grades` are trimmed in parallel post-grading, so their lengths always match. If the LLM response is malformed or the array length mismatches, all chunks are retained with grade `partial` (fail-open). Empty input (`chunks == []`) short-circuits immediately without an LLM call, returning empty `chunk_grades`.
 
 **Failure modes:** Malformed JSON → fail-open (all chunks kept as `partial`). If after filtering no chunks remain, `_route_after_grade` routes to retry or fallback.
 
@@ -218,7 +222,7 @@ Final safety check before the answer leaves the graph. Makes an LLM call asking 
 - **Reads:** (all state)
 - **Writes:** `terminal`, `answer` (default fill), `sources` (default fill), `intent` (default fill), `tokens` (default fill)
 
-Terminal node. Sets `terminal = True` and fills any still-absent keys (`answer`, `sources`, `intent`, `tokens`) with safe defaults using `setdefault`. Every path through the graph — happy path and all fallbacks — converges here before `END`.
+Terminal node. Sets `terminal = True` and fills any still-absent keys (`answer`, `sources`, `intent`, `tokens`) with safe defaults using `setdefault`. The `intent` default is `"about_habibur"` — a deliberate safe fallback so the HTTP response is well-formed even on rarely-hit code paths. Every path through the graph — happy path and all fallbacks — converges here before `END`.
 
 **Failure modes:** None; pure dict manipulation.
 
