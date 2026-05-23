@@ -24,7 +24,7 @@ The retrieval layer turns a raw user query into a ranked list of text chunks tha
 - A 100-char overlap (~14 % of chunk size) prevents entities or sentences that cross a boundary from disappearing from both neighbours.
 
 ```python
-# chunker.py:16-24
+# chunker.py:15-24
 class Chunker:
     def __init__(self, chunk_size: int = 700, chunk_overlap: int = 100) -> None:
         ...

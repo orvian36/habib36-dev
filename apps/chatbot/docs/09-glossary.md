@@ -56,6 +56,10 @@ Short definitions for terms used across the chatbot documentation. Cross-linked 
 
 **Prompt-injection detection** — Heuristic regex + entropy patterns checked in the `input_guard` node. On detection, sets `is_input_safe = False`, routing the graph to `refuse_unsafe`. See [`06-security.md`](./06-security.md).
 
+## M
+
+**Matryoshka embeddings** — An embedding technique where a single model produces vectors that remain meaningful when truncated to a shorter prefix. The chatbot uses `gemini-embedding-001` with Matryoshka truncation to 768 dimensions, allowing the dimension to be reduced without re-training. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+
 ## R
 
 **RAG** — Retrieval-Augmented Generation: retrieve relevant chunks from a corpus, then condition the LLM's generation on them. This service is a RAG system. See [`01-architecture.md`](./01-architecture.md).
@@ -69,5 +73,7 @@ Short definitions for terms used across the chatbot documentation. Cross-linked 
 **SSE** — Server-Sent Events. The streaming format used by `POST /chat/stream`. Emits four event types: `node`, `token`, `done`, `error`. See [`03-chat-flow.md`](./03-chat-flow.md).
 
 ## T
+
+**tsvector** — A Postgres data type that stores a pre-processed, lexeme-normalised representation of a text document, enabling fast full-text search via `@@` and ranking via `ts_rank`. The `chunks.tsv` column is a generated stored column (`to_tsvector('english', content)`) used for the lexical leg of hybrid search. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
 
 **trace_id** — UUID assigned per chat request. Threads through agent state, structured logs, OTel spans, `chat_log` rows, and `/chat/feedback`. See [`07-observability.md`](./07-observability.md).
