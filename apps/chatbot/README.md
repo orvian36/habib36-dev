@@ -23,9 +23,21 @@ pnpm --filter chatbot test:e2e           # needs GEMINI_API_KEY + TEST_DATABASE_
 pnpm --filter chatbot lint
 ```
 
-## Architecture
+## Documentation
 
-See `docs/superpowers/specs/2026-05-22-chatbot-langraph-refactor-design.md`.
+Full docs live in [`docs/`](./docs/README.md). Start there if you're new to this service.
+
+Short index:
+
+- [Architecture](./docs/01-architecture.md)
+- [LangGraph agent](./docs/02-langraph-agent.md)
+- [`/chat` flow](./docs/03-chat-flow.md)
+- [`/ingest` flow](./docs/04-ingest-flow.md)
+- [Retrieval & RAG](./docs/05-retrieval-rag.md)
+- [Security](./docs/06-security.md)
+- [Observability](./docs/07-observability.md)
+- [Ops & deploy](./docs/08-ops-deploy.md)
+- [Glossary](./docs/09-glossary.md)
 
 ## HTTP API
 
@@ -40,24 +52,7 @@ See `docs/superpowers/specs/2026-05-22-chatbot-langraph-refactor-design.md`.
 | `POST`   | `/chat/feedback` | HMAC | Record up/down vote per trace_id. |
 
 All write endpoints require HMAC-signed headers (`X-Internal-Auth` / `X-Ingest-Signature`).
-See `chatbot/security/hmac.py` for the canonical scheme.
-
-## LangGraph agent
-
-```
-START → input_guard → classify_intent
-                          ├─ smalltalk → smalltalk_reply → respond
-                          ├─ off_topic → refuse_off_topic → respond
-                          ├─ unsafe    → refuse_unsafe    → respond
-                          └─ about_habibur | tech_concept →
-                                rewrite_query → retrieve → grade_chunks
-                                                              ├─ no chunks & attempt=0 → rewrite_for_retry → rewrite_query
-                                                              ├─ no chunks & attempt=1 → fallback_no_context → respond
-                                                              └─ has chunks → generate_answer → check_groundedness
-                                                                                                  ├─ ungrounded & gen_attempt=0 → regenerate → generate_answer
-                                                                                                  ├─ ungrounded & gen_attempt=1 → fallback_no_context → respond
-                                                                                                  └─ grounded | partial → extract_citations → output_guard → respond
-```
+See [`docs/06-security.md`](./docs/06-security.md) for the canonical scheme.
 
 ## Testing tiers
 
