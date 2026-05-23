@@ -106,7 +106,7 @@ The `AppContext` dataclass at `chatbot/api/deps.py:16` carries:
 
 ## Architectural decisions
 
-#### 1. LangGraph over a hand-rolled state machine
+### 1. LangGraph over a hand-rolled state machine
 
 **Decision.** The multi-step RAG pipeline is expressed as a LangGraph
 `StateGraph` rather than as a sequence of `await` calls in a single function.
@@ -123,7 +123,7 @@ lifecycle and a compile step (`g.compile()` at `chatbot/agent/graph.py:156`).
 
 ---
 
-#### 2. pgvector over a dedicated vector DB
+### 2. pgvector over a dedicated vector DB
 
 **Decision.** Vector storage and retrieval use pgvector inside the same Postgres
 instance that Payload CMS already uses, rather than Pinecone, Qdrant, or
@@ -141,7 +141,7 @@ horizontally.
 
 ---
 
-#### 3. HMAC over JWT for internal calls
+### 3. HMAC over JWT for internal calls
 
 **Decision.** `apps/web` authenticates to the chatbot using HMAC-SHA256
 signatures in `X-Internal-Auth` and `X-Ingest-Signature` headers rather than
@@ -150,7 +150,7 @@ JWTs (see `chatbot/security/hmac.py:1`).
 **Why.** JWTs require a key-distribution infrastructure and expiry management.
 For a fixed two-service internal call, a pre-shared HMAC secret is simpler and
 harder to misconfigure. The signature covers the timestamp, path, and body hash
-(`chatbot/security/hmac.py:18`), so it also provides replay protection via the
+(`chatbot/security/hmac.py:18-20`), so it also provides replay protection via the
 `replay_window_seconds` setting.
 
 **Tradeoff.** Rotating secrets requires a coordinated deploy of both services;
@@ -158,11 +158,12 @@ there is no key-distribution protocol.
 
 ---
 
-#### 4. Gemini Flash for cheap nodes, Pro for generation only
+### 4. Gemini Flash for cheap nodes, Pro for generation only
 
-**Decision.** Six of the eight LLM-calling nodes use `gemini-2.5-flash`;
-only `generate_answer` uses `gemini-2.5-pro` (see
-`chatbot/agent/graph.py:91-101`).
+**Decision.** Six nodes use `gemini-2.5-flash` (`classify_intent`,
+`rewrite_query`, `grade_chunks`, `check_groundedness`, `output_guard`,
+`smalltalk_reply`). Only `generate_answer` uses `gemini-2.5-pro` (see
+`chatbot/agent/graph.py:91-107`).
 
 **Why.** Flash is roughly 10× cheaper than Pro per token and has lower latency.
 The classification, rewriting, grading, groundedness-check, output-guard, and
@@ -174,10 +175,10 @@ labels, which may trigger unnecessary retries and inflate cost on the tail.
 
 ---
 
-#### 5. Lifespan-built singletons over per-request init
+### 5. Lifespan-built singletons over per-request init
 
 **Decision.** Clients, the database pool, and the compiled graph are created
-once during FastAPI lifespan (`chatbot/main.py:59-92`) and stored on
+once during FastAPI lifespan (`chatbot/main.py:59-96`) and stored on
 `app.state`.
 
 **Why.** asyncpg pool creation involves TCP handshakes and Postgres auth; Gemini
@@ -191,7 +192,7 @@ changed pool size.
 
 ---
 
-#### 6. In-process budget gate over an external rate limiter
+### 6. In-process budget gate over an external rate limiter
 
 **Decision.** Token spend is tracked in a `chatbot.usage_budget` Postgres table
 and enforced by `BudgetGate` (`chatbot/llm/budget.py:17`) inside the same
@@ -207,7 +208,7 @@ without coordination. The current deployment is single-replica.
 
 ---
 
-#### 7. SSE over WebSocket for streaming
+### 7. SSE over WebSocket for streaming
 
 **Decision.** Token streaming uses Server-Sent Events (`chatbot/api/routes.py:127`)
 rather than a WebSocket connection.
@@ -224,7 +225,7 @@ required.
 
 ---
 
-#### 8. Delete-then-insert ingest over diffing
+### 8. Delete-then-insert ingest over diffing
 
 **Decision.** `IngestService` deletes all existing chunks for a
 `(collection, slug)` pair and inserts freshly embedded chunks, rather than
