@@ -32,6 +32,7 @@ class _FakeRepo:
 def _ctx() -> AppContext:
     return AppContext(
         pool=None,  # type: ignore[arg-type]
+        weaviate=None,  # type: ignore[arg-type]
         llm=FakeLLMClient(),
         embedder=FakeEmbeddingClient(dimension=768),
         searcher=None,  # type: ignore[arg-type]

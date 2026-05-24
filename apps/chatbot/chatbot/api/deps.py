@@ -5,16 +5,18 @@ from dataclasses import dataclass
 
 import asyncpg
 from fastapi import Request
+from weaviate.client import WeaviateAsyncClient
 
 from ..db.chat_log_repo import ChatLogRepo
 from ..llm.base import EmbeddingClient, LLMClient
 from ..llm.budget import BudgetGate
-from ..retrieval.pgvector import HybridSearcher
+from ..retrieval.hybrid_search import HybridSearcher
 
 
 @dataclass
 class AppContext:
     pool: asyncpg.Pool
+    weaviate: WeaviateAsyncClient
     llm: LLMClient
     embedder: EmbeddingClient
     searcher: HybridSearcher

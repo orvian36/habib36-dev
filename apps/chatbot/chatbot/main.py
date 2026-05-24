@@ -20,7 +20,8 @@ from .llm.gemini import GeminiClient
 from .observability.logger import configure_logging
 from .observability.tracing import configure_tracing
 from .retrieval.embedder import GeminiEmbeddingClient
-from .retrieval.pgvector import HybridSearcher
+from .retrieval.hybrid_search import HybridSearcher
+from .retrieval.weaviate_client import create_weaviate_client, ensure_chunks_collection
 
 
 def _build_real_components(settings: Settings) -> tuple[LLMClient, EmbeddingClient]:
@@ -43,7 +44,7 @@ def create_app(*, context: AppContext | None = None) -> FastAPI:
     """Application factory.
 
     If `context` is provided it is used as-is (tests inject fakes here).
-    Otherwise the real Gemini + Postgres components are built in the lifespan.
+    Otherwise the real Gemini + Postgres + Weaviate components are built in the lifespan.
     """
     settings = get_settings()
     configure_logging(settings.log_level)
@@ -61,9 +62,20 @@ def create_app(*, context: AppContext | None = None) -> FastAPI:
             min_size=settings.db_pool_min,
             max_size=settings.db_pool_max,
         )
+        weaviate = await create_weaviate_client(
+            http_host=settings.weaviate_http_host,
+            http_port=settings.weaviate_http_port,
+            grpc_host=settings.weaviate_grpc_host,
+            grpc_port=settings.weaviate_grpc_port,
+            secure=settings.weaviate_secure,
+            api_key=settings.weaviate_api_key,
+        )
+        await ensure_chunks_collection(weaviate, settings.weaviate_collection)
+
         llm, embedder = _build_real_components(settings)
         searcher = HybridSearcher(
-            pool, embedder, top_k=settings.retrieval_top_k, rrf_k=settings.rrf_k
+            weaviate, embedder, settings.weaviate_collection,
+            top_k=settings.retrieval_top_k,
         )
         budget = BudgetGate(BudgetRepo(pool), daily_cap=settings.daily_token_budget)
         graph = build_graph(
@@ -80,6 +92,7 @@ def create_app(*, context: AppContext | None = None) -> FastAPI:
         )
         app.state.context = AppContext(
             pool=pool,
+            weaviate=weaviate,
             llm=llm,
             embedder=embedder,
             searcher=searcher,
@@ -93,6 +106,7 @@ def create_app(*, context: AppContext | None = None) -> FastAPI:
         try:
             yield
         finally:
+            await weaviate.close()
             await pool.close()
 
     app = FastAPI(title="habib36.dev chatbot", version=__version__, lifespan=lifespan)
