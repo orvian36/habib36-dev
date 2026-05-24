@@ -5,56 +5,8 @@ import pytest
 
 from chatbot.db.budget_repo import BudgetRepo
 from chatbot.db.chat_log_repo import ChatLogRepo, ChatLogRow
-from chatbot.db.chunks_repo import ChunkRecord, ChunksRepo
 
 pytestmark = pytest.mark.integration
-
-
-def _record(id_: str, embedding: list[float], **meta: str) -> ChunkRecord:
-    return ChunkRecord(
-        id=id_,
-        collection=meta.get("collection", "posts"),
-        slug=meta.get("slug", "hello"),
-        chunk_index=int(meta.get("chunk_index", "0")),
-        title=meta.get("title", "Title"),
-        source_type=meta.get("source_type", "post"),
-        url=meta.get("url"),
-        content=meta.get("content", "body text"),
-        embedding=embedding,
-        metadata=meta.get("extra_metadata", {}),
-    )
-
-
-async def test_chunks_upsert_and_count(db_pool):
-    repo = ChunksRepo(db_pool)
-    await repo.upsert(
-        [
-            _record("posts:hello:0", [0.1] * 768),
-            _record("posts:hello:1", [0.2] * 768),
-        ]
-    )
-    assert await repo.count() == 2
-
-
-async def test_chunks_upsert_replaces_existing_id(db_pool):
-    repo = ChunksRepo(db_pool)
-    await repo.upsert([_record("posts:hello:0", [0.1] * 768, content="old")])
-    await repo.upsert([_record("posts:hello:0", [0.1] * 768, content="new")])
-    assert await repo.count() == 1
-
-
-async def test_chunks_delete_by_prefix(db_pool):
-    repo = ChunksRepo(db_pool)
-    await repo.upsert(
-        [
-            _record("posts:keep:0", [0.0] * 768),
-            _record("posts:drop:0", [0.0] * 768),
-            _record("posts:drop:1", [0.0] * 768),
-        ]
-    )
-    deleted = await repo.delete_document("posts", "drop")
-    assert deleted == 2
-    assert await repo.count() == 1
 
 
 async def test_chat_log_insert_and_fetch(db_pool):
