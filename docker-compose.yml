@@ -18,15 +18,21 @@ services:
     env_file: ./apps/chatbot/.env
     environment:
       DATABASE_URL: ${CHATBOT_DATABASE_URL}
+      WEAVIATE_HTTP_HOST: weaviate
+      WEAVIATE_HTTP_PORT: "8080"
+      WEAVIATE_GRPC_HOST: weaviate
+      WEAVIATE_GRPC_PORT: "50051"
     depends_on:
       postgres:
+        condition: service_healthy
+      weaviate:
         condition: service_healthy
     networks:
       - internal
     restart: unless-stopped
 
   postgres:
-    image: pgvector/pgvector:pg16
+    image: postgres:16
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     volumes:
@@ -39,8 +45,29 @@ services:
     networks:
       - internal
 
+  weaviate:
+    image: semitechnologies/weaviate:1.27.0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "true"
+      PERSISTENCE_DATA_PATH: /var/lib/weaviate
+      DEFAULT_VECTORIZER_MODULE: none
+      ENABLE_MODULES: ""
+      CLUSTER_HOSTNAME: node1
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/v1/.well-known/ready"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - internal
+    restart: unless-stopped
+
 networks:
   internal:
 
 volumes:
   pgdata:
+  weaviate_data:
