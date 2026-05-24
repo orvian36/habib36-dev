@@ -1,10 +1,7 @@
-"""Integration-tier conftest — auto-truncate tables between tests.
+"""Integration-tier conftest — auto-truncate Postgres tables and reset the Weaviate test collection.
 
-The pool/DSN fixtures live in tests/conftest.py so they can be shared with the e2e tier.
-Weaviate-only tests that don't touch Postgres skip cleanly via the weaviate_test_endpoints
-fixture; this autouse truncation only runs when a real DB pool is available.
+The pool/DSN/Weaviate fixtures live in `tests/conftest.py`.
 """
-import os
 from collections.abc import AsyncIterator
 
 import asyncpg
@@ -12,22 +9,27 @@ import pytest_asyncio
 
 
 @pytest_asyncio.fixture(autouse=True)
-async def _integration_truncate() -> AsyncIterator[None]:
-    dsn = os.environ.get("TEST_DATABASE_URL")
-    if not dsn:
+async def _integration_truncate(db_pool: asyncpg.Pool) -> AsyncIterator[None]:
+    async with db_pool.acquire() as conn:
+        await conn.execute(
+            "TRUNCATE chatbot.chat_logs, chatbot.usage_budget RESTART IDENTITY;"
+        )
+    yield
+
+
+@pytest_asyncio.fixture(autouse=True)
+async def _integration_weaviate_reset(request) -> AsyncIterator[None]:
+    """Reset the test collection if the test requested a `weaviate_client` fixture."""
+    if "weaviate_client" not in request.fixturenames:
         yield
         return
 
-    from chatbot.db.migrate import apply_migrations
-    from chatbot.db.pool import create_pool
+    client = request.getfixturevalue("weaviate_client")
+    collection = request.getfixturevalue("weaviate_test_collection")
 
-    await apply_migrations(dsn)
-    pool = await create_pool(dsn, min_size=1, max_size=4)
-    try:
-        async with pool.acquire() as conn:
-            await conn.execute(
-                "TRUNCATE chatbot.chunks, chatbot.chat_logs, chatbot.usage_budget RESTART IDENTITY;"
-            )
-        yield
-    finally:
-        await pool.close()
+    from chatbot.retrieval.weaviate_client import ensure_chunks_collection
+
+    if await client.collections.exists(collection):
+        await client.collections.delete(collection)
+    await ensure_chunks_collection(client, collection)
+    yield
