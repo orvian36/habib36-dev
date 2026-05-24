@@ -158,7 +158,7 @@ This is also invoked automatically by `docker-entrypoint.sh` on every container 
 - Each file is executed in its own `asyncpg` transaction. If a statement fails the transaction is rolled back and the process exits non-zero.
 - **No migration-tracking table is maintained.** The module docstring states: _"schema-level versioning is intentionally out of scope for v1."_ Every SQL file must therefore be written with idempotency guards (`CREATE TABLE IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`). The migrations in the repo follow this convention throughout.
 - **Rollback is not supported.** There is no `down` path, no version registry, and no rollback command. To reverse a migration, write a new forward-only SQL file.
-- **`0002_drop_chunks.sql`** cleans up the legacy `chatbot.chunks` table for any environment migrating off pgvector. Fresh databases are unaffected (the table never existed).
+- **`0002_drop_chunks.sql`** cleans up the legacy `chatbot.chunks` table for any environment that previously used Postgres-based vector storage. Fresh databases are unaffected (the table never existed).
 
 ---
 

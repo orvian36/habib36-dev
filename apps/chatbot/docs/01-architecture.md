@@ -127,7 +127,7 @@ lifecycle and a compile step (`g.compile()` at `chatbot/agent/graph.py:156`).
 ### 2. Weaviate for vector storage
 
 **Decision.** Vector storage and retrieval use a self-hosted Weaviate instance
-rather than keeping vectors inside Postgres via pgvector.
+rather than keeping vectors inside Postgres.
 
 **Why.** Weaviate provides native hybrid search (BM25 + vector cosine via
 `HybridFusion.RANKED`) without hand-rolled SQL CTEs, and its `weaviate-client`
