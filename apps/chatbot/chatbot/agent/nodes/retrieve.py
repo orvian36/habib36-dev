@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import Protocol
 
-from ...db.chunks_repo import ChunkHit
+from ...retrieval.types import ChunkHit
 from ..state import AgentState, ScoredChunk
 
 
