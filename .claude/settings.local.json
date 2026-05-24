@@ -59,7 +59,26 @@
       "Bash(git *)",
       "Bash(npm view *)",
       "Bash(npm audit *)",
-      "Bash(npm info *)"
+      "Bash(npm info *)",
+      "Bash(uv --version)",
+      "Bash(uv sync *)",
+      "Bash(uv run *)",
+      "Bash(python -m pytest tests/unit/test_chunker.py -v)",
+      "Bash(pnpm --filter chatbot test -- apps/chatbot/tests/integration/test_pgvector_search.py -v)",
+      "Bash(pnpm --filter chatbot test -- tests/integration/test_budget.py -v)",
+      "Bash(python -m pytest tests/unit/test_agent_state.py -v)",
+      "Bash(uv pip *)",
+      "Bash(python -m pytest tests/*)",
+      "Bash(pnpm --filter chatbot test:*)",
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\Best Laptop Gallery\\\\Desktop\\\\live\\\\habib36-dev\\\\apps\\\\chatbot\\\\docs\\\\01-architecture.md\" | Measure-Object -Line\\).Lines)",
+      "Bash(git show *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\Best Laptop Gallery\\\\Desktop\\\\live\\\\habib36-dev\\\\apps\\\\chatbot\\\\docs\\\\05-retrieval-rag.md\")",
+      "Bash(Measure-Object -Line)",
+      "Bash(Select-String -Pattern \"pgvector|weaviate|validators|authlib\")",
+      "Bash(Select-Object -First 40)",
+      "PowerShell(git *)",
+      "Bash(Push-Location apps/chatbot)",
+      "Bash(Pop-Location)"
     ]
   }
 }

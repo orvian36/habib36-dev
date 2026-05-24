@@ -31,6 +31,12 @@
       "skillPath": "skills/executing-plans/SKILL.md",
       "computedHash": "b41c919caf1bb07fbacb0e29899ac513f9eb11cd4dd695975ad352c2c03cc4d7"
     },
+    "fastapi-expert": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/fastapi-expert/SKILL.md",
+      "computedHash": "143163b4ba290370782ba5ef96b02f9e02d3cd6b385c2da7f42badecc1fa3cc3"
+    },
     "finishing-a-development-branch": {
       "source": "obra/superpowers",
       "sourceType": "github",
@@ -53,6 +59,18 @@
       "source": "payloadcms/skills",
       "sourceType": "github",
       "computedHash": "4a17a9529d4533545edb8191159c9134120774acdd042172877291a25929e7a1"
+    },
+    "python-pro": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/python-pro/SKILL.md",
+      "computedHash": "bfd83668264345dfa519e5d8f339c64ac7d2b883748d85a26015781e9338fcc9"
+    },
+    "rag-architect": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/rag-architect/SKILL.md",
+      "computedHash": "d4b6aa4c5db4c92c993a1607c745c57d263414773afa3225bf0f80a95f138067"
     },
     "receiving-code-review": {
       "source": "obra/superpowers",
