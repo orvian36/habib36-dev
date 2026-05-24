@@ -4,9 +4,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ..api.schemas import IngestDocument
-from ..db.chunks_repo import ChunkRecord, ChunksRepo
 from ..llm.base import EmbeddingClient
 from ..retrieval.chunker import Chunker
+from ..retrieval.chunks_store import WeaviateChunksStore
+from ..retrieval.types import ChunkRecord
 
 
 @dataclass(frozen=True)
@@ -20,7 +21,12 @@ def _chunk_id(collection: str, slug: str, index: int) -> str:
 
 
 class IngestService:
-    def __init__(self, chunker: Chunker, embedder: EmbeddingClient, repo: ChunksRepo) -> None:
+    def __init__(
+        self,
+        chunker: Chunker,
+        embedder: EmbeddingClient,
+        repo: WeaviateChunksStore,
+    ) -> None:
         self._chunker = chunker
         self._embedder = embedder
         self._repo = repo

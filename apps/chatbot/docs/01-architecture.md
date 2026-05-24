@@ -21,7 +21,8 @@ flowchart LR
   U[User] -->|HTTPS| W["apps/web<br/>(Next.js + Payload)"]
   W -->|HMAC: X-Internal-Auth<br/>POST /chat, /chat/stream, /chat/feedback| C["apps/chatbot<br/>(FastAPI + LangGraph)"]
   W -->|HMAC: X-Ingest-Signature<br/>POST /ingest, DELETE /documents| C
-  C -->|asyncpg| DB[("Postgres 17<br/>+ pgvector")]
+  C -->|asyncpg| DB[("Postgres 16<br/>(chat_logs, budgets)")]
+  C -->|HTTP+gRPC| WV[("Weaviate 1.27<br/>(Chunks collection)")]
   C -->|HTTPS| G[Gemini API]
 ```
 
@@ -39,7 +40,7 @@ attack surface small and lets Node own the public-facing security primitives.
 | `chatbot/agent/` | LangGraph graph builder and all node implementations | `chatbot/agent/graph.py:76` (`build_graph`) |
 | `chatbot/api/` | FastAPI router, DI providers, request/response schemas, SSE helpers | `chatbot/api/routes.py:44` (`router`) |
 | `chatbot/llm/` | Gemini client protocols and concrete implementations, per-day budget gate | `chatbot/llm/base.py` (protocols); impl in `chatbot/llm/gemini.py` |
-| `chatbot/retrieval/` | Text chunker, Gemini embedding client, hybrid pgvector+BM25 searcher | `chatbot/retrieval/pgvector.py` (`HybridSearcher`) |
+| `chatbot/retrieval/` | Text chunker, Gemini embedding client, Weaviate hybrid searcher | `chatbot/retrieval/weaviate_store.py` (`WeaviateChunksStore`), `chatbot/retrieval/searcher.py` (`HybridSearcher`) |
 | `chatbot/ingest/` | Chunk → embed → upsert pipeline; idempotent per document | `chatbot/ingest/service.py` |
 | `chatbot/db/` | asyncpg pool factory and per-table repositories | `chatbot/db/pool.py`, `chatbot/db/chunks_repo.py`, `chatbot/db/chat_log_repo.py`, `chatbot/db/budget_repo.py` |
 | `chatbot/security/` | HMAC verification, PII redaction, heuristic prompt-injection detection | `chatbot/security/hmac.py`, `chatbot/security/pii.py`, `chatbot/security/prompt_injection.py` |
@@ -123,21 +124,30 @@ lifecycle and a compile step (`g.compile()` at `chatbot/agent/graph.py:156`).
 
 ---
 
-### 2. pgvector over a dedicated vector DB
+### 2. Weaviate for vector storage
 
-**Decision.** Vector storage and retrieval use pgvector inside the same Postgres
-instance that Payload CMS already uses, rather than Pinecone, Qdrant, or
-Weaviate.
+**Decision.** Vector storage and retrieval use a self-hosted Weaviate instance
+rather than keeping vectors inside Postgres.
 
-**Why.** The knowledge base is small (a personal portfolio), so dedicated vector
-DB throughput is not needed. Keeping everything in one Postgres instance removes
-a second stateful service to run, back up, and keep in sync. The `chatbot`
-schema is isolated from Payload's `public` schema by a dedicated
-`chatbot_app` role.
+**Why.** Weaviate provides native hybrid search (BM25 + vector cosine via
+`HybridFusion.RANKED`) without hand-rolled SQL CTEs, and its `weaviate-client`
+v4 async API fits cleanly into the FastAPI lifespan pattern. The `Chunks`
+collection uses `vectorizer: none` so vectors are computed externally by the
+Gemini embedder and pushed in, preserving the same embedding pipeline.
 
-**Tradeoff.** pgvector's ANN index (HNSW) has lower recall than
-purpose-built vector DBs at large scale, and Postgres cannot shard vectors
-horizontally.
+**Data layer split:**
+
+> **Postgres (16):** `chat_logs` (one row per turn) and `usage_budget`
+> (per-day token counters). Accessed via `asyncpg`.
+>
+> **Weaviate (1.27, self-hosted):** the `Chunks` collection. Vectors (768 dims,
+> cosine, HNSW) come from the Python Gemini embedder; BM25 indexes the `content`
+> property. Accessed via `weaviate-client` v4 over HTTP (8080) + gRPC (50051).
+
+**Tradeoff.** Weaviate is a second stateful service to run, back up, and keep
+in sync. If the `weaviate_data` volume is lost, the index must be rebuilt by
+re-running the ingest job (deterministic for a given content blob, typically a
+multi-minute warmup).
 
 ---
 

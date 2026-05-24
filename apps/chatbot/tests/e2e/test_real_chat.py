@@ -23,7 +23,7 @@ from chatbot.llm.budget import BudgetGate
 from chatbot.llm.gemini import GeminiClient
 from chatbot.main import create_app
 from chatbot.retrieval.embedder import GeminiEmbeddingClient
-from chatbot.retrieval.pgvector import HybridSearcher
+from chatbot.retrieval.hybrid_search import HybridSearcher
 from chatbot.security.hmac import sign_request
 
 pytestmark = pytest.mark.e2e
@@ -38,7 +38,7 @@ def gemini_key() -> str:
 
 
 @pytest.fixture
-async def real_app(db_pool, gemini_key):
+async def real_app(db_pool, weaviate_client, weaviate_test_collection, gemini_key):
     secret = "e2e-secret"
     settings = Settings(
         gemini_api_key=gemini_key,
@@ -48,7 +48,7 @@ async def real_app(db_pool, gemini_key):
     )
     llm = GeminiClient(api_key=gemini_key, safety=settings.gemini_safety)
     embedder = GeminiEmbeddingClient(api_key=gemini_key, model=settings.gemini_embedding_model)
-    searcher = HybridSearcher(db_pool, embedder, top_k=3, rrf_k=60)
+    searcher = HybridSearcher(weaviate_client, embedder, weaviate_test_collection, top_k=3)
     budget = BudgetGate(BudgetRepo(db_pool), daily_cap=settings.daily_token_budget)
     graph = build_graph(
         llm=llm,
@@ -62,6 +62,7 @@ async def real_app(db_pool, gemini_key):
     )
     ctx = AppContext(
         pool=db_pool,
+        weaviate=weaviate_client,
         llm=llm,
         embedder=embedder,
         searcher=searcher,

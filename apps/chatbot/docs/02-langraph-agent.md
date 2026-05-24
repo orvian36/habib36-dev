@@ -138,7 +138,7 @@ Resolves anaphora and expands vague phrasing so the downstream vector search has
 - **Reads:** `search_query`, `query` (fallback)
 - **Writes:** `chunks`
 
-Calls `searcher.search(query)` where `searcher` is injected as a `HybridSearcher` (see `05-retrieval-rag.md`). Maps each `ChunkHit` from the DB layer to the immutable `ScoredChunk` dataclass. Always writes `chunks` (may be an empty list). Uses `search_query` if present, otherwise falls back to `query`.
+Calls `searcher.search(query)` where `searcher` is injected as a `HybridSearcher` backed by Weaviate hybrid search (see `05-retrieval-rag.md`). Maps each `ChunkHit` from the Weaviate layer to the immutable `ScoredChunk` dataclass. Always writes `chunks` (may be an empty list). Uses `search_query` if present, otherwise falls back to `query`.
 
 **Failure modes:** Any exception from the searcher propagates. An empty result list is not an error; `grade_chunks` then writes empty `chunk_grades`, and the routing predicate handles the retry/fallback path.
 
@@ -360,5 +360,5 @@ These defaults can also be overridden via `chatbot/config.py` and passed through
 ## 7. See also
 
 - [`03-chat-flow.md`](03-chat-flow.md) — end-to-end HTTP request lifecycle, how the graph is invoked per turn
-- [`05-retrieval-rag.md`](05-retrieval-rag.md) — HybridSearcher internals, embedding pipeline, Qdrant/pgvector setup
+- [`05-retrieval-rag.md`](05-retrieval-rag.md) — HybridSearcher internals, embedding pipeline, Weaviate hybrid setup
 - [`09-glossary.md`](09-glossary.md) — definitions for `Intent`, `Groundedness`, `ScoredChunk`, `SourceRef`, and other domain types

@@ -1,14 +1,14 @@
 import pytest
 
-from chatbot.db.chunks_repo import ChunkRecord, ChunksRepo
 from chatbot.llm.fake import FakeEmbeddingClient
-from chatbot.retrieval.pgvector import HybridSearcher
+from chatbot.retrieval.chunks_store import WeaviateChunksStore
+from chatbot.retrieval.hybrid_search import HybridSearcher
+from chatbot.retrieval.types import ChunkRecord
 
 pytestmark = pytest.mark.integration
 
 
-async def _seed(db_pool, embedder):
-    repo = ChunksRepo(db_pool)
+async def _seed(store: WeaviateChunksStore, embedder: FakeEmbeddingClient):
     docs = [
         ("projects:rag:0", "Habibur built a production RAG pipeline using Weaviate", "RAG Pipeline"),
         ("projects:cv:0", "A computer vision model for traffic signal detection", "Traffic CV"),
@@ -26,27 +26,33 @@ async def _seed(db_pool, embedder):
                 metadata={},
             )
         )
-    await repo.upsert(records)
+    await store.upsert(records)
 
 
-async def test_hybrid_search_finds_relevant_chunk(db_pool):
+async def test_hybrid_search_finds_relevant_chunk(weaviate_client, weaviate_test_collection):
     embedder = FakeEmbeddingClient(dimension=768)
-    await _seed(db_pool, embedder)
-    searcher = HybridSearcher(db_pool, embedder, top_k=2, rrf_k=60)
+    store = WeaviateChunksStore(weaviate_client, weaviate_test_collection)
+    await _seed(store, embedder)
+    searcher = HybridSearcher(weaviate_client, embedder, weaviate_test_collection, top_k=2)
     hits = await searcher.search("rag pipeline weaviate")
     assert hits, "expected hits"
     assert hits[0].id == "projects:rag:0"
 
 
-async def test_hybrid_search_falls_back_to_sparse_when_dense_misses(db_pool):
+async def test_hybrid_search_falls_back_to_sparse_when_dense_misses(
+    weaviate_client, weaviate_test_collection
+):
     embedder = FakeEmbeddingClient(dimension=768)
-    await _seed(db_pool, embedder)
-    searcher = HybridSearcher(db_pool, embedder, top_k=3, rrf_k=60)
+    store = WeaviateChunksStore(weaviate_client, weaviate_test_collection)
+    await _seed(store, embedder)
+    searcher = HybridSearcher(weaviate_client, embedder, weaviate_test_collection, top_k=3)
     hits = await searcher.search("Payload CMS")
     assert any(h.id == "resume:profile:0" for h in hits)
 
 
-async def test_hybrid_search_returns_empty_when_corpus_empty(db_pool):
+async def test_hybrid_search_returns_empty_when_corpus_empty(
+    weaviate_client, weaviate_test_collection
+):
     embedder = FakeEmbeddingClient(dimension=768)
-    searcher = HybridSearcher(db_pool, embedder, top_k=5, rrf_k=60)
+    searcher = HybridSearcher(weaviate_client, embedder, weaviate_test_collection, top_k=5)
     assert await searcher.search("anything") == []

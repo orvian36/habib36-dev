@@ -27,3 +27,15 @@ def test_replay_window_default_60_seconds():
 def test_budget_cap_in_tokens_per_day():
     s = Settings(daily_token_budget=100_000)
     assert s.daily_token_budget == 100_000
+
+
+def test_weaviate_defaults():
+    from chatbot.config import Settings
+    s = Settings()
+    assert s.weaviate_http_host == "localhost"
+    assert s.weaviate_http_port == 8080
+    assert s.weaviate_grpc_host == "localhost"
+    assert s.weaviate_grpc_port == 50051
+    assert s.weaviate_secure is False
+    assert s.weaviate_api_key is None
+    assert s.weaviate_collection == "Chunks"

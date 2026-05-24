@@ -1,8 +1,8 @@
 # 05 – Retrieval & RAG Pipeline
 
-> All source paths below are relative to `apps/chatbot/` (so `chatbot/retrieval/pgvector.py` lives on disk at `apps/chatbot/chatbot/retrieval/pgvector.py`).
+> All source paths below are relative to `apps/chatbot/` (so `chatbot/retrieval/weaviate_store.py` lives on disk at `apps/chatbot/chatbot/retrieval/weaviate_store.py`).
 
-The retrieval layer turns a raw user query into a ranked list of text chunks that are injected into the generator prompt. Four components do the work: **Chunker → Embedder → pgvector schema → HybridSearcher**.
+The retrieval layer turns a raw user query into a ranked list of text chunks that are injected into the generator prompt. Four components do the work: **Chunker → Embedder → Weaviate `Chunks` collection → HybridSearcher**.
 
 ---
 
@@ -49,7 +49,7 @@ class Chunker:
 | Property | Value | Source |
 |---|---|---|
 | Model | `gemini-embedding-001` | `embedder.py:18`, `config.py:30` |
-| Output dimension | 768 (Matryoshka truncation) | `embedder.py:19`, `config.py:31` |
+| Output dimension | 768 dims, stored externally in Weaviate (`vectorizer: none`) | `embedder.py:19`, `config.py:31` |
 | Async? | Yes — `aio.models.embed_content` | `embedder.py:30` |
 | Batched? | Yes — 100 texts per API call | `embedder.py:41-44` |
 
@@ -63,87 +63,79 @@ There is no explicit retry logic inside the embedder — callers rely on the ing
 
 ---
 
-## 3. pgvector Schema
+## 3. Weaviate `Chunks` Collection
 
-**Migration:** `migrations/0001_init.sql`
+**Managed by:** `chatbot/retrieval/weaviate_store.py` (`WeaviateChunksStore.ensure_collection`)
 
-```mermaid
-erDiagram
-  chunks {
-    text        id          PK
-    text        collection
-    text        slug
-    int         chunk_index
-    text        title
-    text        source_type
-    text        url
-    text        content
-    vector_768  embedding
-    tsvector    tsv
-    jsonb       metadata
-    timestamptz created_at
-    timestamptz updated_at
-  }
-```
+The `Chunks` collection uses `vectorizer: none` — vectors are computed externally by the Gemini embedder and passed in explicitly on every upsert.
 
-> Note: `id` is `text` (not `uuid`) — a deterministic hash built by the ingest pipeline so re-ingesting the same document is idempotent. `tsv` is a **generated stored column** (`to_tsvector('english', content)`) — it is never written directly; Postgres maintains it automatically (`0001_init.sql:17`).
+| Property | Weaviate type | Notes |
+|---|---|---|
+| `external_id` | `text` | Deterministic hash; source of the UUID5 object ID |
+| `collection` | `text` | Payload CMS collection name (e.g. `posts`, `projects`) |
+| `slug` | `text` | Document slug; used for document-level deletes |
+| `chunk_index` | `int` | Position within the parent document |
+| `title` | `text` | Document title |
+| `source_type` | `text` | Payload `SourceType` enum value |
+| `url` | `text` | Optional canonical URL |
+| `content` | `text` | Chunk text; BM25-indexed automatically |
+| `metadata_json` | `text` | Serialised JSON metadata dict |
 
-**Indexes** (`0001_init.sql:23-25`):
+**Index configuration:**
 
-| Index | Type | Column(s) | Purpose |
-|---|---|---|---|
-| `chunks_embedding_idx` | HNSW (`vector_cosine_ops`) | `embedding` | ANN vector search |
-| `chunks_tsv_idx` | GIN | `tsv` | Full-text / BM25 candidate scan |
-| `chunks_doc_idx` | B-tree | `(collection, slug)` | Document-level deletes and lookups |
+| Index | Type | Purpose |
+|---|---|---|
+| Vector index | HNSW vector index on the `Chunks` Weaviate collection, cosine distance | ANN vector search |
+| BM25 index | Inverted index on `content` (automatic in Weaviate) | Keyword / BM25 candidate scan |
 
-HNSW is chosen over IVFFlat because it supports incremental inserts without requiring a periodic `VACUUM`/rebuild; this matters for an online ingest API.
+HNSW is chosen (Weaviate default) because it supports incremental inserts without requiring a periodic rebuild; this matters for an online ingest API. The 768-dim vector is stored externally in Weaviate (`vectorizer: none`).
 
 ---
 
 ## 4. Hybrid Search
 
-**File:** `chatbot/retrieval/pgvector.py` — `HybridSearcher.search(query)`
+**File:** `chatbot/retrieval/searcher.py` — `HybridSearcher.search(query)`
 
-### Step-by-step
+**Hybrid search.** `HybridSearcher.search(query)` performs one Weaviate call:
 
-1. **Embed the query** (`pgvector.py:21`): `GeminiEmbeddingClient.aembed_query(query)` → 768-dim float vector.
+```python
+await collection.query.hybrid(
+    query=query,
+    vector=await embedder.aembed_query(query),
+    alpha=0.5,                          # equal weight between BM25 and vector
+    fusion_type=HybridFusion.RANKED,    # reciprocal rank fusion
+    limit=top_k,
+    return_metadata=MetadataQuery(score=True),
+)
+```
 
-2. **Dense (vector) ranking** (`pgvector.py:23-28`, CTE `dense`): orders all chunks by **cosine distance** (`embedding <=> $1`) and takes the top `candidate_pool=20` rows, assigning `ROW_NUMBER()` rank.
+- `alpha` controls the BM25↔vector mix (`0.0` = keyword only, `1.0` = vector only). The default `0.5` matches the equal-weight RRF semantics of the previous SQL-based fusion.
+- `HybridFusion.RANKED` is Weaviate's reciprocal rank fusion implementation; `HybridFusion.RELATIVE_SCORE` is the alternative if score-normalised fusion is wanted later.
+- `limit` defines `top_k`. Internal candidate pool sizing is managed by Weaviate.
 
-3. **Sparse (lexical) ranking** (`pgvector.py:29-34`, CTE `sparse`): filters rows where `tsv @@ plainto_tsquery('english', query)` matches, then orders by `ts_rank(tsv, ...)` descending. Takes the same `candidate_pool=20` rows, assigning `ROW_NUMBER()` rank.
+Each returned object is mapped back to a `ChunkHit(id=external_id, ..., score=metadata.score)`. The score scale differs from the previous RRF-sum (Weaviate scores are not directly comparable across queries) but the ordering is preserved.
 
-4. **RRF fusion** (`pgvector.py:36-42`): joins both CTEs into `chatbot.chunks` (keeping any row that appeared in either), computes:
-
-   ```
-   score = COALESCE(1 / (k + dense_rank), 0)
-         + COALESCE(1 / (k + sparse_rank), 0)
-   ```
-
-   with `k = rrf_k = 60` (`config.py:41`). `COALESCE(..., 0)` means a chunk absent from one list contributes zero from that leg rather than crashing.
-
-5. **Return top-k** (`pgvector.py:42`): `ORDER BY score DESC LIMIT top_k` where `top_k = retrieval_top_k = 8` (`config.py:40`).
-
-### Worked Example — RRF with 3 chunks
+### Worked Example — Hybrid with 3 chunks
 
 Query: `"FastAPI dependency injection"`
 
-| Chunk | Dense rank | Sparse rank | RRF score |
+| Chunk | BM25 rank | Vector rank | Fused result |
 |---|---|---|---|
-| A — "FastAPI uses `Depends()`…" | 2 | 1 | 1/(60+2) + 1/(60+1) = **0.03268** |
-| B — "Dependency injection patterns…" | 3 | 2 | 1/(60+3) + 1/(60+2) = **0.03204** |
-| C — "pgvector cosine similarity…" | 1 | — | 1/(60+1) + 0 = **0.01639** |
+| A — "FastAPI uses `Depends()`…" | 1 | 2 | top (strong in both legs) |
+| B — "Dependency injection patterns…" | 2 | 3 | second |
+| C — "vector cosine similarity…" | — | 1 | lower (no keyword match) |
 
-Chunk A wins: it ranks highly in both legs. Chunk C appears only in the dense results (no lexical match for "FastAPI dependency injection") so its score is roughly half of A's despite having the best vector rank.
+Chunk A wins: it ranks highly in both legs. Chunk C appears only in the vector results (no BM25 match for "FastAPI dependency injection") so its fused score is lower despite having the best vector rank.
 
 ---
 
 ## 5. Why Hybrid vs. Pure Vector
 
-Pure-vector retrieval fails on **exact-match terms** common in a developer portfolio corpus: library names (`asyncpg`, `pgvector`), file paths (`chatbot/retrieval/chunker.py`), version strings (`gemini-2.5-flash`), and method names (`aembed_documents`). These are low-frequency tokens that embeddings smear across the semantic neighbourhood; the lexical leg catches them with precise BM25-style matching. Conversely, the vector leg handles paraphrases and cross-lingual queries that BM25 misses. RRF fusion keeps both strengths without requiring per-corpus weight tuning.
+Pure-vector retrieval fails on **exact-match terms** common in a developer portfolio corpus: library names (`asyncpg`, `weaviate-client`), file paths (`chatbot/retrieval/chunker.py`), version strings (`gemini-2.5-flash`), and method names (`aembed_documents`). These are low-frequency tokens that embeddings smear across the semantic neighbourhood; the BM25 leg over the `content` field catches them with precise keyword matching. Conversely, the vector leg handles paraphrases and cross-lingual queries that BM25 misses. `HybridFusion.RANKED` (reciprocal rank fusion) keeps both strengths without requiring per-corpus weight tuning.
 
 ---
 
 ## See Also
 
-- [04-ingest-flow.md](04-ingest-flow.md) — how documents reach the `chunks` table
-- [09-glossary.md](09-glossary.md) — RRF, HNSW, Matryoshka embeddings, tsvector
+- [04-ingest-flow.md](04-ingest-flow.md) — how documents reach the Weaviate `Chunks` collection
+- [09-glossary.md](09-glossary.md) — RRF, HNSW, Matryoshka embeddings, BM25, Weaviate

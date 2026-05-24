@@ -191,7 +191,19 @@ the second run only; the streaming pass is untracked. See
 
 ---
 
-## 6. Threat Model
+## 6. Data-Store Trust Boundaries
+
+### Postgres
+
+Postgres is accessed over the Docker internal network via asyncpg. The `chatbot_app` role is limited to the `chatbot` schema and has no access to Payload's `public` schema. No Postgres port is mapped to the host.
+
+### Weaviate
+
+- **Weaviate** runs on the internal Docker network with anonymous access enabled. There is no inbound port mapped to the host. For managed/hosted Weaviate the chatbot supports `WEAVIATE_API_KEY` (passed as `Auth.api_key(...)`) and `WEAVIATE_SECURE=true` for TLS on both HTTP and gRPC.
+
+---
+
+## 7. Threat Model
 
 ### Defended against
 
@@ -223,7 +235,7 @@ the second run only; the streaming pass is untracked. See
 
 ---
 
-## 7. See Also
+## 8. See Also
 
 - [03-chat-flow.md](03-chat-flow.md) — budget integration in the chat path; streaming wart
 - [04-ingest-flow.md](04-ingest-flow.md) — ingest HMAC usage

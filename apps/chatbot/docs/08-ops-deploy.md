@@ -62,9 +62,21 @@ All variables are case-insensitive and can be supplied via a `.env` file or real
 
 | Name | Default | Required in prod | What it controls |
 |------|---------|-----------------|-----------------|
-| `DATABASE_URL` | `postgresql://postgres:postgres@localhost:5432/postgres` | Yes | asyncpg DSN for the PostgreSQL / pgvector database. |
+| `DATABASE_URL` | `postgresql://postgres:postgres@localhost:5432/postgres` | Yes | asyncpg DSN for the PostgreSQL database. |
 | `DB_POOL_MIN` | `2` | No | Minimum persistent connections in the asyncpg pool. |
 | `DB_POOL_MAX` | `10` | No | Maximum connections; cap to Postgres `max_connections` headroom. |
+
+### Weaviate (`config.py`)
+
+| Name | Default | Required in prod | What it controls |
+|------|---------|-----------------|-----------------|
+| `WEAVIATE_HTTP_HOST` | `localhost` | Yes | Hostname for the Weaviate HTTP endpoint (port 8080). |
+| `WEAVIATE_HTTP_PORT` | `8080` | No | HTTP port for the Weaviate REST/GraphQL API. |
+| `WEAVIATE_GRPC_HOST` | `localhost` | Yes | Hostname for the Weaviate gRPC endpoint (port 50051). |
+| `WEAVIATE_GRPC_PORT` | `50051` | No | gRPC port used by `weaviate-client` v4 for fast queries. |
+| `WEAVIATE_COLLECTION` | `Chunks` | No | Name of the Weaviate collection holding chunk objects. |
+| `WEAVIATE_API_KEY` | `None` | No | API key for managed/hosted Weaviate (`Auth.api_key(...)`); omit for anonymous local access. |
+| `WEAVIATE_SECURE` | `false` | No | Set to `true` to enable TLS on both HTTP and gRPC connections. |
 
 ### Gemini (`config.py:27-35`)
 
@@ -74,7 +86,7 @@ All variables are case-insensitive and can be supplied via a `.env` file or real
 | `GEMINI_PRO_MODEL` | `gemini-2.5-pro` | No | Model ID used for final answer generation. |
 | `GEMINI_FLASH_MODEL` | `gemini-2.5-flash` | No | Model ID used for cheaper/faster tasks (intent, groundedness). |
 | `GEMINI_EMBEDDING_MODEL` | `gemini-embedding-001` | No | Model ID used for embedding chunks and queries. |
-| `EMBEDDING_DIMENSION` | `768` | No | Vector size; must match the `vector(768)` column in the DB schema. |
+| `EMBEDDING_DIMENSION` | `768` | No | Vector size; must match the 768-dim vectors pushed to Weaviate. |
 | `GEMINI_TIMEOUT_SECONDS` | `30.0` | No | Per-request HTTP timeout for all Gemini calls. |
 | `GEMINI_SAFETY` | `BLOCK_MEDIUM_AND_ABOVE` | No | Harm-block threshold applied to all Gemini requests. |
 
@@ -144,14 +156,23 @@ This is also invoked automatically by `docker-entrypoint.sh` on every container 
 
 - The runner globs `migrations/*.sql` in **lexical order** (e.g. `0001_init.sql`, `0002_…sql`).
 - Each file is executed in its own `asyncpg` transaction. If a statement fails the transaction is rolled back and the process exits non-zero.
-- **No migration-tracking table is maintained.** The module docstring states: _"schema-level versioning is intentionally out of scope for v1."_ Every SQL file must therefore be written with idempotency guards (`CREATE TABLE IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`, `CREATE EXTENSION IF NOT EXISTS`). The single migration in the repo (`0001_init.sql`) follows this convention throughout.
+- **No migration-tracking table is maintained.** The module docstring states: _"schema-level versioning is intentionally out of scope for v1."_ Every SQL file must therefore be written with idempotency guards (`CREATE TABLE IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`). The migrations in the repo follow this convention throughout.
 - **Rollback is not supported.** There is no `down` path, no version registry, and no rollback command. To reverse a migration, write a new forward-only SQL file.
+- **`0002_drop_chunks.sql`** cleans up the legacy `chatbot.chunks` table for any environment that previously used Postgres-based vector storage. Fresh databases are unaffected (the table never existed).
 
 ---
 
-## 5. Runbook
+## 5. Backups
 
-### 5.1 Gemini API key rotation
+**Postgres** is the source of truth for chat logs and budget counters — back up the `pgdata` volume on whatever schedule fits the rest of the platform.
+
+**Weaviate** `weaviate_data` volume holds the chunks index. If lost it can be rebuilt from scratch by re-running the ingest job, since the embedding pipeline is deterministic for a given content blob. Volume backups still recommended to avoid a multi-minute warmup.
+
+---
+
+## 6. Runbook
+
+### 6.1 Gemini API key rotation
 
 **Symptom:** You need to revoke a compromised key or rotate on schedule.
 
@@ -161,7 +182,7 @@ This is also invoked automatically by `docker-entrypoint.sh` on every container 
 4. Verify: `GET /health` should return `200` and the response body should show `gemini: ok`.
 5. Revoke the old key. No downtime because Gemini clients are re-created in the FastAPI lifespan on the new process.
 
-### 5.2 Daily budget exhausted
+### 6.2 Daily budget exhausted
 
 **Symptom:** `/chat` returns `503 Service Unavailable` with a budget-exhausted error body.
 
@@ -171,21 +192,28 @@ This is also invoked automatically by `docker-entrypoint.sh` on every container 
 4. **Option B — raise the cap:** Increase `DAILY_TOKEN_BUDGET` and redeploy. Effect is immediate on next process start.
 5. Confirm recovery: send a test `/chat` request; `chatbot_budget_remaining` gauge should reflect the new ceiling.
 
-### 5.3 pgvector index rebuild
+### 6.3 Re-index from scratch (Weaviate)
 
-**Symptom:** Recall quality degrades after a large ingest batch (HNSW graph becomes sub-optimal due to many deletes/updates).
+**Symptom:** The `weaviate_data` volume is lost, corrupted, or you need a clean rebuild.
 
-1. Connect to the database with `psql $DATABASE_URL`.
-2. Rebuild the HNSW index without blocking reads:
-   ```sql
-   REINDEX INDEX CONCURRENTLY chunks_embedding_idx;
-   ```
-   The index name `chunks_embedding_idx` is defined in `migrations/0001_init.sql` line 23:
-   `CREATE INDEX IF NOT EXISTS chunks_embedding_idx ON chatbot.chunks USING hnsw (embedding vector_cosine_ops);`
-3. Monitor progress via `pg_stat_progress_create_index`.
-4. No service restart required; the index swap is atomic.
+```powershell
+docker compose down weaviate
+docker volume rm habib36-dev_weaviate_data
+docker compose up -d weaviate
+# Then trigger an ingest cycle from the web app (or hit the ingest endpoint directly with the HMAC secret).
+```
 
-### 5.4 HMAC replay-window failures
+Weaviate will recreate the `Chunks` collection on first use (the chatbot calls `ensure_collection` during lifespan startup). The embedding pipeline is deterministic for a given content blob, so re-ingesting produces an identical index.
+
+### 6.4 Weaviate connection refused
+
+**Symptom:** Chatbot fails to start with a `weaviate.exceptions.WeaviateConnectionError`.
+
+1. Confirm Weaviate is running: `docker compose ps weaviate`.
+2. Check `WEAVIATE_HTTP_HOST` / `WEAVIATE_HTTP_PORT` match the compose service name (`weaviate`) and port (`8080`).
+3. If Weaviate is healthy but the chatbot times out, increase `WEAVIATE_STARTUP_PERIOD` in the compose file or add a startup delay in the entrypoint.
+
+### 6.5 HMAC replay-window failures
 
 **Symptom:** Clients receive `401 Unauthorized` errors that correlate with NTP drift between the signing host and the pod.
 
@@ -194,7 +222,7 @@ This is also invoked automatically by `docker-entrypoint.sh` on every container 
 3. **Fix:** Correct the NTP configuration on the drifting host (pod or caller). Do **not** blindly widen `REPLAY_WINDOW_SECONDS` — a wider window increases the replay-attack surface.
 4. After fixing NTP, confirm new requests succeed without changing any secrets or redeploying.
 
-### 5.5 DB pool exhausted
+### 6.6 DB pool exhausted
 
 **Symptom:** `asyncpg.exceptions.TooManyConnectionsError` in logs, or requests hang indefinitely with no response.
 
@@ -209,7 +237,7 @@ This is also invoked automatically by `docker-entrypoint.sh` on every container 
 
 ---
 
-## 6. See also
+## 7. See also
 
 - [01-architecture.md](01-architecture.md) — service topology and component overview
 - [06-security.md](06-security.md) — HMAC signing scheme, replay protection, secret rotation

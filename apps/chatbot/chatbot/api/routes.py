@@ -10,8 +10,8 @@ from fastapi.responses import Response, StreamingResponse
 
 from .. import __version__
 from ..agent.state import Message, default_state
+from ..config import get_settings
 from ..db.chat_log_repo import ChatLogRow
-from ..db.chunks_repo import ChunksRepo
 from ..ingest.service import IngestService
 from ..llm.budget import BudgetExceeded
 from ..observability.metrics import (
@@ -23,6 +23,7 @@ from ..observability.metrics import (
     set_budget_remaining,
 )
 from ..retrieval.chunker import Chunker
+from ..retrieval.chunks_store import WeaviateChunksStore
 from ..security.pii import redact
 from .auth import require_ingest_hmac, require_internal_hmac
 from .deps import AppContext, get_context
@@ -171,7 +172,8 @@ async def chat_stream(body: ChatRequest, ctx: Ctx) -> StreamingResponse:
 @router.post("/ingest", response_model=IngestResponse, dependencies=[Depends(require_ingest_hmac)])
 async def ingest(body: IngestRequest, ctx: Ctx) -> IngestResponse:
     trace_id = str(uuid4())
-    svc = IngestService(chunker=Chunker(), embedder=ctx.embedder, repo=ChunksRepo(ctx.pool))
+    store = WeaviateChunksStore(ctx.weaviate, get_settings().weaviate_collection)
+    svc = IngestService(chunker=Chunker(), embedder=ctx.embedder, repo=store)
     summary = await svc.ingest(body.documents)
     return IngestResponse(ingested=summary.documents, chunks=summary.chunks, trace_id=trace_id)
 
@@ -184,7 +186,8 @@ async def ingest(body: IngestRequest, ctx: Ctx) -> IngestResponse:
 async def delete_document(
     collection: str, slug: str, ctx: Ctx,
 ) -> DeleteResponse:
-    svc = IngestService(chunker=Chunker(), embedder=ctx.embedder, repo=ChunksRepo(ctx.pool))
+    store = WeaviateChunksStore(ctx.weaviate, get_settings().weaviate_collection)
+    svc = IngestService(chunker=Chunker(), embedder=ctx.embedder, repo=store)
     deleted = await svc.delete(collection, slug)
     return DeleteResponse(deleted=deleted)
 

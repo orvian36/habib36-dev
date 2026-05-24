@@ -4,7 +4,7 @@ import pytest
 
 from chatbot.agent.nodes.retrieve import retrieve
 from chatbot.agent.state import default_state
-from chatbot.db.chunks_repo import ChunkHit
+from chatbot.retrieval.types import ChunkHit
 
 
 @dataclass

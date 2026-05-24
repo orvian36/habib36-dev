@@ -1,7 +1,8 @@
 """Shared fixtures for integration + e2e tiers.
 
-The `db_pool` fixture skips automatically when `TEST_DATABASE_URL` is unset, so
-running only unit tests requires no Postgres.
+DB fixtures skip if `TEST_DATABASE_URL` is unset.
+Weaviate fixtures skip if any of WEAVIATE_TEST_HTTP_HOST / WEAVIATE_TEST_HTTP_PORT
+/ WEAVIATE_TEST_GRPC_HOST / WEAVIATE_TEST_GRPC_PORT is unset.
 """
 import os
 from collections.abc import AsyncIterator
@@ -32,14 +33,46 @@ async def db_pool(test_dsn: str) -> AsyncIterator[asyncpg.Pool]:
 
 @pytest_asyncio.fixture
 async def truncate_tables(db_pool: asyncpg.Pool) -> AsyncIterator[None]:
-    """Opt-in truncation fixture for tests that need a clean slate.
-
-    Not autouse — unit tests would skip the whole pool fixture chain otherwise.
-    Integration and e2e tests that mutate the DB should request this explicitly,
-    OR rely on each test setting up its own seed data.
-    """
+    """Opt-in truncation fixture (only chat_logs + usage_budget; chunks live in Weaviate)."""
     async with db_pool.acquire() as conn:
         await conn.execute(
-            "TRUNCATE chatbot.chunks, chatbot.chat_logs, chatbot.usage_budget RESTART IDENTITY;"
+            "TRUNCATE chatbot.chat_logs, chatbot.usage_budget RESTART IDENTITY;"
         )
     yield
+
+
+@pytest.fixture(scope="session")
+def weaviate_test_endpoints() -> dict[str, object]:
+    http_host = os.environ.get("WEAVIATE_TEST_HTTP_HOST")
+    http_port = os.environ.get("WEAVIATE_TEST_HTTP_PORT")
+    grpc_host = os.environ.get("WEAVIATE_TEST_GRPC_HOST")
+    grpc_port = os.environ.get("WEAVIATE_TEST_GRPC_PORT")
+    if not all([http_host, http_port, grpc_host, grpc_port]):
+        pytest.skip("WEAVIATE_TEST_* endpoints not set — skipping weaviate-backed tests")
+    return {
+        "http_host": http_host,
+        "http_port": int(http_port),
+        "grpc_host": grpc_host,
+        "grpc_port": int(grpc_port),
+    }
+
+
+@pytest.fixture(scope="session")
+def weaviate_test_collection() -> str:
+    return os.environ.get("WEAVIATE_TEST_COLLECTION", "ChunksTest")
+
+
+@pytest_asyncio.fixture
+async def weaviate_client(weaviate_test_endpoints):
+    from chatbot.retrieval.weaviate_client import create_weaviate_client
+
+    client = await create_weaviate_client(
+        http_host=weaviate_test_endpoints["http_host"],
+        http_port=weaviate_test_endpoints["http_port"],
+        grpc_host=weaviate_test_endpoints["grpc_host"],
+        grpc_port=weaviate_test_endpoints["grpc_port"],
+    )
+    try:
+        yield client
+    finally:
+        await client.close()

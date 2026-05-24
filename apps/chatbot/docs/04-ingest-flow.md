@@ -19,7 +19,7 @@ sequenceDiagram
   participant S as IngestService
   participant C as Chunker
   participant E as Embedder (Gemini)
-  participant R as ChunksRepo
+  participant R as WeaviateChunksStore
   W->>F: POST /ingest (docs[], X-Ingest-Signature)
   F->>H: verify (different secret than /chat)
   H-->>F: ok
@@ -28,8 +28,8 @@ sequenceDiagram
     S->>C: split into chunks (size 700, overlap 100)
     S->>E: embed_batch(chunk_texts) → vectors[768]
     S->>R: upsert(collection, slug, chunks)
-    R->>R: DELETE WHERE (collection, slug)
-    R->>R: INSERT new chunks + embeddings
+    R->>R: delete_many(WHERE uuid IN uuids)
+    R->>R: insert_many(DataObject list)
   end
   S-->>F: IngestSummary(documents, chunks)
   F-->>W: 200 IngestResponse
@@ -42,9 +42,9 @@ sequenceDiagram
 | 1 | Payload hook POSTs a JSON body with `documents[]` and headers `X-Ingest-Signature` + `X-Ingest-Timestamp` | `chatbot/api/auth.py:14-15` |
 | 2 | FastAPI dependency `require_ingest_hmac` reads `ingest_secrets()` — a separate env var from the internal HMAC secret used by `/chat` | `chatbot/api/auth.py:58-68` |
 | 3 | Signature verified via `verify_request`; 401 on failure | `chatbot/api/auth.py:36-42` |
-| 4 | Route handler (`:171`) constructs `IngestService` per-request with a fresh `Chunker`, `ctx.embedder`, and `ChunksRepo(ctx.pool)` — not injected via lifespan DI | `chatbot/api/routes.py:174` |
+| 4 | Route handler (`:171`) constructs `IngestService` per-request with a fresh `Chunker`, `ctx.embedder`, and `WeaviateChunksStore(ctx.weaviate_collection)` — not injected via lifespan DI | `chatbot/api/routes.py:174` |
 | 5–9 | **Actual order differs from the per-document diagram**: the service first deletes all docs (`service.py:30-31`), then chunks all (`service.py:35-37`), then embeds the full batch in one call (`service.py:43`), then upserts all records (`service.py:63`). The diagram is a logical view. | `chatbot/ingest/service.py:28-64` |
-| 10 | `ChunksRepo.upsert` uses `ON CONFLICT (id) DO UPDATE` — idempotent at the chunk level; prior delete in the service makes this effectively replace-all | `chatbot/db/chunks_repo.py:53-71` |
+| 10 | `WeaviateChunksStore.upsert` issues a `delete_many` followed by `insert_many` — the two-phase shape avoids partial-update edge cases and matches the previous `ON CONFLICT DO UPDATE` semantics | `chatbot/retrieval/weaviate_store.py` |
 | 11 | Returns `IngestSummary(documents=N, chunks=M)` | `chatbot/ingest/service.py:64` |
 | 12 | Handler wraps summary into `IngestResponse` + a fresh `trace_id` | `chatbot/api/routes.py:176` |
 
@@ -120,7 +120,7 @@ The `Chunker` (700-char window, 100-char overlap, recursive separators) is invok
 
 ## 5. DELETE /documents/{collection}/{slug}
 
-Handler at `chatbot/api/routes.py:179`. Also protected by `require_ingest_hmac` (same secret as `/ingest`). Constructs `IngestService` per-request and calls `svc.delete(collection, slug)` (`routes.py:188`), which delegates to `ChunksRepo.delete_document(collection, slug)` (`chunks_repo.py:73-79`). Executes a single `DELETE FROM chatbot.chunks WHERE collection = $1 AND slug = $2` and returns the row count.
+Handler at `chatbot/api/routes.py:179`. Also protected by `require_ingest_hmac` (same secret as `/ingest`). Constructs `IngestService` per-request and calls `svc.delete(collection, slug)` (`routes.py:188`), which delegates to `WeaviateChunksStore.delete_document(collection, slug)`. Issues a `delete_many` with `Filter.by_property("collection").equal(c) & Filter.by_property("slug").equal(s)` and returns `result.successful` as the deleted count.
 
 **DeleteResponse** (`chatbot/api/schemas.py:81-82`):
 
@@ -138,7 +138,23 @@ Handler at `chatbot/api/routes.py:179`. Also protected by `require_ingest_hmac` 
 
 ## 6. Idempotency
 
-Re-ingesting the same document is safe: `IngestService.ingest()` calls `ChunksRepo.delete_document` for each document before inserting (`chatbot/ingest/service.py:30-31`), then `ChunksRepo.upsert` uses `ON CONFLICT (id) DO UPDATE` as an extra safety net (`chunks_repo.py:58-68`). There is no chunk-level diffing. The tradeoff is simple semantics at the cost of embedding tokens on every re-ingest — even if the content has not changed.
+Re-ingesting the same document is safe. The ingest service builds one `weaviate.classes.data.DataObject` per chunk:
+
+```python
+DataObject(
+    properties={"external_id": id, "collection": c, "slug": s, "chunk_index": i,
+                "title": t, "source_type": st, "url": u, "content": text,
+                "metadata_json": json.dumps(metadata)},
+    uuid=uuid5(NAMESPACE_URL, id),
+    vector=embedding,
+)
+```
+
+A deterministic UUID5 of the external id means re-ingesting the same chunk replaces the prior object. Internally, `WeaviateChunksStore.upsert` issues a `delete_many(where=Filter.by_id().contains_any(uuids))` followed by `insert_many(...)` — the two-phase shape avoids partial-update edge cases and matches the previous `ON CONFLICT DO UPDATE` semantics.
+
+**Delete by document.** `delete_document(collection, slug)` issues a `delete_many` with `Filter.by_property("collection").equal(c) & Filter.by_property("slug").equal(s)` and returns `result.successful` as the deleted count.
+
+There is no chunk-level diffing. The tradeoff is simple semantics at the cost of embedding tokens on every re-ingest — even if the content has not changed.
 
 ---
 

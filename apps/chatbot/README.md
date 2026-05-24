@@ -1,6 +1,6 @@
 # chatbot
 
-Internal-only Gemini + LangGraph + pgvector RAG service for habib36.dev.
+Internal-only Gemini + LangGraph + Weaviate RAG service for habib36.dev.
 `apps/web` proxies user traffic over the Docker internal network with HMAC-signed requests.
 
 ## Quick start
@@ -8,9 +8,19 @@ Internal-only Gemini + LangGraph + pgvector RAG service for habib36.dev.
 ```bash
 # from this directory
 uv sync
-cp .env.example .env       # fill in GEMINI_API_KEY + HMAC secrets
+cp .env.example .env       # fill in GEMINI_API_KEY + HMAC secrets + Weaviate settings
 uv run python -m chatbot.db.migrate
 uv run uvicorn chatbot.main:app --reload --port 8001
+```
+
+**Required Weaviate env vars** (add to `.env`):
+
+```text
+WEAVIATE_HTTP_HOST=localhost
+WEAVIATE_HTTP_PORT=8080
+WEAVIATE_GRPC_HOST=localhost
+WEAVIATE_GRPC_PORT=50051
+WEAVIATE_COLLECTION=Chunks
 ```
 
 Through Turborepo:
@@ -59,5 +69,9 @@ See [`docs/06-security.md`](./docs/06-security.md) for the canonical scheme.
 | Tier | Command | Real deps |
 |---|---|---|
 | Unit | `uv run pytest tests/unit` | None — fakes everywhere |
-| Integration | `TEST_DATABASE_URL=... uv run pytest tests/integration` | Postgres + pgvector |
-| E2E | `GEMINI_API_KEY=... TEST_DATABASE_URL=... uv run pytest tests/e2e` | Real Gemini + Postgres |
+| Integration | `TEST_DATABASE_URL=... uv run pytest tests/integration` | Postgres + Weaviate |
+| E2E | `GEMINI_API_KEY=... TEST_DATABASE_URL=... uv run pytest tests/e2e` | Real Gemini + Postgres + Weaviate |
+
+## Vector storage
+
+Chunks live in a Weaviate collection with `vectorizer: none`. Vectors are produced by the Gemini embedder (`gemini-embedding-001`, truncated to 768 dims) and pushed alongside their text. Retrieval uses Weaviate's native hybrid: BM25 on `content` fused with vector cosine via `HybridFusion.RANKED` (reciprocal rank fusion), `alpha=0.5`, `limit=top_k`.
