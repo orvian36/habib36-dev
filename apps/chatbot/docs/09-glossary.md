@@ -8,7 +8,9 @@ Short definitions for terms used across the chatbot documentation. Cross-linked 
 
 ## B
 
-**BM25** — Best Match 25, a probabilistic keyword-ranking algorithm based on term frequency and inverse document frequency. One of the two signals in hybrid search; complements vector similarity by catching exact-term matches that embeddings paraphrase away. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+**BM25** — Best Match 25, a probabilistic keyword-ranking algorithm based on term frequency and inverse document frequency. One of the two signals in hybrid search; complements vector similarity by catching exact-term matches that embeddings paraphrase away. Weaviate runs BM25 on the `content` field of the `Chunks` collection. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+
+**alpha** — Hybrid-search weighting parameter passed to `collection.query.hybrid(alpha=...)`. `0.0` = pure BM25, `1.0` = pure vector. The chatbot defaults to `0.5` (equal weight). See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
 
 **Budget gate** — In-process daily + per-request token caps enforced before each `/chat` invocation. Daily cap persisted in Postgres (`budgets` table); per-request cap is a pre-flight estimate. Implemented in `chatbot/llm/budget.py`. See [`06-security.md`](./06-security.md).
 
@@ -16,7 +18,9 @@ Short definitions for terms used across the chatbot documentation. Cross-linked 
 
 **chat_log** — Per-request audit row (`chat_logs` table) storing trace_id, redacted query, intent, chunk IDs, groundedness, latency, tokens. Substrate for offline evaluation. Persisted on `/chat` but NOT on `/chat/stream`. See [`07-observability.md`](./07-observability.md).
 
-**Chunk** — A ~700-character window of a document with 100-character overlap; the unit of retrieval. Each chunk is embedded once and stored in `chunks`. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+**Chunk** — A ~700-character window of a document with 100-character overlap; the unit of retrieval. Each chunk is embedded once and stored in the Weaviate `Chunks` collection. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+
+**`Chunks` collection** — Single Weaviate collection holding all retrievable chunks. Vectorizer is `none` (vectors are computed by the Gemini embedder and passed in explicitly). BM25 is automatically maintained on the `content` property. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
 
 **Citation** — A `SourceRef` pointing back to a chunk used in the answer. Emitted by the `extract_citations` node from `[i]` markers in the generated draft. See [`02-langraph-agent.md`](./02-langraph-agent.md).
 
@@ -36,9 +40,11 @@ Short definitions for terms used across the chatbot documentation. Cross-linked 
 
 **HMAC** — Hash-based Message Authentication Code. Both endpoint groups (`/chat*` and `/ingest`/`DELETE`) require HMAC-signed headers with a 60-second replay window. Two distinct secrets (internal vs ingest) allow independent rotation. See [`06-security.md`](./06-security.md).
 
-**HNSW** — Hierarchical Navigable Small World, the pgvector index type used on the `embedding` column. Supports incremental inserts (important for live ingest) and approximate nearest-neighbor search with strong recall. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+**HNSW** — Hierarchical Navigable Small World, the vector index type used on the `Chunks` Weaviate collection. Supports incremental inserts (important for live ingest) and approximate nearest-neighbor search with strong recall. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
 
-**Hybrid search** — Retrieval strategy combining a lexical signal (tsvector ts_rank) and a vector signal (cosine on the embedding) via Reciprocal Rank Fusion. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+**Hybrid fusion (RANKED)** — `HybridFusion.RANKED` is Weaviate's reciprocal rank fusion mode, used to combine vector-cosine and BM25 rankings into a single ordered result. The alternative `HybridFusion.RELATIVE_SCORE` uses score-normalised fusion. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+
+**Hybrid search** — Retrieval strategy combining a lexical signal (BM25 over `content`) and a vector signal (cosine on the embedding) via `HybridFusion.RANKED` (reciprocal rank fusion). See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
 
 ## I
 
@@ -66,7 +72,7 @@ Short definitions for terms used across the chatbot documentation. Cross-linked 
 
 **Replay window** — `Settings.replay_window_seconds = 60`. HMAC-signed requests with a timestamp outside `[now - 60s, now + 60s]` are rejected as 401. See [`06-security.md`](./06-security.md).
 
-**RRF** — Reciprocal Rank Fusion. Combines multiple ranked lists into a single ranking via `score = Σ 1/(k + rank_i)` with `k = 60`. Used to fuse lexical + vector ranks in hybrid search. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
+**RRF** — Reciprocal Rank Fusion. Combines multiple ranked lists into a single ranking via `score = Σ 1/(k + rank_i)`. Used to fuse lexical + vector ranks in hybrid search; implemented in Weaviate as `HybridFusion.RANKED`. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
 
 ## S
 
@@ -74,6 +80,8 @@ Short definitions for terms used across the chatbot documentation. Cross-linked 
 
 ## T
 
-**tsvector** — A Postgres data type that stores a pre-processed, lexeme-normalised representation of a text document, enabling fast full-text search via `@@` and ranking via `ts_rank`. The `chunks.tsv` column is a generated stored column (`to_tsvector('english', content)`) used for the lexical leg of hybrid search. See [`05-retrieval-rag.md`](./05-retrieval-rag.md).
-
 **trace_id** — UUID assigned per chat request. Threads through agent state, structured logs, OTel spans, `chat_log` rows, and `/chat/feedback`. See [`07-observability.md`](./07-observability.md).
+
+## W
+
+**Weaviate** — Open-source vector database. The chatbot uses it via `weaviate-client` v4 over HTTP (8080) + gRPC (50051). Self-hosted in Docker on the internal network. Holds the `Chunks` collection with `vectorizer: none`. See [`01-architecture.md`](./01-architecture.md) and [`05-retrieval-rag.md`](./05-retrieval-rag.md).
