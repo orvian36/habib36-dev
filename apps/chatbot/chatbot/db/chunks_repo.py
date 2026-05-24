@@ -1,37 +1,16 @@
-"""chatbot.chunks repository."""
-from __future__ import annotations
+"""chatbot.chunks repository (legacy — scheduled for deletion).
 
-from dataclasses import dataclass
-from typing import Any
+Imports `ChunkRecord` / `ChunkHit` from `chatbot.retrieval.types`. New code
+should import from there directly; this module is removed once all
+references move off of it.
+"""
+from __future__ import annotations
 
 import asyncpg
 
+from ..retrieval.types import ChunkHit, ChunkRecord
 
-@dataclass(frozen=True)
-class ChunkRecord:
-    id: str
-    collection: str
-    slug: str
-    chunk_index: int
-    title: str
-    source_type: str
-    url: str | None
-    content: str
-    embedding: list[float]
-    metadata: dict[str, Any]
-
-
-@dataclass(frozen=True)
-class ChunkHit:
-    id: str
-    collection: str
-    slug: str
-    title: str
-    source_type: str
-    url: str | None
-    content: str
-    score: float
-    metadata: dict[str, Any]
+__all__ = ["ChunkHit", "ChunkRecord", "ChunksRepo"]
 
 
 class ChunksRepo:

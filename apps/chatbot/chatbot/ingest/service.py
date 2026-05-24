@@ -4,7 +4,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ..api.schemas import IngestDocument
-from ..db.chunks_repo import ChunkRecord, ChunksRepo
+from ..db.chunks_repo import ChunksRepo
+from ..retrieval.types import ChunkRecord
 from ..llm.base import EmbeddingClient
 from ..retrieval.chunker import Chunker
 

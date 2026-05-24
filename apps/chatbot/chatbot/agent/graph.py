@@ -6,7 +6,7 @@ from typing import Protocol
 
 from langgraph.graph import END, START, StateGraph
 
-from ..db.chunks_repo import ChunkHit
+from ..retrieval.types import ChunkHit
 from ..llm.base import LLMClient
 from ..llm.budget import BudgetGate
 from .nodes.check_groundedness import check_groundedness
