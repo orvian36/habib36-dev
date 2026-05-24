@@ -6,9 +6,9 @@ from typing import Protocol
 
 from langgraph.graph import END, START, StateGraph
 
-from ..retrieval.types import ChunkHit
 from ..llm.base import LLMClient
 from ..llm.budget import BudgetGate
+from ..retrieval.types import ChunkHit
 from .nodes.check_groundedness import check_groundedness
 from .nodes.classify_intent import classify_intent
 from .nodes.extract_citations import extract_citations
