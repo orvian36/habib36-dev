@@ -34,6 +34,15 @@ class Settings(BaseSettings):
         "BLOCK_MEDIUM_AND_ABOVE"
     )
 
+    # Weaviate
+    weaviate_http_host: str = "localhost"
+    weaviate_http_port: int = 8080
+    weaviate_grpc_host: str = "localhost"
+    weaviate_grpc_port: int = 50051
+    weaviate_secure: bool = False
+    weaviate_api_key: str | None = None
+    weaviate_collection: str = "Chunks"
+
     # Retrieval
     chunk_size: int = 700
     chunk_overlap: int = 100
