@@ -1,6 +1,6 @@
 # Chatbot documentation
 
-Internal-only RAG service for habib36.dev. Gemini + LangGraph + pgvector behind a FastAPI HTTP boundary. Called by `apps/web` over the Docker network with HMAC-signed requests.
+Internal-only RAG service for habib36.dev. Gemini + LangGraph + Weaviate behind a FastAPI HTTP boundary. Called by `apps/web` over the Docker network with HMAC-signed requests.
 
 ## Read in this order
 
@@ -8,7 +8,7 @@ Internal-only RAG service for habib36.dev. Gemini + LangGraph + pgvector behind 
 2. [`02-langraph-agent.md`](./02-langraph-agent.md) — the agent state machine, every node.
 3. [`03-chat-flow.md`](./03-chat-flow.md) — `POST /chat` and `POST /chat/stream`.
 4. [`04-ingest-flow.md`](./04-ingest-flow.md) — `POST /ingest` and `DELETE /documents`.
-5. [`05-retrieval-rag.md`](./05-retrieval-rag.md) — chunking, embedding, hybrid search.
+5. [`05-retrieval-rag.md`](./05-retrieval-rag.md) — hybrid retrieval (Weaviate BM25 + vector, RANKED fusion), reranking, citations.
 6. [`06-security.md`](./06-security.md) — HMAC, PII, prompt injection, budget.
 7. [`07-observability.md`](./07-observability.md) — logging, tracing, metrics, chat_log.
 8. [`08-ops-deploy.md`](./08-ops-deploy.md) — Docker, env, migrations, runbook.
